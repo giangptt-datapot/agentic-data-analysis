@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BDC Power BI Mockup - Independent Version</title>
+  <style>
+    :root{
+      --bg:#081018; --bg2:#0f1b2a; --panel:#122236; --line:#244059;
+      --text:#eef5ff; --muted:#a8bdd4; --blue:#4da1ff; --cyan:#2cc7c9;
+      --violet:#9c7dff; --amber:#f5b84a; --red:#ff6e7f; --green:#3cd48e;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font:14px/1.45 "Segoe UI",sans-serif;background:radial-gradient(1200px 700px at 85% -20%,#1b2f4a 0,var(--bg) 55%);color:var(--text)}
+    .app{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+    .side{border-right:1px solid var(--line);background:#0a1521;padding:14px}
+    .brand{padding:12px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg,rgba(77,161,255,.18),rgba(156,125,255,.12))}
+    .brand h1{margin:0;font-size:14px}
+    .brand p{margin:4px 0 0;color:var(--muted);font-size:11px}
+    .menu{margin-top:14px;display:grid;gap:8px}
+    .menu button{all:unset;cursor:pointer;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--muted);font-size:12px}
+    .menu button.active{color:#fff;background:linear-gradient(135deg,rgba(77,161,255,.3),rgba(156,125,255,.2));border-color:#4e78a2}
+    .main{padding:14px 18px 24px}
+    .top{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(15,27,42,.85);position:sticky;top:10px;z-index:4}
+    .top h2{margin:0;font-size:20px}
+    .sub{color:var(--muted);font-size:12px}
+    .actions{display:flex;gap:8px}
+    .btn{all:unset;cursor:pointer;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--panel);font-size:12px;color:var(--muted)}
+    .btn.pri{color:#fff;border:none;background:linear-gradient(135deg,var(--blue),var(--violet))}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .chip{padding:4px 9px;border:1px solid var(--line);border-radius:999px;background:var(--panel);font-size:11px;color:var(--muted)}
+    .page{display:none;margin-top:12px}
+    .page.active{display:block}
+    .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+    .kpi{border:1px solid var(--line);border-radius:11px;background:linear-gradient(170deg,#16283f,#102035);padding:10px}
+    .kpi .l{font-size:10px;color:var(--muted);text-transform:uppercase}
+    .kpi .v{font-size:22px;font-weight:800;margin-top:4px}
+    .kpi .d{font-size:11px;color:var(--muted)}
+    .grid{display:grid;gap:10px;margin-top:10px}
+    .g2{grid-template-columns:1.4fr 1fr}
+    .g3{grid-template-columns:repeat(3,1fr)}
+    .g4{grid-template-columns:repeat(4,1fr)}
+    .card{border:1px solid var(--line);border-radius:11px;background:var(--panel);padding:10px;position:relative;min-height:160px}
+    .tag{position:absolute;right:8px;top:8px;padding:1px 6px;border:1px solid var(--line);border-radius:6px;font-size:9px;color:var(--muted)}
+    .card h3{margin:0;font-size:13px}
+    .q{margin:1px 0 0;font-size:11px;color:#9cc7ff}
+    .viz{margin-top:10px;height:95px;border-radius:8px;border:1px dashed #3a5a7a;background:linear-gradient(180deg,rgba(44,199,201,.08),rgba(44,199,201,.03))}
+    .bars{margin-top:10px;display:grid;gap:6px}
+    .row{display:grid;grid-template-columns:86px 1fr 66px;gap:6px;align-items:center;font-size:11px}
+    .track{height:12px;background:#1a3048;border-radius:8px;overflow:hidden}.fill{height:100%}
+    .callout{border:1px solid #4b6590;border-radius:11px;background:linear-gradient(135deg,rgba(77,161,255,.14),rgba(156,125,255,.14));padding:11px}
+    .callout b{font-size:20px}
+    .status{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10px;font-weight:700}
+    .ok{background:rgba(60,212,142,.18);color:#7ef2ba}.warn{background:rgba(245,184,74,.18);color:#ffd17f}.risk{background:rgba(255,110,127,.18);color:#ff9cab}
+    .drill{display:inline-block;margin-top:8px;padding:5px 8px;border:1px dashed #567bad;border-radius:8px;font-size:11px;color:#a3c8ff;cursor:pointer}
+    .drawer{position:fixed;right:16px;top:74px;width:280px;border:1px solid var(--line);border-radius:11px;background:#0e1a2b;padding:10px;display:none;z-index:7}
+    .drawer.open{display:block}
+    .drawer h4{margin:0 0 8px}
+    .drawer .f{margin:8px 0}
+    .drawer label{display:block;color:var(--muted);font-size:11px}
+    .drawer .box{margin-top:4px;border:1px dashed #406182;border-radius:8px;height:28px;padding:5px 7px;color:#86a2bd;font-size:11px}
+    .tooltip{position:fixed;display:none;pointer-events:none;z-index:9;max-width:220px;padding:7px 8px;border-radius:8px;border:1px solid #4a6789;background:#0f1c2d;color:#c4d7ec;font-size:11px}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(5,9,15,.72);z-index:8}
+    .modal.open{display:flex}
+    .panel{width:min(740px,92vw);border:1px solid var(--line);border-radius:12px;background:#101d2f;padding:12px}
+    .panel h3{margin:0 0 6px}
+    .panel li,.panel p{color:var(--muted);font-size:12px}
+    footer{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);font-size:11px;color:#8fa9c3}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="side">
+      <div class="brand">
+        <h1>Brazil Delivery Center</h1>
+        <p>Independent Mockup (new design)</p>
+      </div>
+      <div class="menu">
+        <button class="nav active" data-p="p1">1. Executive Overview</button>
+        <button class="nav" data-p="p2">2. Order & Revenue</button>
+        <button class="nav" data-p="p3">3. Delivery Performance</button>
+        <button class="nav" data-p="p4">4. Hub & Geography</button>
+        <button class="nav" data-p="p5">5. Store & Partner</button>
+        <button class="nav" data-p="p6">6. Insight Lab</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="top">
+        <div>
+          <h2 id="title">Page 1 — Executive Overview</h2>
+          <div class="sub" id="subtitle">Power BI canvas mockup với menu, tooltip, drill-through, filter drawer.</div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="home">Home</button>
+          <button class="btn" id="back">Back</button>
+          <button class="btn" id="reset">Reset Filters</button>
+          <button class="btn pri" id="openFilter">Filters</button>
+        </div>
+      </div>
+
+      <div class="filters" id="selected">
+        <span class="chip">City: All (4)</span>
+        <span class="chip">Segment: All</span>
+        <span class="chip">Channel: All</span>
+        <span class="chip">Period: Jan-Apr 2021</span>
+      </div>
+
+      <section class="page active" id="p1">
+        <div class="kpis" id="kpiBox"></div>
+        <div class="grid g2">
+          <div class="card"><span class="tag">LINE</span><h3>GMV Weekly Trend</h3><p class="q">Tốc độ tăng trưởng có bền vững?</p><div class="viz"></div></div>
+          <div class="callout"><span class="status risk">Critical Insight</span><p><b id="i1"></b></p><p style="color:var(--muted);margin:4px 0 0">Doanh thu tập trung cao vào 1 channel, cần theo dõi rủi ro phụ thuộc.</p><span class="drill" data-drill="Executive drill-through: concentration diagnostics">Drill-through</span></div>
+        </div>
+        <div class="grid g3">
+          <div class="card"><span class="tag">MAP</span><h3>Geo Hotspot</h3><p class="q">City nào vừa lớn vừa rủi ro?</p><div class="viz"></div></div>
+          <div class="card"><span class="tag">RIBBON</span><h3>Segment Mix Shift</h3><p class="q">FOOD vs GOOD chuyển dịch theo tháng</p><div class="viz"></div></div>
+          <div class="card"><span class="tag">AREA</span><h3>Orders vs Cancellation</h3><p class="q">Tăng trưởng có làm giảm chất lượng không?</p><div class="viz"></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="p2">
+        <div class="grid g3">
+          <div class="card"><span class="tag">SMALL MULTIPLES</span><h3>Daily/Weekly/Monthly Trend</h3><p class="q">Nhịp tăng trưởng theo thời gian</p><div class="viz"></div></div>
+          <div class="card"><span class="tag">LOLLIPOP</span><h3>Top Channels by GMV</h3><p class="q">Mức độ phụ thuộc channel</p><div class="bars" id="topCh"></div></div>
+          <div class="card"><span class="tag">DONUT</span><h3>Payment Mix</h3><p class="q">Ổn định phương thức thanh toán</p><div class="viz"></div></div>
+        </div>
+        <div class="grid g2">
+          <div class="card"><span class="tag">HISTOGRAM</span><h3>Order Value Distribution</h3><p class="q">Cấu trúc giỏ hàng theo segment</p><div class="viz"></div></div>
+          <div class="card"><span class="tag">HEATMAP</span><h3>Peak Hour</h3><p class="q">Khung giờ cần tăng năng lực</p><div class="viz"></div></div>
+        </div>
+        <div class="callout"><span class="status warn">Watch</span> OWN CHANNEL có AOV cao hơn mạnh, nhưng volume thấp — có dư địa tối ưu acquisition mix.</div>
+      </section>
+
+      <section class="page" id="p3">
+        <div class="grid g4">
+          <div class="card"><span class="tag">KPI</span><h3>Median Cycle</h3><div style="font-size:30px;font-weight:800;margin-top:12px">41.1m</div></div>
+          <div class="card"><span class="tag">KPI</span><h3>P90 Cycle</h3><div style="font-size:30px;font-weight:800;margin-top:12px">67.5m</div></div>
+          <div class="card"><span class="tag">KPI</span><h3>Median Distance</h3><div style="font-size:30px;font-weight:800;margin-top:12px">2.06km</div></div>
+          <div class="card"><span class="tag">KPI</span><h3>Cancel Rate</h3><div style="font-size:30px;font-weight:800;margin-top:12px">4.6%</div></div>
+        </div>
+        <div class="grid g2">
+          <div class="card"><span class="tag">SCATTER</span><h3>Distance vs Delivery Time</h3><p class="q">Phát hiện tail behavior</p><div class="viz"></div></div>
+          <div class="card"><span class="tag">BOXPLOT</span><h3>Delivery Time by Driver Modal</h3><p class="q">Khớp modal với cự ly</p><div class="viz"></div></div>
+        </div>
+        <div class="card"><span class="tag">DRILL</span><h3>Case Detail Entry</h3><p class="q">Đi vào từng đơn bất thường</p><span class="drill" data-drill="Delivery case detail: timeline + fee/cost + quality flags">Open case drill-through</span></div>
+      </section>
+
+      <section class="page" id="p4">
+        <div class="grid g2">
+          <div class="card"><span class="tag">AZURE MAP</span><h3>Hub Performance Map</h3><p class="q">Hub nào high volume nhưng low SLA?</p><div class="viz"></div></div>
+          <div class="card"><span class="tag">DUMBBELL</span><h3>Hub Benchmark</h3><p class="q">Orders vs cycle vs cancel</p><div class="viz"></div></div>
+        </div>
+        <div class="grid g3">
+          <div class="card"><span class="tag">BAR</span><h3>GMV by City</h3><div class="bars" id="cityBars"></div></div>
+          <div class="card"><span class="tag">WATERFALL</span><h3>Delivery Margin by City</h3><div class="viz"></div></div>
+          <div class="card"><span class="tag">CALENDAR HEATMAP*</span><h3>Hub Load Calendar</h3><div class="viz"></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="p5">
+        <div class="grid g3">
+          <div class="card"><span class="tag">PARETO</span><h3>Store Concentration</h3><p class="q">Top % stores đóng góp GMV</p><div class="viz"></div></div>
+          <div class="card"><span class="tag">MATRIX</span><h3>Partner Priority</h3><p class="q">Revenue contribution x cancel risk</p><div class="viz"></div></div>
+          <div class="card"><span class="tag">TABLE</span><h3>Top/Bottom Stores</h3><p class="q">Danh sách hành động cho AM</p><div class="viz"></div></div>
+        </div>
+        <div class="grid g2">
+          <div class="card"><span class="tag">BUBBLE</span><h3>AOV vs Cancel</h3><div class="viz"></div></div>
+          <div class="card"><span class="tag">SANKEY*</span><h3>Channel → Segment</h3><div class="viz"></div></div>
+        </div>
+      </section>
+
+      <section class="page" id="p6">
+        <div class="grid g3">
+          <div class="card"><span class="tag">DECOMPOSITION TREE</span><h3>Drivers of Cancellation</h3><div class="viz"></div></div>
+          <div class="card"><span class="tag">KEY INFLUENCERS</span><h3>Likelihood Factors</h3><div class="viz"></div></div>
+          <div class="card"><span class="tag">WHAT-IF</span><h3>Free-ship Simulator</h3><div class="viz"></div></div>
+        </div>
+        <div class="grid g2">
+          <div class="card"><span class="tag">OUTLIER REGISTER</span><h3>Anomaly Cases</h3><p class="q">Danh sách extreme amount/distance/cycle</p><div class="viz"></div><span class="drill" data-drill="Anomaly drill-through: row-level raw data">Open anomaly drill-through</span></div>
+          <div class="callout"><span class="status ok">Validated</span><ul style="margin:6px 0 0 16px;color:var(--muted);font-size:12px"><li>No PK duplicate, no FK orphan.</li><li>Fan-out payments/deliveries cần aggregate trước khi join.</li><li>Outliers được gắn cờ, không xóa.</li><li>Timestamp delivered thiếu nặng, dùng finished làm proxy.</li></ul></div>
+        </div>
+      </section>
+
+      <footer>Design concept: <b>Brazil Urban Dispatch Night</b> · semantic colors (green/warn/risk) · visual hierarchy rõ để showcase mà vẫn dễ đọc.</footer>
+    </main>
+  </div>
+
+  <div class="drawer" id="drawer">
+    <h4>Filter Panel</h4>
+    <div class="f"><label>Date</label><div class="box">01/01/2021 - 30/04/2021</div></div>
+    <div class="f"><label>City</label><div class="box">All</div></div>
+    <div class="f"><label>Hub</label><div class="box">All</div></div>
+    <div class="f"><label>Segment</label><div class="box">All</div></div>
+    <div class="f"><label>Channel Type</label><div class="box">All</div></div>
+  </div>
+
+  <div class="tooltip" id="tip"></div>
+
+  <div class="modal" id="modal">
+    <div class="panel">
+      <button class="btn" id="closeModal" style="float:right">Close</button>
+      <h3 id="drillTitle">Drill-through</h3>
+      <p>Mô phỏng trang drill-through trong Power BI:</p>
+      <ul>
+        <li>Timeline đơn hàng chi tiết.</li>
+        <li>Hub / store / channel context.</li>
+        <li>Delivery fee vs cost, payment status.</li>
+        <li>Data-quality flags theo từng record.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const model = {
+      kpi: {gmv:35293230, total:368999, finished:352020, cancel:4.6, cycle:41.8, stores:883, storesTotal:951},
+      topChannels:[
+        {name:"FOOD PLACE", gmv:24052825, t:"MARKETPLACE"},
+        {name:"CHOCO PLACE", gmv:2257096, t:"OWN"},
+        {name:"OTHER PLACE", gmv:1865186, t:"OWN"},
+        {name:"LISBON PLACE", gmv:1835994, t:"OWN"},
+        {name:"LONDON PLACE", gmv:1200846, t:"MARKETPLACE"}
+      ],
+      cities:[
+        {name:"SAO PAULO", share:52.7},
+        {name:"RIO", share:33.6},
+        {name:"PORTO ALEGRE", share:8.2},
+        {name:"CURITIBA", share:5.5}
+      ]
+    };
+    const pages = {
+      p1:"Page 1 — Executive Overview",
+      p2:"Page 2 — Order & Revenue Analysis",
+      p3:"Page 3 — Delivery Performance",
+      p4:"Page 4 — Hub & Geographic Performance",
+      p5:"Page 5 — Store & Partner Performance",
+      p6:"Page 6 — Deep-dive / Insight Lab"
+    };
+    const s = id => document.getElementById(id);
+    const hist = ["p1"];
+    const money = v => "R$"+(v/1e6).toFixed(2)+"M";
+    const k = model.kpi;
+    s("kpiBox").innerHTML = [
+      ["GMV (Finished)", money(k.gmv), "AOV ~ R$100.26"],
+      ["Total Orders", k.total.toLocaleString(), k.finished.toLocaleString()+" finished"],
+      ["Cancel Rate", k.cancel+"%", "Trend tăng dần theo tháng"],
+      ["Median Cycle", k.cycle+"m", "P90 ~ 67.5m"],
+      ["Active Stores", k.stores, "/"+k.storesTotal],
+      ["Chargeback", "0.115%", "Rủi ro thấp"]
+    ].map(r=>`<div class="kpi"><div class="l">${r[0]}</div><div class="v">${r[1]}</div><div class="d">${r[2]}</div></div>`).join("");
+    s("i1").textContent = "≈ 68.1% GMV đến từ 1 channel";
+
+    const top = model.topChannels, maxTop = Math.max(...top.map(x=>x.gmv));
+    s("topCh").innerHTML = top.map(x=>`<div class="row"><div>${x.name.replace(" PLACE","")}</div><div class="track"><div class="fill" style="width:${(x.gmv/maxTop*100).toFixed(1)}%;background:${x.t==="MARKETPLACE"?"var(--blue)":"var(--violet)"}"></div></div><div>${money(x.gmv)}</div></div>`).join("");
+
+    const city = model.cities, maxCity = Math.max(...city.map(x=>x.share));
+    s("cityBars").innerHTML = city.map(x=>`<div class="row"><div>${x.name}</div><div class="track"><div class="fill" style="width:${(x.share/maxCity*100).toFixed(1)}%;background:var(--cyan)"></div></div><div>${x.share}%</div></div>`).join("");
+
+    function setPage(id, push=true){
+      document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
+      document.querySelectorAll(".nav").forEach(n=>n.classList.toggle("active",n.dataset.p===id));
+      s("title").textContent = pages[id];
+      if(push && hist[hist.length-1]!==id) hist.push(id);
+    }
+    document.querySelectorAll(".nav").forEach(n=>n.onclick=()=>setPage(n.dataset.p));
+    s("home").onclick = ()=>setPage("p1");
+    s("back").onclick = ()=>{ if(hist.length>1){ hist.pop(); setPage(hist[hist.length-1], false);} };
+    s("reset").onclick = ()=>s("selected").innerHTML = '<span class="chip">City: All (4)</span><span class="chip">Segment: All</span><span class="chip">Channel: All</span><span class="chip">Period: Jan-Apr 2021</span>';
+    s("openFilter").onclick = ()=>s("drawer").classList.toggle("open");
+
+    const tip = s("tip");
+    document.querySelectorAll(".q,.tag,.status").forEach(el=>{
+      el.dataset.tip = el.textContent.trim();
+      el.onmousemove = e => { tip.style.display="block"; tip.style.left=(e.clientX+12)+"px"; tip.style.top=(e.clientY+12)+"px"; tip.textContent=el.dataset.tip; };
+      el.onmouseleave = () => tip.style.display="none";
+    });
+
+    document.querySelectorAll(".drill").forEach(d=>d.onclick=()=>{ s("drillTitle").textContent=d.dataset.drill; s("modal").classList.add("open"); });
+    s("closeModal").onclick = ()=>s("modal").classList.remove("open");
+    s("modal").onclick = e => { if(e.target.id==="modal") s("modal").classList.remove("open"); };
+  </script>
+</body>
+</html>
