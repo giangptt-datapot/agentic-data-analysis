@@ -3,7 +3,7 @@
   "name": "colChanGMV",
   "position": {
     "x": 660,
-    "y": 430,
+    "y": 484,
     "z": 3030,
     "height": 268,
     "width": 596,
@@ -67,6 +67,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'AOV theo loại kênh'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

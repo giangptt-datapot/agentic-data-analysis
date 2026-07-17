@@ -3,7 +3,7 @@
   "name": "colFeeCost",
   "position": {
     "x": 24,
-    "y": 430,
+    "y": 484,
     "z": 3020,
     "height": 268,
     "width": 616,
@@ -81,6 +81,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'Phí thu vs Chi phí giao'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

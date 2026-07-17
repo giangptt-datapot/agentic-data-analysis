@@ -3,7 +3,7 @@
   "name": "colCityGMV",
   "position": {
     "x": 24,
-    "y": 400,
+    "y": 454,
     "z": 3020,
     "height": 298,
     "width": 404,
@@ -67,6 +67,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'GMV theo thành phố'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

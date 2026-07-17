@@ -3,7 +3,7 @@
   "name": "colHour2",
   "position": {
     "x": 24,
-    "y": 332,
+    "y": 386,
     "z": 3020,
     "height": 364,
     "width": 404,
@@ -68,6 +68,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'Đơn theo giờ'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

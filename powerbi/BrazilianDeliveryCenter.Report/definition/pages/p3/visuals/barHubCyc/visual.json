@@ -3,7 +3,7 @@
   "name": "barHubCyc",
   "position": {
     "x": 24,
-    "y": 430,
+    "y": 484,
     "z": 3030,
     "height": 268,
     "width": 1232,
@@ -67,6 +67,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'Median cycle theo hub'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

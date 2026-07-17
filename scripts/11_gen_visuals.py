@@ -48,13 +48,25 @@ def write_visual(pid, name, obj):
     with open(os.path.join(d, "visual.json"), "w", encoding="utf-8") as f:
         json.dump(obj, f, indent=2, ensure_ascii=False)
 
-def viz(pid, name, vtype, x, y, w, h, z, tab, roles, title=None):
+YOFF = 54  # push content down to make room for the top page-navigator menu
+LABEL_TYPES = {"barChart", "columnChart", "clusteredBarChart", "clusteredColumnChart", "lineChart"}
+
+def viz(pid, name, vtype, x, y, w, h, z, tab, roles, title=None, labels=None):
     qs = {r: {"projections": p} for r, p in roles.items()}
     v = {"visualType": vtype, "query": {"queryState": qs}, "drillFilterOtherVisuals": True}
     if title: v["visualContainerObjects"] = title_obj(title)
+    show = labels if labels is not None else (vtype in LABEL_TYPES)
+    if show:
+        v["objects"] = {"labels": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}}}]}
     write_visual(pid, name, {"$schema": VC_SCHEMA, "name": name,
-        "position": {"x": x, "y": y, "z": z, "height": h, "width": w, "tabOrder": tab},
+        "position": {"x": x, "y": y + YOFF, "z": z, "height": h, "width": w, "tabOrder": tab},
         "visual": v})
+
+def page_nav(pid):
+    """Top page-navigator visual = menu + pagination across all pages."""
+    write_visual(pid, "pageNav", {"$schema": VC_SCHEMA, "name": "pageNav",
+        "position": {"x": 24, "y": 8, "z": 6000, "height": 40, "width": 1232, "tabOrder": -1000},
+        "visual": {"visualType": "pageNavigator", "drillFilterOtherVisuals": True}})
 
 def textbox(pid, name, x, y, w, h, z, tab, paragraphs):
     # paragraphs: list of list of (text, size_pt, bold, color)
@@ -62,7 +74,7 @@ def textbox(pid, name, x, y, w, h, z, tab, paragraphs):
     for runs in paragraphs:
         paras.append({"textRuns": [{"value": t, "textStyle": {"fontSize": f"{sz}pt", "fontWeight": ("bold" if b else "normal"), "color": c}} for (t, sz, b, c) in runs]})
     obj = {"$schema": VC_SCHEMA, "name": name,
-           "position": {"x": x, "y": y, "z": z, "height": h, "width": w, "tabOrder": tab},
+           "position": {"x": x, "y": y + YOFF, "z": z, "height": h, "width": w, "tabOrder": tab},
            "visual": {"visualType": "textbox",
                "objects": {"general": [{"properties": {"paragraphs": paras}}]},
                "visualContainerObjects": {
@@ -75,6 +87,7 @@ def card(pid, name, x, y, w, measure, label):
 
 INK = "#0f1a30"; MUT = "#4c587a"
 def head(pid, text, sub):
+    page_nav(pid)  # top menu + pagination
     textbox(pid, "title", 24, 12, 1000, 48, 900, 0,
             [[(text, 20, True, INK)], [(sub, 10.5, False, MUT)]])
 

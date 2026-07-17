@@ -3,7 +3,7 @@
   "name": "lineGMV",
   "position": {
     "x": 24,
-    "y": 166,
+    "y": 220,
     "z": 3000,
     "height": 250,
     "width": 620,
@@ -68,6 +68,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'GMV theo thời gian'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

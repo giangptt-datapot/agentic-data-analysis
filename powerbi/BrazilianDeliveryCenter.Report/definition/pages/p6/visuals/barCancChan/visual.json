@@ -3,7 +3,7 @@
   "name": "barCancChan",
   "position": {
     "x": 660,
-    "y": 166,
+    "y": 220,
     "z": 3010,
     "height": 250,
     "width": 596,
@@ -67,6 +67,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'Hủy theo loại kênh'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

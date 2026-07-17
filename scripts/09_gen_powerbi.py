@@ -18,8 +18,31 @@ ROOT = os.path.join(os.path.dirname(__file__), "..", "powerbi")
 SM = os.path.join(ROOT, "BrazilianDeliveryCenter.SemanticModel")
 RP = os.path.join(ROOT, "BrazilianDeliveryCenter.Report")
 for d in [ROOT, SM, os.path.join(SM, "definition", "tables"),
-          RP, os.path.join(RP, "definition", "pages")]:
+          RP, os.path.join(RP, "definition", "pages"),
+          os.path.join(RP, "StaticResources", "RegisteredResources")]:
     os.makedirs(d, exist_ok=True)
+
+# ---- light theme (written to RegisteredResources so it AUTO-APPLIES on open) ----
+LIGHT_THEME = {
+    "name": "DeliveryCenter_Light",
+    "dataColors": ["#2f6bff", "#0d9488", "#7a3bf5", "#d97706", "#e11d48", "#0f9d58", "#0891b2", "#9333ea"],
+    "background": "#ffffff", "foreground": "#0f1a30", "tableAccent": "#2f6bff",
+    "good": "#0f9d58", "neutral": "#d97706", "bad": "#e11d48",
+    "maximum": "#0d366b", "center": "#86b6ef", "minimum": "#cde2fb", "null": "#e2e8f5",
+    "textClasses": {
+        "title": {"fontFace": "Segoe UI Semibold", "fontSize": 13, "color": "#0f1a30"},
+        "label": {"fontFace": "Segoe UI", "fontSize": 10, "color": "#4c587a"},
+        "callout": {"fontFace": "Segoe UI Bold", "fontSize": 26, "color": "#0f1a30"}},
+    "visualStyles": {
+        "*": {"*": {
+            "background": [{"show": True, "color": {"solid": {"color": "#ffffff"}}, "transparency": 0}],
+            "border": [{"show": True, "color": {"solid": {"color": "#e2e8f5"}}, "radius": 12}],
+            "dropShadow": [{"show": True, "preset": "Custom", "color": {"solid": {"color": "#1e2a52"}}, "transparency": 92, "blur": 8, "spread": 0}],
+            "title": [{"fontColor": {"solid": {"color": "#0f1a30"}}, "fontSize": 12, "fontFamily": "Segoe UI Semibold", "alignment": "left"}],
+            "labels": [{"show": True, "color": {"solid": {"color": "#4c587a"}}, "fontSize": 9}]}},
+        "page": {"*": {"background": [{"color": {"solid": {"color": "#eef2fc"}}, "transparency": 0}]}}}
+}
+THEME_FILE = "DeliveryCenter_Light.json"
 
 def w(path, content):
     with open(path, "w", encoding="utf-8") as f:
@@ -426,10 +449,18 @@ w(os.path.join(RP, "definition", "version.json"), json.dumps({
     "version": "2.0.0"
 }, indent=2))
 
-# report.json (report-level). Base theme only; custom light theme imported manually via View > Themes.
+# write theme to RegisteredResources (auto-applies on open) + standalone copy
+w(os.path.join(RP, "StaticResources", "RegisteredResources", THEME_FILE), json.dumps(LIGHT_THEME, indent=2))
+w(os.path.join(ROOT, "DeliveryCenter_Light.theme.json"), json.dumps(LIGHT_THEME, indent=2))
+
+# report.json — custom light theme wired via RegisteredResources so it AUTO-APPLIES.
 w(os.path.join(RP, "definition", "report.json"), json.dumps({
     "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
-    "themeCollection": {"baseTheme": {"name": "CY24SU06", "type": "SharedResources"}},
+    "themeCollection": {"customTheme": {"name": "DeliveryCenter_Light", "type": "RegisteredResources"}},
+    "resourcePackages": [
+        {"name": "RegisteredResources", "type": "RegisteredResources",
+         "items": [{"name": "DeliveryCenter_Light", "path": THEME_FILE, "type": "CustomTheme"}]}
+    ],
     "settings": {
         "useStylableVisualContainerHeader": True,
         "defaultDrillFilterOtherVisuals": True,
@@ -454,7 +485,7 @@ for pid, disp in PAGES:
     w(os.path.join(pdir, "page.json"), json.dumps({
         "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
         "name": pid, "displayName": disp,
-        "displayOption": "FitToPage", "height": 720, "width": 1280
+        "displayOption": "FitToPage", "height": 800, "width": 1280
     }, indent=2))
 
 print("\nPBIP tree written.")

@@ -1,11 +1,24 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
   "themeCollection": {
-    "baseTheme": {
-      "name": "CY24SU06",
-      "type": "SharedResources"
+    "customTheme": {
+      "name": "DeliveryCenter_Light",
+      "type": "RegisteredResources"
     }
   },
+  "resourcePackages": [
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "DeliveryCenter_Light",
+          "path": "DeliveryCenter_Light.json",
+          "type": "CustomTheme"
+        }
+      ]
+    }
+  ],
   "settings": {
     "useStylableVisualContainerHeader": true,
     "defaultDrillFilterOtherVisuals": true,

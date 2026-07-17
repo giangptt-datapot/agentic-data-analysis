@@ -3,7 +3,7 @@
   "name": "colCancMonth",
   "position": {
     "x": 24,
-    "y": 430,
+    "y": 484,
     "z": 3030,
     "height": 268,
     "width": 620,
@@ -68,6 +68,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'Tỷ lệ hủy theo tháng'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

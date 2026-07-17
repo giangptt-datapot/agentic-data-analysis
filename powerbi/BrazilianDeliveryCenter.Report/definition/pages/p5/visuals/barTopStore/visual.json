@@ -3,7 +3,7 @@
   "name": "barTopStore",
   "position": {
     "x": 24,
-    "y": 66,
+    "y": 120,
     "z": 3000,
     "height": 320,
     "width": 620,
@@ -67,6 +67,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'Top cửa hàng theo GMV'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

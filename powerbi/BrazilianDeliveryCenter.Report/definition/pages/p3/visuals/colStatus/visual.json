@@ -3,7 +3,7 @@
   "name": "colStatus",
   "position": {
     "x": 448,
-    "y": 166,
+    "y": 220,
     "z": 3010,
     "height": 250,
     "width": 404,
@@ -67,6 +67,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'Lượt giao theo trạng thái'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

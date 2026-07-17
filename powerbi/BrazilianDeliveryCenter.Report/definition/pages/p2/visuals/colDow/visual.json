@@ -3,7 +3,7 @@
   "name": "colDow",
   "position": {
     "x": 448,
-    "y": 332,
+    "y": 386,
     "z": 3030,
     "height": 364,
     "width": 404,
@@ -68,6 +68,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'Đơn theo ngày trong tuần'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

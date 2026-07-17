@@ -3,7 +3,7 @@
   "name": "barChannels",
   "position": {
     "x": 660,
-    "y": 66,
+    "y": 120,
     "z": 3010,
     "height": 250,
     "width": 596,
@@ -67,6 +67,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'GMV theo kênh (Top)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

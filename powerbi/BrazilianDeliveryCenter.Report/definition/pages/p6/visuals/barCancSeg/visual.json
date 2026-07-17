@@ -3,7 +3,7 @@
   "name": "barCancSeg",
   "position": {
     "x": 24,
-    "y": 166,
+    "y": 220,
     "z": 3000,
     "height": 250,
     "width": 616,
@@ -67,6 +67,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'Hủy theo segment'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

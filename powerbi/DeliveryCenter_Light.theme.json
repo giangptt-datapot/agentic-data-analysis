@@ -23,12 +23,7 @@
   "textClasses": {
     "title": {
       "fontFace": "Segoe UI Semibold",
-      "fontSize": 14,
-      "color": "#0f1a30"
-    },
-    "header": {
-      "fontFace": "Segoe UI Semibold",
-      "fontSize": 12,
+      "fontSize": 13,
       "color": "#0f1a30"
     },
     "label": {
@@ -38,7 +33,7 @@
     },
     "callout": {
       "fontFace": "Segoe UI Bold",
-      "fontSize": 28,
+      "fontSize": 26,
       "color": "#0f1a30"
     }
   },
@@ -67,6 +62,20 @@
             "radius": 12
           }
         ],
+        "dropShadow": [
+          {
+            "show": true,
+            "preset": "Custom",
+            "color": {
+              "solid": {
+                "color": "#1e2a52"
+              }
+            },
+            "transparency": 92,
+            "blur": 8,
+            "spread": 0
+          }
+        ],
         "title": [
           {
             "fontColor": {
@@ -77,6 +86,17 @@
             "fontSize": 12,
             "fontFamily": "Segoe UI Semibold",
             "alignment": "left"
+          }
+        ],
+        "labels": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#4c587a"
+              }
+            },
+            "fontSize": 9
           }
         ]
       }

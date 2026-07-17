@@ -32,7 +32,9 @@ Khởi động lại Desktop. (Nếu bản Desktop quá cũ không có PBIR → 
 2. Mở `BrazilianDeliveryCenter.pbip` bằng Power BI Desktop.
 3. **Transform data → Edit Parameters → `SourceFolder`** = đường dẫn thư mục CSV (ví dụ `C:\BDC\`, có dấu `\` cuối).
 4. **Refresh**. (Import mode; `stores.csv`/`hubs.csv` đọc encoding 1252 cho dấu tiếng Bồ.)
-5. Import theme: *View → Themes → Browse for themes → `DeliveryCenter_Light.theme.json`*.
+5. **Theme light tự áp dụng** (đã nhúng vào report qua RegisteredResources) — không cần import tay. Nếu vì lý do nào đó không áp: *View → Themes → Browse → `DeliveryCenter_Light.theme.json`*.
+6. **Menu/pagination:** mỗi trang có **Page Navigator** (thanh trên cùng) để chuyển 7 trang.
+7. **Data labels + nền card bo góc + đổ bóng** đã bật sẵn theo palette light.
 
 > **Đã sửa lỗi mở (căn theo 1 PBIP mẫu chạy thành công):**
 > 1. `.platform` `logicalId` → **GUID hợp lệ** (lỗi *"...to type System.Guid"*).
