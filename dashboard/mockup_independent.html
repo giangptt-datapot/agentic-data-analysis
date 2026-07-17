@@ -29,6 +29,8 @@
     .btn.pri{color:#fff;border:none;background:linear-gradient(135deg,var(--blue),var(--violet))}
     .filters{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
     .chip{padding:4px 9px;border:1px solid var(--line);border-radius:999px;background:var(--panel);font-size:11px;color:var(--muted)}
+    .inspo{margin-top:10px;padding:8px 10px;border:1px dashed #46698f;border-radius:10px;background:rgba(77,161,255,.07);font-size:11px;color:#b7cbe0}
+    .inspo b{color:#d8e7f6}
     .page{display:none;margin-top:12px}
     .page.active{display:block}
     .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
@@ -105,6 +107,10 @@
         <span class="chip">Channel: All</span>
         <span class="chip">Period: Jan-Apr 2021</span>
       </div>
+      <div class="inspo">
+        <b>Template patterns applied (from reference repo):</b>
+        Button Slicer • Target Line Bar • TopN/BottomN Table • Azure Map Bubbles • Decomposition Tree Top/Bottom
+      </div>
 
       <section class="page active" id="p1">
         <div class="kpis" id="kpiBox"></div>
@@ -143,12 +149,13 @@
           <div class="card"><span class="tag">SCATTER</span><h3>Distance vs Delivery Time</h3><p class="q">Phát hiện tail behavior</p><div class="viz"></div></div>
           <div class="card"><span class="tag">BOXPLOT</span><h3>Delivery Time by Driver Modal</h3><p class="q">Khớp modal với cự ly</p><div class="viz"></div></div>
         </div>
+        <div class="card"><span class="tag">TARGET LINE BAR (Native)</span><h3>SLA by Hour Slot vs Target</h3><p class="q">Template: Clustered Bar + Target line</p><div class="viz"></div></div>
         <div class="card"><span class="tag">DRILL</span><h3>Case Detail Entry</h3><p class="q">Đi vào từng đơn bất thường</p><span class="drill" data-drill="Delivery case detail: timeline + fee/cost + quality flags">Open case drill-through</span></div>
       </section>
 
       <section class="page" id="p4">
         <div class="grid g2">
-          <div class="card"><span class="tag">AZURE MAP</span><h3>Hub Performance Map</h3><p class="q">Hub nào high volume nhưng low SLA?</p><div class="viz"></div></div>
+          <div class="card"><span class="tag">AZURE MAP PIE BUBBLES (Native)</span><h3>Hub Performance Map</h3><p class="q">Hub nào high volume nhưng low SLA?</p><div class="viz"></div></div>
           <div class="card"><span class="tag">DUMBBELL</span><h3>Hub Benchmark</h3><p class="q">Orders vs cycle vs cancel</p><div class="viz"></div></div>
         </div>
         <div class="grid g3">
@@ -162,7 +169,7 @@
         <div class="grid g3">
           <div class="card"><span class="tag">PARETO</span><h3>Store Concentration</h3><p class="q">Top % stores đóng góp GMV</p><div class="viz"></div></div>
           <div class="card"><span class="tag">MATRIX</span><h3>Partner Priority</h3><p class="q">Revenue contribution x cancel risk</p><div class="viz"></div></div>
-          <div class="card"><span class="tag">TABLE</span><h3>Top/Bottom Stores</h3><p class="q">Danh sách hành động cho AM</p><div class="viz"></div></div>
+          <div class="card"><span class="tag">TOPN/BOTTOMN TABLE (Native)</span><h3>Top/Bottom Stores</h3><p class="q">Template: Dynamic TopN and BottomN with separator</p><div class="viz"></div></div>
         </div>
         <div class="grid g2">
           <div class="card"><span class="tag">BUBBLE</span><h3>AOV vs Cancel</h3><div class="viz"></div></div>
@@ -172,7 +179,7 @@
 
       <section class="page" id="p6">
         <div class="grid g3">
-          <div class="card"><span class="tag">DECOMPOSITION TREE</span><h3>Drivers of Cancellation</h3><div class="viz"></div></div>
+          <div class="card"><span class="tag">DECOMPOSITION TREE TOP/BOTTOM (Native)</span><h3>Drivers of Cancellation</h3><div class="viz"></div></div>
           <div class="card"><span class="tag">KEY INFLUENCERS</span><h3>Likelihood Factors</h3><div class="viz"></div></div>
           <div class="card"><span class="tag">WHAT-IF</span><h3>Free-ship Simulator</h3><div class="viz"></div></div>
         </div>
@@ -182,7 +189,7 @@
         </div>
       </section>
 
-      <footer>Design concept: <b>Brazil Urban Dispatch Night</b> · semantic colors (green/warn/risk) · visual hierarchy rõ để showcase mà vẫn dễ đọc.</footer>
+      <footer>Design concept: <b>Brazil Urban Dispatch Night</b> · semantic colors (green/warn/risk) · visual hierarchy rõ để showcase mà vẫn dễ đọc. Template inspirations tham khảo từ Dashboard-Design/Power-BI-Design-Files (chỉ học pattern, không sao chép bố cục).</footer>
     </main>
   </div>
 

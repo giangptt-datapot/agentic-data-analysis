@@ -1,26 +1,32 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Brazilian Delivery Center — Power BI Mockup (Multi-page)</title><style>
-:root{
-  --bg:#0a0d14; --bg2:#0f1320; --panel:#141a28; --panel2:#1a2132; --line:#273146;
-  --ink:#f3f6ff; --ink2:#aab4ca; --ink3:#6e7892;
-  --blue:#3d8bff; --teal:#22b8a6; --violet:#8878ff; --amber:#f2a71b; --red:#df4f67; --green:#38c172;
-  --grad:linear-gradient(135deg,#3d8bff,#8878ff);
+<title>Brazilian Delivery Center — Power BI Mockup (Multi-page)</title><style>:root{
+  --bg:#0a0d14;--radial:radial-gradient(1400px 800px at 85% -20%,#1b2540 0%,#0a0d14 52%);
+  --panel:#141a28;--panel2:#1a2132;--line:#273146;--ink:#f3f6ff;--ink2:#aab4ca;--ink3:#6e7892;
+  --blue:#3d8bff;--teal:#22b8a6;--violet:#8878ff;--amber:#f2a71b;--red:#df4f67;--green:#38c172;
+  --grad:linear-gradient(135deg,#3d8bff,#8878ff);--qink:#8fbaff;
+  --sidebg:linear-gradient(180deg,#0b101c,#0b0f18);--topbg:rgba(20,26,40,.85);--drawerbg:#101727;
+  --tipbg:#0f1523;--tipink:#f3f6ff;--track:#1b2335;--boxbg:#0c1220;
+  --calbg:linear-gradient(135deg,rgba(61,139,255,.14),rgba(136,120,255,.12));--calborder:#455892;
+  --menuact:linear-gradient(135deg,rgba(61,139,255,.25),rgba(136,120,255,.13));--menuactbd:#44689f;--brandbg:rgba(61,139,255,.08);
+  --drillink:#9ab8ff;--drillbd:#4f638f;--drillbg:rgba(61,139,255,.1);
+  --okbg:rgba(56,193,114,.15);--okink:#5ee39a;--midbg:rgba(242,167,27,.15);--midink:#ffd071;--riskbg:rgba(223,79,103,.15);--riskink:#ff8ea4;
 }
+
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(1400px 800px at 85% -20%,#1b2540 0%,var(--bg) 52%);color:var(--ink);font:14px/1.45 "Segoe UI",Inter,system-ui,sans-serif}
+body{margin:0;background:var(--radial);color:var(--ink);font:14px/1.45 "Segoe UI",Inter,system-ui,sans-serif}
 .app{display:grid;grid-template-columns:248px 1fr;min-height:100vh}
-.side{background:linear-gradient(180deg,#0b101c,#0b0f18);border-right:1px solid var(--line);padding:16px 14px;position:sticky;top:0;height:100vh}
-.brand{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(61,139,255,.08)}
+.side{background:var(--sidebg);border-right:1px solid var(--line);padding:16px 14px;position:sticky;top:0;height:100vh}
+.brand{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--brandbg)}
 .brand h1{margin:0;font-size:14px;line-height:1.2}
 .brand small{color:var(--ink2)}
 .menu{margin-top:16px;display:grid;gap:8px}
 .menu button{all:unset;cursor:pointer;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink2);font-size:12.5px}
-.menu button.active{color:var(--ink);border-color:#44689f;background:linear-gradient(135deg,rgba(61,139,255,.25),rgba(136,120,255,.13))}
+.menu button.active{color:var(--ink);border-color:var(--menuactbd);background:var(--menuact)}
 .menu .sec{margin:8px 0 2px;color:var(--ink3);font-size:11px;text-transform:uppercase;letter-spacing:.5px}
 .side .meta{margin-top:12px;font-size:11px;color:var(--ink3);border-top:1px dashed var(--line);padding-top:10px}
 .main{padding:14px 18px 26px 18px}
-.top{display:flex;align-items:center;gap:10px;justify-content:space-between;background:rgba(20,26,40,.85);border:1px solid var(--line);border-radius:14px;padding:10px 12px;position:sticky;top:10px;z-index:3;backdrop-filter:blur(4px)}
+.top{display:flex;align-items:center;gap:10px;justify-content:space-between;background:var(--topbg);border:1px solid var(--line);border-radius:14px;padding:10px 12px;position:sticky;top:10px;z-index:3;backdrop-filter:blur(6px)}
 .title h2{margin:0;font-size:20px;letter-spacing:-.3px}
 .title .sub{color:var(--ink2);font-size:12px}
 .actions{display:flex;align-items:center;gap:8px}
@@ -32,40 +38,40 @@ body{margin:0;background:radial-gradient(1400px 800px at 85% -20%,#1b2540 0%,var
 .page{display:none;margin-top:12px}
 .page.active{display:block}
 .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
-.kpi{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:11px 12px;position:relative;overflow:hidden}
+.kpi{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:11px 12px;position:relative;overflow:hidden;box-shadow:0 1px 2px rgba(20,30,60,.04)}
 .kpi:before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--grad)}
 .kpi .l{font-size:10px;color:var(--ink3);text-transform:uppercase;letter-spacing:.6px}
 .kpi .v{font-size:21px;font-weight:800;margin-top:4px}
 .kpi .d{font-size:11px;color:var(--ink2);margin-top:2px}
 .grid{display:grid;gap:10px;margin-top:10px}
 .g2{grid-template-columns:1.5fr 1fr}.g2e{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 12px;position:relative;min-height:160px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:11px 12px;position:relative;min-height:160px;box-shadow:0 1px 2px rgba(20,30,60,.04)}
 .card h3{margin:0 0 2px;font-size:13.5px}
-.q{margin:0;color:#8fbaff;font-size:11px}
+.q{margin:0;color:var(--qink);font-size:11px}
 .tag{position:absolute;right:10px;top:10px;font-size:9px;color:var(--ink3);border:1px solid var(--line);padding:1px 6px;border-radius:5px}
 .chart{margin-top:9px}
 .chart svg{display:block;width:100%;overflow:visible}
 .mini-bars{display:grid;gap:6px;margin-top:10px}
 .row{display:grid;grid-template-columns:82px 1fr 64px;gap:6px;align-items:center;font-size:11px}
-.track{height:12px;background:#1b2335;border-radius:6px;overflow:hidden}.fill{height:100%;background:var(--blue)}
-.callout{background:linear-gradient(135deg,rgba(61,139,255,.14),rgba(136,120,255,.12));border:1px solid #455892;border-radius:12px;padding:12px}
+.track{height:12px;background:var(--track);border-radius:6px;overflow:hidden}.fill{height:100%;background:var(--blue)}
+.callout{background:var(--calbg);border:1px solid var(--calborder);border-radius:12px;padding:12px}
 .callout b{font-size:20px}
 .bullet{padding-left:16px;margin:6px 0 0 0;color:var(--ink2);font-size:12px}
 .bullet li{margin:4px 0}
 .status{display:inline-block;padding:2px 8px;border-radius:999px;font-size:10.5px;font-weight:700}
-.ok{background:rgba(56,193,114,.15);color:#5ee39a}.mid{background:rgba(242,167,27,.15);color:#ffd071}.risk{background:rgba(223,79,103,.15);color:#ff8ea4}
-.drawer{position:fixed;right:16px;top:76px;width:290px;background:#101727;border:1px solid var(--line);border-radius:12px;padding:12px;z-index:5;display:none}
+.ok{background:var(--okbg);color:var(--okink)}.mid{background:var(--midbg);color:var(--midink)}.risk{background:var(--riskbg);color:var(--riskink)}
+.drawer{position:fixed;right:16px;top:76px;width:290px;background:var(--drawerbg);border:1px solid var(--line);border-radius:12px;padding:12px;z-index:5;display:none;box-shadow:0 12px 40px rgba(10,20,50,.25)}
 .drawer.open{display:block}
 .drawer h4{margin:0 0 8px;font-size:13px}
 .drawer .s{margin:8px 0}
 .drawer label{display:block;font-size:11px;color:var(--ink2);margin-bottom:4px}
-.drawer .box{border:1px dashed #425371;border-radius:8px;padding:6px 8px;color:var(--ink2);font-size:11.5px;background:#0c1220;cursor:pointer}
-.drawer .box.sel{border-style:solid;border-color:#44689f;color:#fff;background:rgba(61,139,255,.14)}
-.tooltip{position:fixed;pointer-events:none;background:#0f1523;border:1px solid #3b4a68;border-radius:8px;padding:7px 8px;max-width:230px;font-size:11px;color:var(--ink);display:none;z-index:9}
-.drill{cursor:pointer;border:1px dashed #4f638f;padding:5px 8px;border-radius:8px;font-size:11px;color:#9ab8ff;background:rgba(61,139,255,.1);display:inline-block;margin-top:9px}
-.modal{position:fixed;inset:0;background:rgba(5,8,14,.7);display:none;align-items:center;justify-content:center;z-index:8}
+.drawer .box{border:1px dashed var(--line);border-radius:8px;padding:6px 8px;color:var(--ink2);font-size:11.5px;background:var(--boxbg);cursor:pointer;margin-bottom:5px}
+.drawer .box.sel{border-style:solid;border-color:var(--menuactbd);color:var(--ink);background:var(--drillbg)}
+.tooltip{position:fixed;pointer-events:none;background:var(--tipbg);border:1px solid var(--line);border-radius:8px;padding:7px 8px;max-width:230px;font-size:11px;color:var(--tipink);display:none;z-index:9;box-shadow:0 6px 20px rgba(10,20,50,.3)}
+.drill{cursor:pointer;border:1px dashed var(--drillbd);padding:5px 8px;border-radius:8px;font-size:11px;color:var(--drillink);background:var(--drillbg);display:inline-block;margin-top:9px}
+.modal{position:fixed;inset:0;background:rgba(5,8,14,.55);display:none;align-items:center;justify-content:center;z-index:8}
 .modal.open{display:flex}
-.modal .panel{width:min(820px,92vw);max-height:86vh;overflow:auto;background:#0f1524;border:1px solid var(--line);border-radius:12px;padding:14px}
+.modal .panel{width:min(820px,92vw);max-height:86vh;overflow:auto;background:var(--drawerbg);border:1px solid var(--line);border-radius:12px;padding:14px}
 .modal h3{margin:0 0 6px}
 .modal p,.modal li{color:var(--ink2);font-size:12px}
 .close{float:right}
@@ -74,9 +80,9 @@ body{margin:0;background:radial-gradient(1400px 800px at 85% -20%,#1b2540 0%,var
 .dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:4px;vertical-align:-1px}
 .dtbl{width:100%;border-collapse:collapse;font-size:11px;margin-top:8px}
 .dtbl th{color:var(--ink3);text-align:left;font-weight:600;padding:4px 6px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel)}
-.dtbl td{padding:4px 6px;border-bottom:1px solid #1c2436;color:var(--ink2)}
+.dtbl td{padding:4px 6px;border-bottom:1px solid var(--line);color:var(--ink2)}
 .dtbl td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
-input[type=range]{width:100%}
+input[type=range]{width:100%;accent-color:var(--blue)}
 footer{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:var(--ink3);font-size:11px}
 @media (max-width:1280px){.kpis{grid-template-columns:repeat(3,1fr)}.g3,.g4{grid-template-columns:repeat(2,1fr)}.g2,.g2e{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -93,7 +99,7 @@ footer{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:
       <button class="nav" data-page="p5">5 · Store &amp; Partner</button>
       <button class="nav" data-page="p6">6 · Insight Lab</button>
     </div>
-    <div class="meta">Canvas 16:9 · Dark logistics theme<br>Type: Segoe UI / Inter<br>Blue–violet focus + semantic status<br>TZ: UTC−3 (assumed) · min-vol ranking</div>
+    <div class="meta">Canvas 16:9 · Dark theme<br>Type: Segoe UI / Inter<br>Blue–violet focus + semantic status<br>TZ: UTC−3 (assumed) · min-vol ranking</div>
   </aside>
   <main class="main">
     <div class="top">
@@ -229,7 +235,7 @@ const PD = {"exec_kpi": {"gmv": 35293230, "orders": 368999, "finished": 352020, 
 
 const byId=id=>document.getElementById(id);
 const NS="http://www.w3.org/2000/svg";
-const C={blue:"#3d8bff",teal:"#22b8a6",violet:"#8878ff",amber:"#f2a71b",red:"#df4f67",green:"#38c172",ink2:"#aab4ca",ink3:"#6e7892",grid:"#243049"};
+const C = {"blue": "#3d8bff", "teal": "#22b8a6", "violet": "#8878ff", "amber": "#f2a71b", "red": "#df4f67", "green": "#38c172", "ink2": "#aab4ca", "ink3": "#6e7892", "grid": "#243049", "lab": "#c7cee0", "markOn": "#ffffff", "strong": "#ffffff", "total": "#ffffff", "areaGrad": "#3d8bff", "heat": "61,139,255", "cal": "56,193,114"};
 const brl=v=>"R$"+(Math.abs(v)>=1e6?(v/1e6).toFixed(2)+"M":Math.abs(v)>=1e3?(v/1e3).toFixed(0)+"k":(+v).toFixed(0));
 const nk=v=>v>=1e6?(v/1e6).toFixed(2)+"M":v>=1e3?(v/1e3).toFixed(0)+"k":(""+v);
 const E=(t,a={},kids=[])=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(Array.isArray(kids)?kids:[kids]).forEach(c=>c&&e.appendChild(c));return e;};
@@ -256,7 +262,7 @@ byId("ins1").textContent=`${(PD.top_channels[0].gmv/k.gmv*100).toFixed(0)}% GMV 
  const mx=Math.max(...d.map(r=>r.gmv)),xs=i=>pl+i/(d.length-1)*(w-pl-pr),ys=v=>pt+(1-v/mx)*(h-pt-pb);
  for(let g=0;g<=3;g++){const y=pt+g/3*(h-pt-pb);s.appendChild(E("line",{x1:pl,x2:w-pr,y1:y,y2:y,stroke:C.grid}));s.appendChild(T(2,y+3,brl(mx*(1-g/3)),{fs:8}));}
  let p="";d.forEach((r,i)=>p+=(i?"L":"M")+xs(i)+" "+ys(r.gmv));
- const def=E("defs");def.innerHTML=`<linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d8bff" stop-opacity=".4"/><stop offset="1" stop-color="#3d8bff" stop-opacity="0"/></linearGradient>`;s.appendChild(def);
+ const def=E("defs");def.innerHTML=`<linearGradient id="gA" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${C.areaGrad}" stop-opacity=".4"/><stop offset="1" stop-color="${C.areaGrad}" stop-opacity="0"/></linearGradient>`;s.appendChild(def);
  s.appendChild(E("path",{d:p+`L${xs(d.length-1)} ${h-pb}L${xs(0)} ${h-pb}Z`,fill:"url(#gA)"}));
  s.appendChild(E("path",{d:p,fill:"none",stroke:C.blue,"stroke-width":2.5}));
  const pk=d.reduce((a,r,i)=>r.gmv>d[a].gmv?i:a,0);
@@ -285,7 +291,7 @@ byId("ins1").textContent=`${(PD.top_channels[0].gmv/k.gmv*100).toFixed(0)}% GMV 
  const mxo=Math.max(...d.map(c=>c.orders));const col=c=>c.cancel_rate>=6?C.red:c.cancel_rate>=4?C.amber:C.green;
  d.forEach(c=>{const r=8+Math.sqrt(c.orders/mxo)*22;const cc=E("circle",{cx:X(c.lng),cy:Y(c.lat),r,fill:col(c),"fill-opacity":.45,stroke:col(c),"stroke-width":1.5});s.appendChild(cc);
    hov(cc,`<b>${c.city} (${c.state})</b><br>${nk(c.orders)} đơn · GMV ${brl(c.gmv)}<br>AOV ${brl(c.aov)} · hủy ${c.cancel_rate}%`);
-   s.appendChild(T(X(c.lng),Y(c.lat)+3,c.state,{fs:9,anc:"middle",fill:"#fff",fw:700}));});})();
+   s.appendChild(T(X(c.lng),Y(c.lat)+3,c.state,{fs:9,anc:"middle",fill:C.lab,fw:700}));});})();
 
 // Segment mix ribbon (stacked area share by month)
 (function(){const w=330,h=150,pl=8,pr=8,pt=14;const pb2=18;const s=mk("c_segmix",w,h);if(!s)return;
@@ -327,7 +333,7 @@ byId("ins1").textContent=`${(PD.top_channels[0].gmv/k.gmv*100).toFixed(0)}% GMV 
  d.forEach((r_,i)=>{const ang=r_.orders/tot*2*Math.PI,a1=a0+ang,lg=ang>Math.PI?1:0;
   const p=`M${cx+r*Math.cos(a0)} ${cy+r*Math.sin(a0)}A${r} ${r} 0 ${lg} 1 ${cx+r*Math.cos(a1)} ${cy+r*Math.sin(a1)}L${cx+ir*Math.cos(a1)} ${cy+ir*Math.sin(a1)}A${ir} ${ir} 0 ${lg} 0 ${cx+ir*Math.cos(a0)} ${cy+ir*Math.sin(a0)}Z`;
   const path=E("path",{d:p,fill:cols[i]});s.appendChild(path);hov(path,`<b>${r_.method}</b><br>${r_.share}% · ${nk(r_.orders)} đơn`);a0=a1;});
- s.appendChild(T(cx,cy-1,d[0].share+"%",{fs:15,anc:"middle",fill:"#fff",fw:800}));s.appendChild(T(cx,cy+13,"ONLINE",{fs:9,anc:"middle"}));
+ s.appendChild(T(cx,cy-1,d[0].share+"%",{fs:15,anc:"middle",fill:C.markOn,fw:800}));s.appendChild(T(cx,cy+13,"ONLINE",{fs:9,anc:"middle"}));
  d.slice(0,5).forEach((r_,i)=>{s.appendChild(E("rect",{x:150,y:34+i*20,width:9,height:9,rx:2,fill:cols[i]}));s.appendChild(T(164,42+i*20,r_.method+" "+r_.share+"%",{fs:9.5,fill:C.ink2}));});})();
 
 // AOV histogram
@@ -343,7 +349,7 @@ byId("ins1").textContent=`${(PD.top_channels[0].gmv/k.gmv*100).toFixed(0)}% GMV 
  const mx=Math.max(...PD.heatmap.map(r=>r.orders)),g=(d,h)=>{const r=PD.heatmap.find(x=>x.dow==d&&x.hour==h);return r?r.orders:0;};
  let html='<div style="display:grid;grid-template-columns:30px repeat(24,1fr);gap:2px">';
  dows.forEach(d=>{html+=`<div style="font-size:9px;color:var(--ink3);display:flex;align-items:center">${d}</div>`;
-   for(let h=0;h<24;h++){const v=g(d,h),t=v/mx;html+=`<div title="${d} ${h}h — ${v} đơn" style="aspect-ratio:1;border-radius:2px;background:rgba(61,139,255,${(.06+t*.94).toFixed(2)})"></div>`;}});
+   for(let h=0;h<24;h++){const v=g(d,h),t=v/mx;html+=`<div title="${d} ${h}h — ${v} đơn" style="aspect-ratio:1;border-radius:2px;background:rgba(${C.heat},${(.06+t*.94).toFixed(2)})"></div>`;}});
  html+='</div><div style="font-size:9.5px;color:var(--ink3);margin-top:5px">Đậm = nhiều đơn · trục ngang 0→23h · đỉnh 12h &amp; 19–20h</div>';box.innerHTML=html;})();
 
 /* ---------- P3 ---------- */
@@ -371,10 +377,10 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
   s.appendChild(E("line",{x1:x-8,y1:Y(b.min),x2:x+8,y2:Y(b.min),stroke:col}));
   s.appendChild(E("line",{x1:x-8,y1:Y(b.p95),x2:x+8,y2:Y(b.p95),stroke:col}));
   const rc=E("rect",{x:x-bw/2,y:Y(b.q3),width:bw,height:Y(b.q1)-Y(b.q3),rx:3,fill:col,"fill-opacity":.28,stroke:col});s.appendChild(rc);
-  s.appendChild(E("line",{x1:x-bw/2,y1:Y(b.med),x2:x+bw/2,y2:Y(b.med),stroke:"#fff","stroke-width":2}));
+  s.appendChild(E("line",{x1:x-bw/2,y1:Y(b.med),x2:x+bw/2,y2:Y(b.med),stroke:C.strong,"stroke-width":2}));
   hov(rc,`<b>${b.modal}</b><br>median ${b.med}′ · Q1 ${b.q1}′ · Q3 ${b.q3}′<br>p95 ${b.p95}′`);
   s.appendChild(T(x,h-5,b.modal,{fs:9,anc:"middle",fill:C.ink2}));
-  s.appendChild(T(x+bw/2+4,Y(b.med)+3,b.med+"′",{fs:8,fill:"#fff"}));});
+  s.appendChild(T(x+bw/2+4,Y(b.med)+3,b.med+"′",{fs:8,fill:C.lab}));});
  for(let g=0;g<=3;g++){const v=mx*g/3;s.appendChild(T(2,Y(v)+3,Math.round(v)+"′",{fs:8}));}})();
 
 // funnel stage bar
@@ -383,7 +389,7 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
  d.forEach((r,i)=>{const y=24+i*rowh,bw=(r.median_min/mx)*(w-pl-pr);
   s.appendChild(T(pl-6,y+4,r.stage,{fs:9.5,anc:"end",fill:C.ink2}));
   const rc=E("rect",{x:pl,y:y-8,width:bw,height:16,rx:4,fill:i==0?C.amber:C.teal});s.appendChild(rc);hov(rc,`<b>${r.stage}</b><br>median ${r.median_min}′`);
-  s.appendChild(T(pl+bw+6,y+4,r.median_min+"′",{fs:9,fill:"#fff"}));});
+  s.appendChild(T(pl+bw+6,y+4,r.median_min+"′",{fs:9,fill:C.lab}));});
  s.appendChild(T(pl,h-6,"Median cycle tổng "+PD.cycle_pct.p50+"′ — phần còn lại là hàng chờ/queue",{fs:8.5,fill:C.ink3}));})();
 
 // modal split donut small
@@ -391,7 +397,7 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
  let x=10;const tot=d.reduce((a,r)=>a+r.deliveries,0);
  d.forEach((r,i)=>{const bw=(r.deliveries/tot)*(w-20);const rc=E("rect",{x,y:20,width:bw-2,height:20,rx:4,fill:i==0?C.teal:C.blue});s.appendChild(rc);
   hov(rc,`<b>${r.modal}</b><br>${r.share}% lượt · median ${r.median_km}km`);
-  s.appendChild(T(x+3,34,r.modal+" "+r.share+"%",{fs:9,fill:"#fff"}));x+=bw;});
+  s.appendChild(T(x+3,34,r.modal+" "+r.share+"%",{fs:9,fill:C.markOn}));x+=bw;});
  s.appendChild(T(10,58,"Motoboy giao xa hơn Biker ~2.5× (2.62 vs 1.03 km)",{fs:9,fill:C.ink2}));
  s.appendChild(T(10,74,PD.driver_prod.active+" tài xế active · median "+PD.driver_prod.median+" đơn/tài xế",{fs:9,fill:C.ink3}));})();
 
@@ -413,7 +419,7 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
  d.forEach((x,i)=>{const y=10+i*rowh,bw=(x.cancel_rate/mx)*(w-pl-pr),col=x.cancel_rate>=8?C.red:x.cancel_rate>=5?C.amber:C.teal;
   s.appendChild(T(pl-5,y+4,x.hub.slice(0,10),{fs:9,anc:"end",fill:C.ink2}));
   const rc=E("rect",{x:pl,y:y-1,width:bw,height:10,rx:3,fill:col});s.appendChild(rc);hov(rc,`<b>${x.hub} (${x.city})</b><br>hủy ${x.cancel_rate}% · ${nk(x.orders)} đơn`);
-  s.appendChild(T(pl+bw+5,y+4,x.cancel_rate+"%",{fs:8.5,fill:"#fff"}));});
+  s.appendChild(T(pl+bw+5,y+4,x.cancel_rate+"%",{fs:8.5,fill:C.lab}));});
  const mx2=Math.max(...d.map(x=>x.cancel_rate));const xm=pl+(med/mx2)*(w-pl-pr);
  s.appendChild(E("line",{x1:xm,y1:6,x2:xm,y2:h-14,stroke:C.ink3,"stroke-dasharray":"3 3"}));
  s.appendChild(T(pl,h-3,"Đường đứt = TB toàn hệ thống "+med+"% · ELIXIR gấp ~6.7×",{fs:8,fill:C.ink3}));})();
@@ -424,7 +430,7 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
  d.forEach((x,i)=>{const y=10+i*rowh,bw=(x.gmv/mx)*(w-pl-pr);
   s.appendChild(T(pl-5,y+4,x.city.replace(" DE JANEIRO"," RJ").slice(0,11),{fs:9.5,anc:"end",fill:C.ink2}));
   const rc=E("rect",{x:pl,y:y-6,width:bw,height:14,rx:4,fill:C.teal});s.appendChild(rc);hov(rc,`<b>${x.city}</b><br>GMV ${brl(x.gmv)} (${(x.gmv/tot*100).toFixed(0)}%)<br>${nk(x.orders)} đơn · AOV ${brl(x.aov)}`);
-  s.appendChild(T(pl+bw+5,y+4,(x.gmv/tot*100).toFixed(0)+"%",{fs:9,fill:"#fff"}));});})();
+  s.appendChild(T(pl+bw+5,y+4,(x.gmv/tot*100).toFixed(0)+"%",{fs:9,fill:C.lab}));});})();
 
 // waterfall GMV build-up by city
 (function(){const d=PD.city_gmv,w=330,h=150,pl=8,pr=8;const pt2=12,pb=30;const s=mk("c_waterfall",w,h);if(!s)return;
@@ -434,9 +440,9 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
   const rc=E("rect",{x,y:y1,width:bw,height:y0-y1,rx:2,fill:cols[i%4]});s.appendChild(rc);hov(rc,`<b>${r.city}</b><br>+${brl(r.gmv)}`);
   cum+=r.gmv;s.appendChild(T(x+bw/2,h-16,r.city.slice(0,4),{fs:8,anc:"middle"}));});
  const xt=pl+(d.length+.5)/(d.length+1)*(w-pl-pr)-bw/2;
- s.appendChild(E("rect",{x:xt,y:Y(tot),width:bw,height:Y(0)-Y(tot),rx:2,fill:"#fff","fill-opacity":.85}));
+ s.appendChild(E("rect",{x:xt,y:Y(tot),width:bw,height:Y(0)-Y(tot),rx:2,fill:C.total,"fill-opacity":.85}));
  s.appendChild(T(xt+bw/2,h-16,"Total",{fs:8,anc:"middle",fill:C.ink2}));
- s.appendChild(T(xt+bw/2,Y(tot)-4,brl(tot),{fs:8.5,anc:"middle",fill:"#fff"}));})();
+ s.appendChild(T(xt+bw/2,Y(tot)-4,brl(tot),{fs:8.5,anc:"middle",fill:C.lab}));})();
 
 // calendar heatmap (daily)
 (function(){const box=byId("c_calendar");if(!box)return;const d=PD.calendar;
@@ -448,7 +454,7 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
  const wd=(cur.getDay()+6)%7;cur.setDate(cur.getDate()-wd);
  while(cur<=end){html+='<div style="display:grid;grid-template-rows:repeat(7,1fr);gap:2px">';
    for(let r=0;r<7;r++){const ds=cur.toISOString().slice(0,10);const v=map[ds]||0;const inr=cur>=start&&cur<=end;
-     const t=v/mx;html+=`<div title="${ds} — ${v} đơn" style="width:9px;height:9px;border-radius:2px;background:${inr?`rgba(56,193,114,${(.08+t*.92).toFixed(2)})`:"transparent"}"></div>`;
+     const t=v/mx;html+=`<div title="${ds} — ${v} đơn" style="width:9px;height:9px;border-radius:2px;background:${inr?`rgba(${C.cal},${(.08+t*.92).toFixed(2)})`:"transparent"}"></div>`;
      cur.setDate(cur.getDate()+1);}
    html+='</div>';}
  html+='</div><div style="font-size:9.5px;color:var(--ink3);margin-top:5px">Mỗi ô = 1 ngày (cột = tuần) · đậm = tải cao · đỉnh cuối T3</div>';box.innerHTML=html;})();
@@ -510,12 +516,12 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
 (function(){const box=byId("c_decomp");if(!box)return;const base=PD.exec_kpi.cancel_rate;
  const seg=PD.cancel_by.segment,ch=PD.cancel_by.channel_type;
  let h=`<div style="font-size:11px;margin-top:6px"><div style="display:flex;align-items:center;gap:8px">
-   <div style="background:rgba(61,139,255,.18);border:1px solid #455892;border-radius:8px;padding:6px 9px"><div style="color:var(--ink3);font-size:9px">Cancel rate</div><b style="font-size:15px">${base}%</b></div>
+   <div style="background:var(--calbg);border:1px solid var(--calborder);border-radius:8px;padding:6px 9px"><div style="color:var(--ink3);font-size:9px">Cancel rate</div><b style="font-size:15px">${base}%</b></div>
    <div style="color:var(--ink3)">▸ theo Segment</div>
    <div style="display:grid;gap:4px">`;
- seg.forEach(sg=>{const col=sg.v>8?'#ff8ea4':'#8fbaff';h+=`<div style="border:1px solid var(--line);border-radius:7px;padding:3px 8px;background:#0e1524"><span style="color:var(--ink2)">${sg.k}</span> <b style="color:${col}">${sg.v}%</b></div>`;});
+ seg.forEach(sg=>{const col=sg.v>8?'#ff8ea4':'#8fbaff';h+=`<div style="border:1px solid var(--line);border-radius:7px;padding:3px 8px;background:var(--panel2)"><span style="color:var(--ink2)">${sg.k}</span> <b style="color:${col}">${sg.v}%</b></div>`;});
  h+=`</div><div style="color:var(--ink3)">▸ theo Kênh</div><div style="display:grid;gap:4px">`;
- ch.forEach(c=>{h+=`<div style="border:1px solid var(--line);border-radius:7px;padding:3px 8px;background:#0e1524"><span style="color:var(--ink2)">${c.k=="MARKETPLACE"?"Marketplace":"Own"}</span> <b>${c.v}%</b></div>`;});
+ ch.forEach(c=>{h+=`<div style="border:1px solid var(--line);border-radius:7px;padding:3px 8px;background:var(--panel2)"><span style="color:var(--ink2)">${c.k=="MARKETPLACE"?"Marketplace":"Own"}</span> <b>${c.v}%</b></div>`;});
  h+=`</div></div><div style="color:var(--ink3);font-size:10px;margin-top:8px">GOOD segment là nhánh đóng góp hủy lớn nhất (${seg.find(x=>x.k=='GOOD').v}%).</div>`;box.innerHTML=h;})();
 
 // key influencers (bars of cancel rate by factor)
@@ -530,7 +536,7 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
  items.forEach((x,i)=>{const y=10+i*rowh,bw=(x[1]/mx)*(w-pl-pr),col=x[1]>base*1.3?C.red:x[1]<base*.9?C.green:C.amber;
    s.appendChild(T(pl-5,y+4,x[0],{fs:9,anc:"end",fill:C.ink2}));
    const rc=E("rect",{x:pl,y:y-2,width:bw,height:12,rx:3,fill:col});s.appendChild(rc);hov(rc,`<b>${x[0]}</b><br>cancel ${x[1]}% (TB ${base}%)`);
-   s.appendChild(T(pl+bw+5,y+4,x[1]+"%",{fs:9,fill:"#fff"}));});
+   s.appendChild(T(pl+bw+5,y+4,x[1]+"%",{fs:9,fill:C.lab}));});
  const xm=pl+(base/mx)*(w-pl-pr);s.appendChild(E("line",{x1:xm,y1:4,x2:xm,y2:h-4,stroke:C.ink3,"stroke-dasharray":"3 3"}));})();
 
 // what-if simulator
@@ -542,7 +548,7 @@ function renderWhatIf(pct){const e=PD.delivery_econ;const box=byId("c_whatif");i
  const baseEst=ordersFin*(currentFree*e.mean_cost+(1-currentFree)*Math.max(e.mean_cost-e.mean_fee,0));
  const w=330,h=70;box.innerHTML="";const s=mk("c_whatif",w,h);
  s.appendChild(T(8,20,"Ước tính chi phí bù giao (4 tháng):",{fs:9.5,fill:C.ink2}));
- s.appendChild(T(8,44,brl(est),{fs:20,fill:"#fff",fw:800}));
+ s.appendChild(T(8,44,brl(est),{fs:20,fill:C.strong,fw:800}));
  const delta=est-baseEst;s.appendChild(T(150,44,(delta>=0?"+":"")+brl(delta)+" vs hiện tại",{fs:10,fill:delta>0?"#ff8ea4":"#5ee39a"}));
  s.appendChild(T(8,62,"Giả định: free→bù đủ chi phí R$"+e.mean_cost+"; có phí→bù R$"+(e.mean_cost-e.mean_fee).toFixed(2),{fs:8.5,fill:C.ink3}));}
 byId("wiSlider").addEventListener("input",e=>{byId("wiVal").textContent=e.target.value+"%";renderWhatIf(+e.target.value);});
@@ -592,5 +598,5 @@ document.querySelectorAll(".drill").forEach(d=>d.addEventListener("click",()=>{b
 byId("closeModal").addEventListener("click",()=>byId("modal").classList.remove("open"));
 byId("modal").addEventListener("click",e=>{if(e.target.id==="modal")byId("modal").classList.remove("open");});
 const _h=(location.hash||"").replace("#","");setPage(pageNames[_h]?_h:"p1",false);
-byId("foot").innerHTML=`<b>Design concept:</b> Neo-Logistics Dark (đêm đô thị Brazil) · màu ngữ nghĩa cho trạng thái (green/amber/red) · dynamic title + nav + filter drawer bookmark + selected-filter summary + tooltip + drill-through + what-if. <b>Custom visual:</b> Sankey & Calendar Heatmap chỉ dùng khi visual mặc định không thể hiện flow/load rõ; fallback = stacked bar + matrix.`;
+byId("foot").innerHTML=`<b>Design concept:</b> Neo-Logistics Dark (đô thị Brazil) · màu ngữ nghĩa cho trạng thái (green/amber/red) · dynamic title + nav + filter drawer bookmark + selected-filter summary + tooltip + drill-through + what-if. <b>Custom visual:</b> Sankey & Calendar Heatmap chỉ dùng khi visual mặc định không thể hiện flow/load rõ; fallback = stacked bar + matrix.`;
 </script></body></html>
