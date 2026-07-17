@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "dSucc",
+  "position": {
+    "x": 954,
+    "y": 66,
+    "z": 2000,
+    "height": 88,
+    "width": 300,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Delivery Success Rate"
+                }
+              },
+              "queryRef": "fact_deliveries.Delivery Success Rate",
+              "nativeQueryRef": "Delivery Success Rate"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Delivery success'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

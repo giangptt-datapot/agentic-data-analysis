@@ -39,7 +39,6 @@ table fact_payments
 		formatString: #,0
 	measure 'Chargeback Rate' = DIVIDE([Chargeback Orders], [Total Orders])
 		formatString: 0.000%
-	/* NOTE: never SUM(payment_amount) as revenue — payments fan out (48,818 orders split). Revenue = [GMV] from fact_orders. */
 
 	partition fact_payments = m
 		mode: import

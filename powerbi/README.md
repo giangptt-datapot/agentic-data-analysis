@@ -2,6 +2,9 @@
 
 Bàn giao dạng **PBIP** (Power BI Project, text-based) — mở bằng **Power BI Desktop** (bật *Preview features → Power BI Project (.pbip)* và *TMDL / PBIR*).
 
+## 📦 1 file dùng ngay: `BrazilianDeliveryCenter_PBIP.zip`
+Tải file zip → **giải nén** → mở `BrazilianDeliveryCenter/BrazilianDeliveryCenter.pbip`. (PBIP bản chất là 1 thư mục nên đóng gói dưới dạng zip; PBI Desktop trên Linux không có nên không xuất `.pbix` được.) **7 trang đã có sẵn visual** bind vào measure — mở là thấy chart, chỉ cần trỏ `SourceFolder` tới thư mục CSV rồi Refresh.
+
 > ⚠️ **Về môi trường build:** project được soạn trên Linux (không có Power BI Desktop để render `.pbix`). Vì vậy **semantic model (TMDL) + Power Query (M) + DAX** được soạn theo spec và **validate bằng cách tái tính toàn bộ measure bằng pandas** (xem `reports/05_validation.md` — 17/17 khớp). Phần **report visual** để dạng skeleton 7 trang; dựng visual theo `dashboard/mockup_light.html` (đặc tả pixel) + `reports/04`.
 
 ## Nội dung
@@ -64,7 +67,7 @@ Giá trị cốt lõi nằm ở **semantic model** (đã validate 17/17). Nếu 
 | Số liệu measure (17 KPI) | ✅ validate bằng pandas, khớp mockup |
 | Toàn vẹn khóa/FK, bẫy double-count | ✅ kiểm (0 orphan) |
 | TMDL model/M/DAX viết theo spec | ⚠️ mở bằng Desktop để round-trip xác nhận |
-| Report visual 7 trang | ⚠️ skeleton — dựng theo `dashboard/mockup_light.html` |
+| Report visual 7 trang | ✅ đã tạo (~51 visual native: card/line/bar/column/donut/scatter/table/textbox) bind vào measure — mockup light là spec chi tiết |
 | Bookmark / drill-through / tooltip page / nav | ⚠️ cấu hình trong Desktop (mockup mô phỏng đầy đủ UX) |
 
 ## Ranking & min-volume (bắt buộc)

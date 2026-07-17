@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "barHubCyc",
+  "position": {
+    "x": 24,
+    "y": 430,
+    "z": 3030,
+    "height": 268,
+    "width": 1232,
+    "tabOrder": 2030
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_hub"
+                    }
+                  },
+                  "Property": "hub_name"
+                }
+              },
+              "queryRef": "dim_hub.hub_name",
+              "nativeQueryRef": "hub_name"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "Median Cycle (min)"
+                }
+              },
+              "queryRef": "fact_orders.Median Cycle (min)",
+              "nativeQueryRef": "Median Cycle (min)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Median cycle theo hub'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

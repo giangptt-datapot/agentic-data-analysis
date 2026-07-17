@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "barCity",
+  "position": {
+    "x": 976,
+    "y": 166,
+    "z": 3020,
+    "height": 250,
+    "width": 280,
+    "tabOrder": 2020
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_hub"
+                    }
+                  },
+                  "Property": "hub_city"
+                }
+              },
+              "queryRef": "dim_hub.hub_city",
+              "nativeQueryRef": "hub_city"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "GMV"
+                }
+              },
+              "queryRef": "fact_orders.GMV",
+              "nativeQueryRef": "GMV"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'GMV theo thành phố'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "recBody",
+  "position": {
+    "x": 24,
+    "y": 170,
+    "z": 3000,
+    "height": 528,
+    "width": 1232,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "1 · Giảm hủy đơn GOOD trước khi mở rộng",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "fontWeight": "bold",
+                      "color": "#0f1a30"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "GOOD hủy 12.7% vs FOOD 3.4% → ~R$1.32M GMV bị hủy; kéo về mức FOOD cứu ~R$0.97M. (Nguyên nhân: giả thuyết — thiếu cancel reason)",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2 · Đặt ngưỡng free-ship theo AOV & khoảng cách",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "fontWeight": "bold",
+                      "color": "#0f1a30"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Bù lỗ giao ~R$480k/4 tháng · 35.6% đơn free-ship · 53% đơn phí < chi phí. (Chứng minh)",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3 · Giảm phụ thuộc kênh, kéo giỏ giá trị cao về kênh riêng",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "fontWeight": "bold",
+                      "color": "#0f1a30"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "1 kênh = 68% GMV; kênh riêng AOV R$218 vs marketplace R$88. (Thiệt hại: cần data hoa hồng)",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4 · Audit vận hành 3 hub lệch chuẩn (ELIXIR 30.8%)",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "fontWeight": "bold",
+                      "color": "#0f1a30"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "ELIXIR hủy gấp ~6.7× TB hệ thống dù ≥500 đơn → audit khu trú. (Chứng minh)",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5 · Rút ngắn giao hàng nhắm khâu CHUẨN BỊ, không phải quãng đường",
+                    "textStyle": {
+                      "fontSize": "13pt",
+                      "fontWeight": "bold",
+                      "color": "#0f1a30"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Cự ly↔thời gian chỉ r=0.25; production 15′ nhưng cycle 41′ (phần lớn là hàng chờ). (Chứng minh, phản trực giác)",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Giới hạn: no customer_id (retention/LTV) · chỉ 4 tháng (YoY) · timezone giả định UTC−3.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#8b95ad"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

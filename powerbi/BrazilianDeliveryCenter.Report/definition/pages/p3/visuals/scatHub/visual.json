@@ -1,0 +1,115 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "scatHub",
+  "position": {
+    "x": 872,
+    "y": 166,
+    "z": 3020,
+    "height": 250,
+    "width": 384,
+    "tabOrder": 2020
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_hub"
+                    }
+                  },
+                  "Property": "hub_name"
+                }
+              },
+              "queryRef": "dim_hub.hub_name",
+              "nativeQueryRef": "hub_name",
+              "active": true
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Median Distance (km)"
+                }
+              },
+              "queryRef": "fact_deliveries.Median Distance (km)",
+              "nativeQueryRef": "Median Distance (km)"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "Median Cycle (min)"
+                }
+              },
+              "queryRef": "fact_orders.Median Cycle (min)",
+              "nativeQueryRef": "Median Cycle (min)"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Deliveries"
+                }
+              },
+              "queryRef": "fact_deliveries.Deliveries",
+              "nativeQueryRef": "Deliveries"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cự ly vs Cycle time (theo hub)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

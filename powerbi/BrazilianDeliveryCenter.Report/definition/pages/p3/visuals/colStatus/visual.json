@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "colStatus",
+  "position": {
+    "x": 448,
+    "y": 166,
+    "z": 3010,
+    "height": 250,
+    "width": 404,
+    "tabOrder": 2010
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "delivery_status"
+                }
+              },
+              "queryRef": "fact_deliveries.delivery_status",
+              "nativeQueryRef": "delivery_status"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Deliveries"
+                }
+              },
+              "queryRef": "fact_deliveries.Deliveries",
+              "nativeQueryRef": "Deliveries"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Lượt giao theo trạng thái'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

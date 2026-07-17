@@ -264,7 +264,6 @@ PAY_MEAS = (
     "\n\tmeasure 'Payments' = COUNTROWS(fact_payments)\n\t\tformatString: #,0\n"
     "\tmeasure 'Chargeback Orders' = CALCULATE(DISTINCTCOUNT(fact_payments[payment_order_id]), fact_payments[payment_status] = \"CHARGEBACK\")\n\t\tformatString: #,0\n"
     "\tmeasure 'Chargeback Rate' = DIVIDE([Chargeback Orders], [Total Orders])\n\t\tformatString: 0.000%\n"
-    "\t/* NOTE: never SUM(payment_amount) as revenue — payments fan out (48,818 orders split). Revenue = [GMV] from fact_orders. */\n"
 )
 FACT_PAY = (
     "table fact_payments\n\tlineageTag: tbl-fact-payments\n\n"

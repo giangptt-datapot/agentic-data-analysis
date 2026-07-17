@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "donutPay",
+  "position": {
+    "x": 872,
+    "y": 332,
+    "z": 3040,
+    "height": 364,
+    "width": 384,
+    "tabOrder": 2040
+  },
+  "visual": {
+    "visualType": "donutChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_payments"
+                    }
+                  },
+                  "Property": "payment_method"
+                }
+              },
+              "queryRef": "fact_payments.payment_method",
+              "nativeQueryRef": "payment_method"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_payments"
+                    }
+                  },
+                  "Property": "Payments"
+                }
+              },
+              "queryRef": "fact_payments.Payments",
+              "nativeQueryRef": "Payments"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cơ cấu thanh toán'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
