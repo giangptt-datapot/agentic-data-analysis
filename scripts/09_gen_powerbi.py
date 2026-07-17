@@ -92,6 +92,8 @@ MODEL = """model Model
 \t\tlegacyRedirects
 \t\treturnErrorValuesAsNull
 
+annotation __PBI_TimeIntelligenceEnabled = 0
+
 annotation PBI_QueryOrder = ["fact_orders","fact_deliveries","fact_payments","dim_store","dim_hub","dim_channel","dim_driver"]
 
 annotation PBI_ProTooling = ["DevMode"]
