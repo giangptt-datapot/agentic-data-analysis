@@ -18,8 +18,7 @@ ROOT = os.path.join(os.path.dirname(__file__), "..", "powerbi")
 SM = os.path.join(ROOT, "BrazilianDeliveryCenter.SemanticModel")
 RP = os.path.join(ROOT, "BrazilianDeliveryCenter.Report")
 for d in [ROOT, SM, os.path.join(SM, "definition", "tables"),
-          RP, os.path.join(RP, "definition", "pages"),
-          os.path.join(RP, "StaticResources", "RegisteredResources")]:
+          RP, os.path.join(RP, "definition", "pages")]:
     os.makedirs(d, exist_ok=True)
 
 def w(path, content):
@@ -27,8 +26,13 @@ def w(path, content):
         f.write(content)
     print("wrote", os.path.relpath(path, ROOT))
 
+# logicalId MUST be a valid GUID (Power BI parses it as System.Guid)
+SM_GUID = "b0c1d2e3-4f50-4a61-8b72-000000000001"
+RP_GUID = "b0c1d2e3-4f50-4a61-8b72-000000000002"
+
 # ---------------------------------------------------------------- .pbip
 w(os.path.join(ROOT, "BrazilianDeliveryCenter.pbip"), json.dumps({
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/pbip/definitionProperties/1.0.0/schema.json",
     "version": "1.0",
     "artifacts": [{"report": {"path": "BrazilianDeliveryCenter.Report"}}],
     "settings": {"enableAutoRecovery": True}
@@ -38,9 +42,12 @@ w(os.path.join(ROOT, "BrazilianDeliveryCenter.pbip"), json.dumps({
 w(os.path.join(SM, ".platform"), json.dumps({
     "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
     "metadata": {"type": "SemanticModel", "displayName": "BrazilianDeliveryCenter"},
-    "config": {"version": "2.0", "logicalId": "bdc-semantic-0001"}
+    "config": {"version": "2.0", "logicalId": SM_GUID}
 }, indent=2))
-w(os.path.join(SM, "definition.pbism"), json.dumps({"version": "4.0", "settings": {}}, indent=2))
+w(os.path.join(SM, "definition.pbism"), json.dumps({
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/semanticModel/definitionProperties/1.0.0/schema.json",
+    "version": "4.2", "settings": {}
+}, indent=2))
 
 # ---------------------------------------------------------------- database.tmdl / model.tmdl / expressions
 w(os.path.join(SM, "definition", "database.tmdl"),
@@ -54,11 +61,6 @@ w(os.path.join(SM, "definition", "expressions.tmdl"),
 MODEL = """model Model
 \tculture: en-US
 \tdefaultPowerBIDataSourceVersion: powerBI_V3
-\tdiscourageImplicitMeasures
-\tsourceQueryCulture: en-US
-\tdataAccessOptions
-\t\tlegacyRedirects
-\t\treturnErrorValuesAsNull
 
 ref table fact_orders
 ref table fact_deliveries
@@ -68,8 +70,6 @@ ref table dim_hub
 ref table dim_channel
 ref table dim_driver
 ref table dim_date
-
-ref cultureInfo en-US
 """
 w(os.path.join(SM, "definition", "model.tmdl"), MODEL)
 
@@ -403,17 +403,17 @@ w(os.path.join(SM, "definition", "tables", "dim_date.tmdl"), DIM_DATE)
 w(os.path.join(RP, ".platform"), json.dumps({
     "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
     "metadata": {"type": "Report", "displayName": "BrazilianDeliveryCenter"},
-    "config": {"version": "2.0", "logicalId": "bdc-report-0001"}
+    "config": {"version": "2.0", "logicalId": RP_GUID}
 }, indent=2))
 w(os.path.join(RP, "definition.pbir"), json.dumps({
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/1.0.0/schema.json",
     "version": "1.0",
     "datasetReference": {"byPath": {"path": "../BrazilianDeliveryCenter.SemanticModel"}}
 }, indent=2))
 
-# report.json (report-level: theme + settings)
+# report.json (report-level). Theme imported manually to avoid missing-resource errors.
 w(os.path.join(RP, "definition", "report.json"), json.dumps({
     "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/1.0.0/schema.json",
-    "themeCollection": {"customTheme": {"name": "DeliveryCenter_Light"}},
     "settings": {"useStylableVisualContainerHeader": True, "defaultDrillFilterOtherVisuals": True}
 }, indent=2))
 

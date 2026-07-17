@@ -16,12 +16,28 @@ BrazilianDeliveryCenter.Report/                   ← report skeleton (7 pages) 
 DeliveryCenter_Light.theme.json                   ← theme import (View → Themes → Browse)
 ```
 
+## Trước khi mở — bật Preview features (bắt buộc)
+Power BI Desktop → **File → Options and settings → Options → Preview features** → tích:
+- **Power BI Project (.pbip) save option**
+- **Store semantic model using TMDL format**
+- **Store reports using enhanced metadata format (PBIR)**
+
+Khởi động lại Desktop. (Nếu bản Desktop quá cũ không có PBIR → xem *Fallback* cuối file.)
+
 ## Cách mở & nạp dữ liệu
 1. Tải 7 CSV Kaggle (`orders, deliveries, payments, stores, hubs, channels, drivers`) vào 1 thư mục.
 2. Mở `BrazilianDeliveryCenter.pbip` bằng Power BI Desktop.
 3. **Transform data → Edit Parameters → `SourceFolder`** = đường dẫn thư mục CSV (ví dụ `C:\BDC\`, có dấu `\` cuối).
 4. **Refresh**. (Import mode; `stores.csv`/`hubs.csv` đọc encoding 1252 cho dấu tiếng Bồ.)
 5. Import theme: *View → Themes → Browse for themes → `DeliveryCenter_Light.theme.json`*.
+
+> **Đã sửa lỗi mở:** `.platform` trước đó dùng `logicalId` không phải GUID (Power BI báo *"Error converting value ... to type System.Guid"*). Đã thay bằng GUID hợp lệ; thêm `$schema`/version cho `.pbip/.pbir/.pbism`; gỡ tham chiếu theme mồ côi và dòng `cultureInfo` treo.
+
+## Fallback (nếu report PBIR vẫn báo lỗi trên bản Desktop cũ)
+Giá trị cốt lõi nằm ở **semantic model** (đã validate 17/17). Nếu trang report không mở:
+1. Tạo file **.pbix trắng** mới → **Get data → Blank query** hoặc dùng **Tabular Editor** mở thư mục `BrazilianDeliveryCenter.SemanticModel` (TMDL) để nạp model + measures.
+2. Hoặc cập nhật Power BI Desktop lên bản mới nhất (PBIR đã GA từ 2024) rồi mở lại `.pbip`.
+3. Dựng visual 7 trang theo `dashboard/mockup_light.html`.
 
 ## Data model (star schema)
 - **Fact:** `fact_orders` (grain đơn), `fact_deliveries` (grain lượt giao), `fact_payments` (grain thanh toán).
