@@ -179,7 +179,7 @@ footer{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:
   </div>
   <div class="grid g3">
     <div class="card"><span class="tag">BAR</span><h3>GMV by City</h3><p class="q">Tập trung theo vùng</p><div class="chart" id="c_citybars"></div></div>
-    <div class="card"><span class="tag">WATERFALL</span><h3>GMV build-up by City</h3><p class="q">Từng thành phố cộng dồn ra tổng GMV</p><div class="chart" id="c_waterfall"></div></div>
+    <div class="card"><span class="tag">SCATTER · QUADRANT</span><h3>Hub: Volume vs Cancel Rate</h3><p class="q">Hub nào khối lượng cao NHƯNG hủy cao? (ô đỏ = ưu tiên xử lý)</p><div class="chart" id="c_hubquad"></div></div>
     <div class="card"><span class="tag">CALENDAR HEATMAP*</span><h3>Daily Load Calendar</h3><p class="q">Ngày nào hệ thống chịu tải cao</p><div class="chart" id="c_calendar"></div><p style="margin:6px 0 0;color:var(--ink3);font-size:10px">*Custom visual (Calendar) — mặc định thay bằng matrix tuần×thứ.</p></div>
   </div>
 </section>
@@ -192,7 +192,7 @@ footer{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:
   </div>
   <div class="grid g2e">
     <div class="card"><span class="tag">BUBBLE</span><h3>Store AOV vs Cancel Rate</h3><p class="q">Phân khúc chất lượng thương mại</p><div class="chart" id="c_storebubble"></div></div>
-    <div class="card"><span class="tag">SANKEY*</span><h3>Channel Type → Store Segment Flow</h3><p class="q">Cơ cấu nguồn đơn theo loại đối tác</p><div class="chart" id="c_sankey"></div><p style="margin:6px 0 0;color:var(--ink3);font-size:10px">*Custom visual (Sankey) — mặc định thay bằng stacked bar.</p></div>
+    <div class="card"><span class="tag">100% STACKED BAR</span><h3>Segment mix by Channel Type</h3><p class="q">Marketplace vs Own channel bán FOOD hay GOOD?</p><div class="chart" id="c_chanseg"></div></div>
   </div>
   <div class="callout" style="margin-top:10px"><span class="status risk">Risk</span> GOOD bị hủy <b>12.7%</b> vs FOOD <b>3.4%</b> → playbook đối tác phải tách theo segment, không "một cỡ cho tất cả".</div>
 </section>
@@ -432,17 +432,21 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
   const rc=E("rect",{x:pl,y:y-6,width:bw,height:14,rx:4,fill:C.teal});s.appendChild(rc);hov(rc,`<b>${x.city}</b><br>GMV ${brl(x.gmv)} (${(x.gmv/tot*100).toFixed(0)}%)<br>${nk(x.orders)} đơn · AOV ${brl(x.aov)}`);
   s.appendChild(T(pl+bw+5,y+4,(x.gmv/tot*100).toFixed(0)+"%",{fs:9,fill:C.lab}));});})();
 
-// waterfall GMV build-up by city
-(function(){const d=PD.city_gmv,w=330,h=150,pl=8,pr=8;const pt2=12,pb=30;const s=mk("c_waterfall",w,h);if(!s)return;
- const tot=d.reduce((a,r)=>a+r.gmv,0);let cum=0;const mx=tot;const Y=v=>pt2+(1-v/mx)*(h-pt2-pb);
- const bw=(w-pl-pr)/(d.length+1)*.7;const cols=[C.blue,C.teal,C.violet,C.amber];
- d.forEach((r,i)=>{const x=pl+(i+.5)/(d.length+1)*(w-pl-pr)-bw/2;const y0=Y(cum),y1=Y(cum+r.gmv);
-  const rc=E("rect",{x,y:y1,width:bw,height:y0-y1,rx:2,fill:cols[i%4]});s.appendChild(rc);hov(rc,`<b>${r.city}</b><br>+${brl(r.gmv)}`);
-  cum+=r.gmv;s.appendChild(T(x+bw/2,h-16,r.city.slice(0,4),{fs:8,anc:"middle"}));});
- const xt=pl+(d.length+.5)/(d.length+1)*(w-pl-pr)-bw/2;
- s.appendChild(E("rect",{x:xt,y:Y(tot),width:bw,height:Y(0)-Y(tot),rx:2,fill:C.total,"fill-opacity":.85}));
- s.appendChild(T(xt+bw/2,h-16,"Total",{fs:8,anc:"middle",fill:C.ink2}));
- s.appendChild(T(xt+bw/2,Y(tot)-4,brl(tot),{fs:8.5,anc:"middle",fill:C.lab}));})();
+// hub quadrant scatter: orders (x) vs cancel_rate (y), size=gmv, color band
+(function(){const d=PD.hub,w=330,h=150,pl=34,pr=12,pt=12,pb=24;const s=mk("c_hubquad",w,h);if(!s)return;
+ const omax=Math.max(...d.map(x=>x.orders)),cmax=Math.max(...d.map(x=>x.cancel_rate))*1.1,gmax=Math.max(...d.map(x=>x.gmv));
+ const omed=[...d.map(x=>x.orders)].sort((a,b)=>a-b)[Math.floor(d.length/2)];const csys=PD.exec_kpi.cancel_rate;
+ const X=v=>pl+v/omax*(w-pl-pr),Y=v=>pt+(1-v/cmax)*(h-pt-pb);
+ // quadrant guides
+ s.appendChild(E("line",{x1:X(omed),y1:pt,x2:X(omed),y2:h-pb,stroke:C.grid,"stroke-dasharray":"3 3"}));
+ s.appendChild(E("line",{x1:pl,y1:Y(csys),x2:w-pr,y2:Y(csys),stroke:C.grid,"stroke-dasharray":"3 3"}));
+ for(let g=0;g<=2;g++){const v=cmax*g/2;s.appendChild(T(2,Y(v)+3,v.toFixed(0)+"%",{fs:8}));}
+ d.forEach(x=>{const r=4+Math.sqrt(x.gmv/gmax)*14;const danger=x.orders>=omed&&x.cancel_rate>csys;
+  const col=x.cancel_rate>=8?C.red:x.cancel_rate>=csys?C.amber:C.green;
+  const c=E("circle",{cx:X(x.orders),cy:Y(x.cancel_rate),r,fill:col,"fill-opacity":danger?.7:.4,stroke:col,"stroke-width":danger?1.6:1});s.appendChild(c);
+  hov(c,`<b>${x.hub} — ${x.city}</b><br>${nk(x.orders)} đơn · GMV ${brl(x.gmv)}<br>hủy ${x.cancel_rate}% · cycle ${x.cycle_med}′`);});
+ s.appendChild(T(w-pr,h-12,"số đơn →",{fs:8,anc:"end",fill:C.ink3}));
+ s.appendChild(T(X(omed)+3,pt+8,"vol cao + hủy cao",{fs:7.5,fill:C.riskink||C.red}));})();
 
 // calendar heatmap (daily)
 (function(){const box=byId("c_calendar");if(!box)return;const d=PD.calendar;
@@ -498,18 +502,20 @@ byId("succKpi").textContent=PD.delivery_success.delivery_level+"%";
  s.appendChild(T(w-pr,h-12,"AOV (R$) →",{fs:8.5,anc:"end",fill:C.ink3}));s.appendChild(T(4,pt+4,"hủy%",{fs:8}));
  s.appendChild(T(pl+6,pt+10,"● FOOD  ● GOOD",{fs:9,fill:C.ink2}));})();
 
-// sankey channel_type -> segment
-(function(){const d=PD.chan_seg_flow,w=330,h=170;const s=mk("c_sankey",w,h);if(!s)return;
- const froms=[...new Set(d.map(x=>x.from))],tos=[...new Set(d.map(x=>x.to))];const tot=d.reduce((a,x)=>a+x.orders,0);
- const lx=40,rx=w-40,pad=10;const fH={},tH={};let fy=pad;froms.forEach(f=>{const v=d.filter(x=>x.from==f).reduce((a,x)=>a+x.orders,0);fH[f]={y:fy,h:v/tot*(h-2*pad),v};fy+=v/tot*(h-2*pad)+8;});
- let ty=pad;tos.forEach(t=>{const v=d.filter(x=>x.to==t).reduce((a,x)=>a+x.orders,0);tH[t]={y:ty,h:v/tot*(h-2*pad),v};ty+=v/tot*(h-2*pad)+8;});
- const fc={MARKETPLACE:C.blue,"OWN CHANNEL":C.violet},tc={FOOD:C.teal,GOOD:C.amber};
- const foff={},toff={};froms.forEach(f=>foff[f]=fH[f].y);tos.forEach(t=>toff[t]=tH[t].y);
- d.forEach(x=>{const th=x.orders/tot*(h-2*pad);const y0=foff[x.from],y1=toff[x.to];foff[x.from]+=th;toff[x.to]+=th;
-   const p=`M${lx} ${y0} C${(lx+rx)/2} ${y0},${(lx+rx)/2} ${y1},${rx} ${y1} L${rx} ${y1+th} C${(lx+rx)/2} ${y1+th},${(lx+rx)/2} ${y0+th},${lx} ${y0+th} Z`;
-   const path=E("path",{d:p,fill:fc[x.from],"fill-opacity":.3});s.appendChild(path);hov(path,`<b>${x.from} → ${x.to}</b><br>${nk(x.orders)} đơn (${(x.orders/tot*100).toFixed(1)}%)`);});
- froms.forEach(f=>{s.appendChild(E("rect",{x:lx-10,y:fH[f].y,width:8,height:fH[f].h,rx:2,fill:fc[f]}));s.appendChild(T(lx-14,fH[f].y+12,f.replace(" CHANNEL",""),{fs:8.5,anc:"end",fill:C.ink2}));});
- tos.forEach(t=>{s.appendChild(E("rect",{x:rx+2,y:tH[t].y,width:8,height:tH[t].h,rx:2,fill:tc[t]}));s.appendChild(T(rx+12,tH[t].y+12,t,{fs:8.5,fill:C.ink2}));});})();
+// 100% stacked bar: segment mix by channel_type
+(function(){const d=PD.chan_seg_flow,w=560,h=150,pl=96,pr=54,pt=16,pb=16;const s=mk("c_chanseg",w,h);if(!s)return;
+ const froms=["MARKETPLACE","OWN CHANNEL"];const tc={FOOD:C.teal,GOOD:C.amber};const rowh=40;
+ froms.forEach((f,i)=>{const rows=d.filter(x=>x.from==f);const tot=rows.reduce((a,x)=>a+x.orders,0);
+  const y=pt+i*(rowh+18);let x=pl;
+  s.appendChild(T(pl-6,y+rowh/2+3,f.replace(" CHANNEL",""),{fs:10,anc:"end",fill:C.ink2,fw:600}));
+  ["FOOD","GOOD"].forEach(sg=>{const r=rows.find(z=>z.to==sg);const v=r?r.orders:0;const bw=v/tot*(w-pl-pr);
+    const rc=E("rect",{x,y,width:Math.max(bw-2,0),height:rowh,rx:4,fill:tc[sg]});s.appendChild(rc);
+    hov(rc,`<b>${f} · ${sg}</b><br>${nk(v)} đơn (${(v/tot*100).toFixed(1)}%)`);
+    if(bw>34)s.appendChild(T(x+bw/2,y+rowh/2+4,(v/tot*100).toFixed(0)+"%",{fs:11,anc:"middle",fill:C.markOn,fw:700}));
+    x+=bw;});
+  s.appendChild(T(w-pr+6,y+rowh/2+3,nk(tot)+" đơn",{fs:9,fill:C.ink3}));});
+ s.appendChild(T(pl,h-2,"● FOOD",{fs:9.5,fill:C.teal}));s.appendChild(T(pl+58,h-2,"● GOOD",{fs:9.5,fill:C.amber}));
+ s.appendChild(T(pl+130,h-2,"Own channel nghiêng GOOD hơn Marketplace",{fs:8.5,fill:C.ink3}));})();
 
 /* ---------- P6 ---------- */
 // decomposition tree (static): total -> segment -> channel_type
@@ -598,5 +604,5 @@ document.querySelectorAll(".drill").forEach(d=>d.addEventListener("click",()=>{b
 byId("closeModal").addEventListener("click",()=>byId("modal").classList.remove("open"));
 byId("modal").addEventListener("click",e=>{if(e.target.id==="modal")byId("modal").classList.remove("open");});
 const _h=(location.hash||"").replace("#","");setPage(pageNames[_h]?_h:"p1",false);
-byId("foot").innerHTML=`<b>Design concept:</b> Neo-Logistics Dark (đô thị Brazil) · màu ngữ nghĩa cho trạng thái (green/amber/red) · dynamic title + nav + filter drawer bookmark + selected-filter summary + tooltip + drill-through + what-if. <b>Custom visual:</b> Sankey & Calendar Heatmap chỉ dùng khi visual mặc định không thể hiện flow/load rõ; fallback = stacked bar + matrix.`;
+byId("foot").innerHTML=`<b>Design concept:</b> Neo-Logistics Dark (đô thị Brazil) · màu ngữ nghĩa cho trạng thái (green/amber/red) · dynamic title + nav + filter drawer bookmark + selected-filter summary + tooltip + drill-through + what-if. <b>Custom visual:</b> chỉ giữ 1 optional (Calendar Heatmap, P4) — Sankey đã thay bằng 100% stacked bar (native); fallback Calendar = matrix tuần×thứ.`;
 </script></body></html>

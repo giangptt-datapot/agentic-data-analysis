@@ -29,12 +29,15 @@
 
 ## C. Chính sách Custom Visual (AppSource)
 
-Chỉ 2 custom visual, đều có biện minh & fallback:
+**Cập nhật sau review:** đã **bỏ Sankey**, thay bằng 100% stacked bar (native) — Sankey 2×2 node không đủ giá trị để biện minh custom visual. Chỉ còn **1 custom visual optional**:
 
 | Custom visual | Trả lời câu hỏi gì | Vì sao visual mặc định chưa đủ | Hiệu năng/chia sẻ | Fallback mặc định |
 |---|---|---|---|---|
-| **Sankey** (P5) | Dòng đơn từ loại kênh → segment cửa hàng | Stacked bar khó thể hiện "luồng" 2 tầng trực quan | Nhẹ (4 node); certified visual → chia sẻ OK | 100% stacked bar (channel_type × segment) |
-| **Calendar Heatmap** (P4) | Ngày nào hệ thống chịu tải cao | Matrix thường khó đọc theo lịch/tuần | Nhẹ; nếu tổ chức chặn custom visual → rủi ro | Matrix tuần (hàng) × thứ (cột) với color scale |
+| **Calendar Heatmap** (P4) | Ngày nào hệ thống chịu tải cao (daily-trend 4 tháng) | Matrix khó đọc theo lịch/tuần; khác bản chất heatmap giờ×thứ (P2) | Nhẹ; nếu tổ chức chặn custom visual → rủi ro | Matrix tuần (hàng) × thứ (cột) với color scale |
+
+**Đã thay ở bước tinh chỉnh:** P4 waterfall (trùng bar GMV-by-city) → **hub quadrant scatter** (orders × cancel%, size=GMV) trả lời trực tiếp "hub volume cao nhưng hủy cao". P5 Sankey → **100% stacked bar** segment-mix-by-channel (Own 73% GOOD vs Marketplace 5%).
+
+**Theme chính showcase:** Light (Neo-Logistics Light) theo chốt của người dùng; dark là biến thể social.
 
 **KHÔNG dùng custom visual** cho: decomposition tree & key influencers (đã là native PBI), map (Azure Maps/ArcGIS native), boxplot (native mới hỗ trợ, hoặc dùng Deneb/Vega nếu cần). Không thêm visual chỉ để "nhiều màu".
 
