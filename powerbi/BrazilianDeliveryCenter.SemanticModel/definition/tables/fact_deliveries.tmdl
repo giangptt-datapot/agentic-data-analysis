@@ -1,0 +1,57 @@
+table fact_deliveries
+	lineageTag: tbl-fact-deliveries
+
+	column delivery_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: delivery_id
+		lineageTag: lt-delivery_id
+	column delivery_order_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: delivery_order_id
+		lineageTag: lt-delivery_order_id
+	column driver_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: driver_id
+		lineageTag: lt-driver_id
+	column delivery_distance_meters
+		dataType: double
+		summarizeBy: none
+		sourceColumn: delivery_distance_meters
+		lineageTag: lt-delivery_distance_meters
+	column delivery_status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: delivery_status
+		lineageTag: lt-delivery_status
+	column flag_extreme_distance
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: flag_extreme_distance
+		lineageTag: lt-flag_extreme_distance
+
+	measure 'Deliveries' = COUNTROWS(fact_deliveries)
+		formatString: #,0
+	measure 'Delivered' = CALCULATE([Deliveries], fact_deliveries[delivery_status] = "DELIVERED")
+		formatString: #,0
+	measure 'Delivery Success Rate' = DIVIDE([Delivered], [Deliveries])
+		formatString: 0.00%
+	measure 'Median Distance (km)' = DIVIDE(MEDIANX(FILTER(fact_deliveries, fact_deliveries[delivery_status] = "DELIVERED" && fact_deliveries[delivery_distance_meters] <= 50000), fact_deliveries[delivery_distance_meters]), 1000)
+		formatString: #,0.00
+	measure 'Active Drivers' = CALCULATE(DISTINCTCOUNT(fact_deliveries[driver_id]), fact_deliveries[delivery_status] = "DELIVERED")
+		formatString: #,0
+
+	partition fact_deliveries = m
+		mode: import
+		source =
+			let
+			    Src = Csv.Document(File.Contents(SourceFolder & "deliveries.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+			    Head = Table.PromoteHeaders(Src, [PromoteAllScalars=true]),
+			    Typ = Table.TransformColumnTypes(Head, {
+			        {"delivery_id", Int64.Type}, {"delivery_order_id", Int64.Type}, {"driver_id", Int64.Type},
+			        {"delivery_distance_meters", type number}, {"delivery_status", type text}}),
+			    AddF = Table.AddColumn(Typ, "flag_extreme_distance", each [delivery_distance_meters] <> null and [delivery_distance_meters] > 50000, type logical)
+			in
+			    AddF

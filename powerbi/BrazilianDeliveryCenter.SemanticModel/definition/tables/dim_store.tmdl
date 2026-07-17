@@ -1,0 +1,52 @@
+table dim_store
+	lineageTag: tbl-dim-store
+
+	column store_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: store_id
+		lineageTag: lt-store_id
+	column hub_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: hub_id
+		lineageTag: lt-hub_id
+	column store_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: store_name
+		lineageTag: lt-store_name
+	column store_segment
+		dataType: string
+		summarizeBy: none
+		sourceColumn: store_segment
+		lineageTag: lt-store_segment
+	column store_plan_price
+		dataType: double
+		summarizeBy: none
+		sourceColumn: store_plan_price
+		formatString: "R$"#,0.00
+		lineageTag: lt-store_plan_price
+	column store_latitude
+		dataType: double
+		summarizeBy: none
+		sourceColumn: store_latitude
+		lineageTag: lt-store_latitude
+	column store_longitude
+		dataType: double
+		summarizeBy: none
+		sourceColumn: store_longitude
+		lineageTag: lt-store_longitude
+
+	partition dim_store = m
+		mode: import
+		source =
+			let
+			    Src = Csv.Document(File.Contents(SourceFolder & "stores.csv"), [Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+			    Head = Table.PromoteHeaders(Src, [PromoteAllScalars=true]),
+			    Typ = Table.TransformColumnTypes(Head, {
+			        {"store_id", Int64.Type}, {"hub_id", Int64.Type}, {"store_name", type text},
+			        {"store_segment", type text}, {"store_plan_price", type number},
+			        {"store_latitude", type number}, {"store_longitude", type number}})
+			in
+			    Typ

@@ -1,0 +1,149 @@
+table fact_orders
+	lineageTag: tbl-fact-orders
+
+	column order_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: order_id
+		lineageTag: lt-order_id
+	column store_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: store_id
+		lineageTag: lt-store_id
+	column channel_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: channel_id
+		lineageTag: lt-channel_id
+	column order_status
+		dataType: string
+		summarizeBy: none
+		sourceColumn: order_status
+		lineageTag: lt-order_status
+	column order_amount
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: order_amount
+		formatString: "R$"#,0.00
+		lineageTag: lt-order_amount
+	column order_delivery_fee
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: order_delivery_fee
+		formatString: "R$"#,0.00
+		lineageTag: lt-order_delivery_fee
+	column order_delivery_cost
+		dataType: double
+		summarizeBy: sum
+		sourceColumn: order_delivery_cost
+		formatString: "R$"#,0.00
+		lineageTag: lt-order_delivery_cost
+	column order_metric_cycle_time
+		dataType: double
+		summarizeBy: none
+		sourceColumn: order_metric_cycle_time
+		lineageTag: lt-order_metric_cycle_time
+	column order_metric_production_time
+		dataType: double
+		summarizeBy: none
+		sourceColumn: order_metric_production_time
+		lineageTag: lt-order_metric_production_time
+	column order_metric_transit_time
+		dataType: double
+		summarizeBy: none
+		sourceColumn: order_metric_transit_time
+		lineageTag: lt-order_metric_transit_time
+	column order_date
+		dataType: dateTime
+		summarizeBy: none
+		sourceColumn: order_date
+		formatString: General Date
+		lineageTag: lt-order_date
+	column order_hour
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: order_hour
+		lineageTag: lt-order_hour
+	column order_dow
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: order_dow
+		lineageTag: lt-order_dow
+	column flag_zero_amount
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: flag_zero_amount
+		lineageTag: lt-flag_zero_amount
+	column flag_extreme_amount
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: flag_extreme_amount
+		lineageTag: lt-flag_extreme_amount
+	column flag_long_cycle
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: flag_long_cycle
+		lineageTag: lt-flag_long_cycle
+
+	measure 'Total Orders' = COUNTROWS(fact_orders)
+		formatString: #,0
+	measure 'Finished Orders' = CALCULATE([Total Orders], fact_orders[order_status] = "FINISHED")
+		formatString: #,0
+	measure 'Canceled Orders' = CALCULATE([Total Orders], fact_orders[order_status] = "CANCELED")
+		formatString: #,0
+	measure 'GMV' = CALCULATE(SUM(fact_orders[order_amount]), fact_orders[order_status] = "FINISHED")
+		formatString: "R$"#,0
+	measure 'AOV' = DIVIDE([GMV], [Finished Orders])
+		formatString: "R$"#,0.00
+	measure 'Median Order Value' = MEDIANX(FILTER(fact_orders, fact_orders[order_status] = "FINISHED"), fact_orders[order_amount])
+		formatString: "R$"#,0.00
+	measure 'Cancellation Rate' = DIVIDE([Canceled Orders], [Total Orders])
+		formatString: 0.00%
+	measure 'Fulfillment Rate' = DIVIDE([Finished Orders], [Total Orders])
+		formatString: 0.00%
+	measure 'Active Stores' = CALCULATE(DISTINCTCOUNT(fact_orders[store_id]), fact_orders[order_status] = "FINISHED")
+		formatString: #,0
+	measure 'Median Cycle (min)' = MEDIANX(FILTER(fact_orders, fact_orders[order_status] = "FINISHED" && fact_orders[order_metric_cycle_time] > 0 && fact_orders[order_metric_cycle_time] <= 1440), fact_orders[order_metric_cycle_time])
+		formatString: #,0.0
+	measure 'P90 Cycle (min)' = PERCENTILEX.INC(FILTER(fact_orders, fact_orders[order_status] = "FINISHED" && fact_orders[order_metric_cycle_time] > 0 && fact_orders[order_metric_cycle_time] <= 1440), fact_orders[order_metric_cycle_time], 0.9)
+		formatString: #,0.0
+	measure 'Mean Delivery Fee' = CALCULATE(AVERAGE(fact_orders[order_delivery_fee]), fact_orders[order_status] = "FINISHED")
+		formatString: "R$"#,0.00
+	measure 'Mean Delivery Cost' = CALCULATE(AVERAGEX(FILTER(fact_orders, NOT(ISBLANK(fact_orders[order_delivery_cost]))), fact_orders[order_delivery_cost]), fact_orders[order_status] = "FINISHED")
+		formatString: "R$"#,0.00
+	measure 'Delivery Subsidy / Order' = [Mean Delivery Cost] - [Mean Delivery Fee]
+		formatString: "R$"#,0.00
+	measure 'Free-ship Order %' = DIVIDE(CALCULATE([Finished Orders], fact_orders[order_delivery_fee] = 0), [Finished Orders])
+		formatString: 0.0%
+	measure 'GMV Concentration Top1 Channel %' =
+		VAR Total = [GMV]
+		VAR Top1 = MAXX(VALUES(dim_channel[channel_name]), [GMV])
+		RETURN DIVIDE(Top1, CALCULATE([GMV], ALL(dim_channel)))
+		formatString: 0.0%
+
+	partition fact_orders = m
+		mode: import
+		source =
+			let
+			    Src = Csv.Document(File.Contents(SourceFolder & "orders.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+			    Head = Table.PromoteHeaders(Src, [PromoteAllScalars=true]),
+			    Typ = Table.TransformColumnTypes(Head, {
+			        {"order_id", Int64.Type}, {"store_id", Int64.Type}, {"channel_id", Int64.Type},
+			        {"order_status", type text}, {"order_amount", type number},
+			        {"order_delivery_fee", type number}, {"order_delivery_cost", type number},
+			        {"order_metric_cycle_time", type number}, {"order_metric_production_time", type number},
+			        {"order_metric_transit_time", type number},
+			        {"order_moment_created", type text}, {"order_moment_finished", type text}}),
+			    // parse created (source format M/d/yyyy h:mm:ss tt) -> assume UTC, shift to Brazil local (UTC-3)
+			    AddUtc = Table.AddColumn(Typ, "created_utc", each try DateTime.FromText([order_moment_created], [Format="M/d/yyyy h:mm:ss tt", Culture="en-US"]) otherwise null, type datetime),
+			    AddLoc = Table.AddColumn(AddUtc, "created_local", each if [created_utc] = null then null else [created_utc] - #duration(0,3,0,0), type datetime),
+			    AddDate = Table.AddColumn(AddLoc, "order_date", each if [created_local] = null then null else Date.From([created_local]), type date),
+			    AddHour = Table.AddColumn(AddDate, "order_hour", each if [created_local] = null then null else Time.Hour([created_local]), Int64.Type),
+			    AddDow = Table.AddColumn(AddHour, "order_dow", each if [created_local] = null then null else Date.DayOfWeek([created_local], Day.Monday), Int64.Type),
+			    // quality flags (kept, never dropped)
+			    AddF1 = Table.AddColumn(AddDow, "flag_zero_amount", each [order_amount] <= 0, type logical),
+			    AddF2 = Table.AddColumn(AddF1, "flag_extreme_amount", each [order_amount] > 1500, type logical),
+			    AddF3 = Table.AddColumn(AddF2, "flag_long_cycle", each [order_metric_cycle_time] <> null and [order_metric_cycle_time] > 1440, type logical)
+			in
+			    AddF3

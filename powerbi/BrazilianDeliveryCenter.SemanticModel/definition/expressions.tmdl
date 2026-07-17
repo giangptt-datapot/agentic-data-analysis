@@ -1,0 +1,3 @@
+expression SourceFolder = "C:\\BDC\\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: exp-sourcefolder
+	annotation PBI_ResultType = Text

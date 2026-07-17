@@ -1,0 +1,45 @@
+table dim_hub
+	lineageTag: tbl-dim-hub
+
+	column hub_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: hub_id
+		lineageTag: lt-hub_id
+	column hub_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: hub_name
+		lineageTag: lt-hub_name
+	column hub_city
+		dataType: string
+		summarizeBy: none
+		sourceColumn: hub_city
+		lineageTag: lt-hub_city
+	column hub_state
+		dataType: string
+		summarizeBy: none
+		sourceColumn: hub_state
+		lineageTag: lt-hub_state
+	column hub_latitude
+		dataType: double
+		summarizeBy: none
+		sourceColumn: hub_latitude
+		lineageTag: lt-hub_latitude
+	column hub_longitude
+		dataType: double
+		summarizeBy: none
+		sourceColumn: hub_longitude
+		lineageTag: lt-hub_longitude
+
+	partition dim_hub = m
+		mode: import
+		source =
+			let
+			    Src = Csv.Document(File.Contents(SourceFolder & "hubs.csv"), [Delimiter=",", Encoding=1252, QuoteStyle=QuoteStyle.Csv]),
+			    Head = Table.PromoteHeaders(Src, [PromoteAllScalars=true]),
+			    Typ = Table.TransformColumnTypes(Head, {
+			        {"hub_id", Int64.Type}, {"hub_name", type text}, {"hub_city", type text},
+			        {"hub_state", type text}, {"hub_latitude", type number}, {"hub_longitude", type number}})
+			in
+			    Typ

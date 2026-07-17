@@ -1,0 +1,49 @@
+table dim_date
+	lineageTag: tbl-dim-date
+	isPrivate
+
+	column Date
+		dataType: dateTime
+		isKey
+		summarizeBy: none
+		sourceColumn: [Date]
+		formatString: General Date
+		lineageTag: lt-date-date
+
+	column Year = YEAR('dim_date'[Date])
+		dataType: int64
+		summarizeBy: none
+		lineageTag: lt-date-year
+
+	column MonthNo = MONTH('dim_date'[Date])
+		dataType: int64
+		summarizeBy: none
+		lineageTag: lt-date-monthno
+
+	column Month = FORMAT('dim_date'[Date], "mmm")
+		dataType: string
+		summarizeBy: none
+		sortByColumn: MonthNo
+		lineageTag: lt-date-month
+
+	column DayOfWeekNo = WEEKDAY('dim_date'[Date], 2)
+		dataType: int64
+		summarizeBy: none
+		lineageTag: lt-date-downo
+
+	column DayOfWeek = FORMAT('dim_date'[Date], "ddd")
+		dataType: string
+		summarizeBy: none
+		sortByColumn: DayOfWeekNo
+		lineageTag: lt-date-dow
+
+	column IsWeekend = WEEKDAY('dim_date'[Date], 2) >= 6
+		dataType: boolean
+		summarizeBy: none
+		lineageTag: lt-date-wknd
+
+	partition dim_date = calculated
+		mode: import
+		source = CALENDAR(DATE(2021,1,1), DATE(2021,5,7))
+
+	annotation PBI_Id = dimdate

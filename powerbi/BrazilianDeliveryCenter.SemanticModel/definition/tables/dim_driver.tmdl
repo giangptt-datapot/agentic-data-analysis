@@ -1,0 +1,28 @@
+table dim_driver
+	lineageTag: tbl-dim-driver
+
+	column driver_id
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: driver_id
+		lineageTag: lt-driver_id
+	column driver_modal
+		dataType: string
+		summarizeBy: none
+		sourceColumn: driver_modal
+		lineageTag: lt-driver_modal
+	column driver_type
+		dataType: string
+		summarizeBy: none
+		sourceColumn: driver_type
+		lineageTag: lt-driver_type
+
+	partition dim_driver = m
+		mode: import
+		source =
+			let
+			    Src = Csv.Document(File.Contents(SourceFolder & "drivers.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+			    Head = Table.PromoteHeaders(Src, [PromoteAllScalars=true]),
+			    Typ = Table.TransformColumnTypes(Head, {{"driver_id", Int64.Type}, {"driver_modal", type text}, {"driver_type", type text}})
+			in
+			    Typ
