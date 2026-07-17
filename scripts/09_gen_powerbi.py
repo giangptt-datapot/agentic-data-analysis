@@ -186,10 +186,7 @@ MEASURES = r'''
 \t\tformatString: "R$"#,0.00
 \tmeasure 'Free-ship Order %' = DIVIDE(CALCULATE([Finished Orders], fact_orders[order_delivery_fee] = 0), [Finished Orders])
 \t\tformatString: 0.0%
-\tmeasure 'GMV Concentration Top1 Channel %' =
-\t\tVAR Total = [GMV]
-\t\tVAR Top1 = MAXX(VALUES(dim_channel[channel_name]), [GMV])
-\t\tRETURN DIVIDE(Top1, CALCULATE([GMV], ALL(dim_channel)))
+\tmeasure 'GMV Concentration Top1 Channel %' = DIVIDE(MAXX(VALUES(dim_channel[channel_name]), [GMV]), CALCULATE([GMV], ALL(dim_channel)))
 \t\tformatString: 0.0%
 '''
 
