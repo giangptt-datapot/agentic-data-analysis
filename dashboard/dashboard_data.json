@@ -1,0 +1,1496 @@
+{
+  "kpi": {
+    "total_orders": 368999,
+    "finished_orders": 352020,
+    "gmv": 35293230.0,
+    "aov": 100.26,
+    "median_order": 71.9,
+    "cancel_rate": 4.6,
+    "n_stores_active": 883,
+    "n_stores_total": 951,
+    "n_hubs": 32,
+    "n_cities": 4,
+    "median_cycle_min": 41.8,
+    "median_distance_km": 2.06,
+    "chargeback_rate": 0.115,
+    "date_min": "2021-01-01",
+    "date_max": "2021-04-30"
+  },
+  "weekly": [
+    {
+      "week": "2021-01-04",
+      "gmv": 1378660.0,
+      "orders": 15770
+    },
+    {
+      "week": "2021-01-11",
+      "gmv": 1444979.0,
+      "orders": 16235
+    },
+    {
+      "week": "2021-01-18",
+      "gmv": 1443909.0,
+      "orders": 16176
+    },
+    {
+      "week": "2021-01-25",
+      "gmv": 1604739.0,
+      "orders": 17255
+    },
+    {
+      "week": "2021-02-01",
+      "gmv": 1532762.0,
+      "orders": 16923
+    },
+    {
+      "week": "2021-02-08",
+      "gmv": 1483102.0,
+      "orders": 16703
+    },
+    {
+      "week": "2021-02-15",
+      "gmv": 1639879.0,
+      "orders": 17662
+    },
+    {
+      "week": "2021-02-22",
+      "gmv": 1654931.0,
+      "orders": 18409
+    },
+    {
+      "week": "2021-03-01",
+      "gmv": 1813016.0,
+      "orders": 19542
+    },
+    {
+      "week": "2021-03-08",
+      "gmv": 2283712.0,
+      "orders": 22266
+    },
+    {
+      "week": "2021-03-15",
+      "gmv": 2749694.0,
+      "orders": 25308
+    },
+    {
+      "week": "2021-03-22",
+      "gmv": 3067080.0,
+      "orders": 26871
+    },
+    {
+      "week": "2021-03-29",
+      "gmv": 3982867.0,
+      "orders": 32063
+    },
+    {
+      "week": "2021-04-05",
+      "gmv": 2581744.0,
+      "orders": 24678
+    },
+    {
+      "week": "2021-04-12",
+      "gmv": 2386091.0,
+      "orders": 22949
+    },
+    {
+      "week": "2021-04-19",
+      "gmv": 2255800.0,
+      "orders": 22831
+    },
+    {
+      "week": "2021-04-26",
+      "gmv": 1363258.0,
+      "orders": 13866
+    }
+  ],
+  "segment": [
+    {
+      "segment": "FOOD",
+      "orders": 310814,
+      "gmv": 26235436.0,
+      "aov": 84.41,
+      "cancel_rate": 3.41
+    },
+    {
+      "segment": "GOOD",
+      "orders": 41206,
+      "gmv": 9057794.0,
+      "aov": 219.82,
+      "cancel_rate": 12.74
+    }
+  ],
+  "channel_type": [
+    {
+      "type": "MARKETPLACE",
+      "orders": 317978,
+      "gmv": 27880384.0,
+      "aov": 87.68
+    },
+    {
+      "type": "OWN CHANNEL",
+      "orders": 34042,
+      "gmv": 7412846.0,
+      "aov": 217.76
+    }
+  ],
+  "top_channels": [
+    {
+      "channel": "FOOD PLACE",
+      "type": "MARKETPLACE",
+      "orders": 279632,
+      "gmv": 24052825.0
+    },
+    {
+      "channel": "CHOCO PLACE",
+      "type": "OWN CHANNEL",
+      "orders": 9840,
+      "gmv": 2257096.0
+    },
+    {
+      "channel": "OTHER PLACE",
+      "type": "OWN CHANNEL",
+      "orders": 8869,
+      "gmv": 1865186.0
+    },
+    {
+      "channel": "LISBON PLACE",
+      "type": "OWN CHANNEL",
+      "orders": 8164,
+      "gmv": 1835994.0
+    },
+    {
+      "channel": "LONDON PLACE",
+      "type": "MARKETPLACE",
+      "orders": 9248,
+      "gmv": 1200846.0
+    },
+    {
+      "channel": "WHATS PLACE",
+      "type": "OWN CHANNEL",
+      "orders": 4508,
+      "gmv": 1042261.0
+    },
+    {
+      "channel": "EATS PLACE",
+      "type": "MARKETPLACE",
+      "orders": 14187,
+      "gmv": 843452.0
+    },
+    {
+      "channel": "VELOCITY PLACE",
+      "type": "MARKETPLACE",
+      "orders": 8507,
+      "gmv": 761161.0
+    }
+  ],
+  "city": [
+    {
+      "city": "S\u00c3O PAULO",
+      "state": "SP",
+      "orders": 159280,
+      "gmv": 18612246.0,
+      "aov": 116.85,
+      "stores": 431,
+      "lat": -23.5212,
+      "lng": -46.4112
+    },
+    {
+      "city": "RIO DE JANEIRO",
+      "state": "RJ",
+      "orders": 131617,
+      "gmv": 11853502.0,
+      "aov": 90.06,
+      "stores": 300,
+      "lat": -22.9625,
+      "lng": -43.3529
+    },
+    {
+      "city": "PORTO ALEGRE",
+      "state": "RS",
+      "orders": 33051,
+      "gmv": 2889362.0,
+      "aov": 87.42,
+      "stores": 42,
+      "lat": -30.0481,
+      "lng": -51.2179
+    },
+    {
+      "city": "CURITIBA",
+      "state": "PR",
+      "orders": 28072,
+      "gmv": 1938121.0,
+      "aov": 69.04,
+      "stores": 110,
+      "lat": -25.4479,
+      "lng": -49.2877
+    }
+  ],
+  "cancel_month": [
+    {
+      "month": 1,
+      "orders": 75217,
+      "cancel": 3269,
+      "cancel_rate": 4.35
+    },
+    {
+      "month": 2,
+      "orders": 72943,
+      "cancel": 3246,
+      "cancel_rate": 4.45
+    },
+    {
+      "month": 3,
+      "orders": 112369,
+      "cancel": 5001,
+      "cancel_rate": 4.45
+    },
+    {
+      "month": 4,
+      "orders": 108461,
+      "cancel": 5455,
+      "cancel_rate": 5.03
+    }
+  ],
+  "payment_method": [
+    {
+      "method": "ONLINE",
+      "orders": 306885,
+      "share": 87.18
+    },
+    {
+      "method": "DEBIT",
+      "orders": 11746,
+      "share": 3.34
+    },
+    {
+      "method": "MEAL_BENEFIT",
+      "orders": 6410,
+      "share": 1.82
+    },
+    {
+      "method": "STORE_DIRECT_PAYMENT",
+      "orders": 6376,
+      "share": 1.81
+    },
+    {
+      "method": "VOUCHER",
+      "orders": 5736,
+      "share": 1.63
+    },
+    {
+      "method": "CREDIT",
+      "orders": 4766,
+      "share": 1.35
+    },
+    {
+      "method": "OTHER",
+      "orders": 10101,
+      "share": 2.87
+    }
+  ],
+  "orders_by_hour": [
+    {
+      "hour": 0,
+      "orders": 651
+    },
+    {
+      "hour": 1,
+      "orders": 250
+    },
+    {
+      "hour": 2,
+      "orders": 392
+    },
+    {
+      "hour": 3,
+      "orders": 234
+    },
+    {
+      "hour": 4,
+      "orders": 173
+    },
+    {
+      "hour": 5,
+      "orders": 128
+    },
+    {
+      "hour": 6,
+      "orders": 131
+    },
+    {
+      "hour": 7,
+      "orders": 202
+    },
+    {
+      "hour": 8,
+      "orders": 437
+    },
+    {
+      "hour": 9,
+      "orders": 964
+    },
+    {
+      "hour": 10,
+      "orders": 5606
+    },
+    {
+      "hour": 11,
+      "orders": 32652
+    },
+    {
+      "hour": 12,
+      "orders": 48813
+    },
+    {
+      "hour": 13,
+      "orders": 34766
+    },
+    {
+      "hour": 14,
+      "orders": 25493
+    },
+    {
+      "hour": 15,
+      "orders": 19294
+    },
+    {
+      "hour": 16,
+      "orders": 16391
+    },
+    {
+      "hour": 17,
+      "orders": 15988
+    },
+    {
+      "hour": 18,
+      "orders": 27810
+    },
+    {
+      "hour": 19,
+      "orders": 47251
+    },
+    {
+      "hour": 20,
+      "orders": 43976
+    },
+    {
+      "hour": 21,
+      "orders": 25441
+    },
+    {
+      "hour": 22,
+      "orders": 4012
+    },
+    {
+      "hour": 23,
+      "orders": 965
+    }
+  ],
+  "orders_by_dow": [
+    {
+      "dow": "Mon",
+      "orders": 42089
+    },
+    {
+      "dow": "Tue",
+      "orders": 42666
+    },
+    {
+      "dow": "Wed",
+      "orders": 46095
+    },
+    {
+      "dow": "Thu",
+      "orders": 47662
+    },
+    {
+      "dow": "Fri",
+      "orders": 59856
+    },
+    {
+      "dow": "Sat",
+      "orders": 57933
+    },
+    {
+      "dow": "Sun",
+      "orders": 55719
+    }
+  ],
+  "heatmap": [
+    {
+      "dow": "Mon",
+      "hour": 0,
+      "orders": 118
+    },
+    {
+      "dow": "Mon",
+      "hour": 1,
+      "orders": 31
+    },
+    {
+      "dow": "Mon",
+      "hour": 2,
+      "orders": 10
+    },
+    {
+      "dow": "Mon",
+      "hour": 3,
+      "orders": 7
+    },
+    {
+      "dow": "Mon",
+      "hour": 4,
+      "orders": 4
+    },
+    {
+      "dow": "Mon",
+      "hour": 5,
+      "orders": 3
+    },
+    {
+      "dow": "Mon",
+      "hour": 6,
+      "orders": 14
+    },
+    {
+      "dow": "Mon",
+      "hour": 7,
+      "orders": 31
+    },
+    {
+      "dow": "Mon",
+      "hour": 8,
+      "orders": 53
+    },
+    {
+      "dow": "Mon",
+      "hour": 9,
+      "orders": 137
+    },
+    {
+      "dow": "Mon",
+      "hour": 10,
+      "orders": 1136
+    },
+    {
+      "dow": "Mon",
+      "hour": 11,
+      "orders": 4380
+    },
+    {
+      "dow": "Mon",
+      "hour": 12,
+      "orders": 6076
+    },
+    {
+      "dow": "Mon",
+      "hour": 13,
+      "orders": 3892
+    },
+    {
+      "dow": "Mon",
+      "hour": 14,
+      "orders": 3024
+    },
+    {
+      "dow": "Mon",
+      "hour": 15,
+      "orders": 2213
+    },
+    {
+      "dow": "Mon",
+      "hour": 16,
+      "orders": 2071
+    },
+    {
+      "dow": "Mon",
+      "hour": 17,
+      "orders": 1910
+    },
+    {
+      "dow": "Mon",
+      "hour": 18,
+      "orders": 3104
+    },
+    {
+      "dow": "Mon",
+      "hour": 19,
+      "orders": 5242
+    },
+    {
+      "dow": "Mon",
+      "hour": 20,
+      "orders": 4999
+    },
+    {
+      "dow": "Mon",
+      "hour": 21,
+      "orders": 3012
+    },
+    {
+      "dow": "Mon",
+      "hour": 22,
+      "orders": 507
+    },
+    {
+      "dow": "Mon",
+      "hour": 23,
+      "orders": 115
+    },
+    {
+      "dow": "Tue",
+      "hour": 0,
+      "orders": 70
+    },
+    {
+      "dow": "Tue",
+      "hour": 1,
+      "orders": 26
+    },
+    {
+      "dow": "Tue",
+      "hour": 2,
+      "orders": 12
+    },
+    {
+      "dow": "Tue",
+      "hour": 3,
+      "orders": 5
+    },
+    {
+      "dow": "Tue",
+      "hour": 4,
+      "orders": 122
+    },
+    {
+      "dow": "Tue",
+      "hour": 5,
+      "orders": 81
+    },
+    {
+      "dow": "Tue",
+      "hour": 6,
+      "orders": 24
+    },
+    {
+      "dow": "Tue",
+      "hour": 7,
+      "orders": 45
+    },
+    {
+      "dow": "Tue",
+      "hour": 8,
+      "orders": 73
+    },
+    {
+      "dow": "Tue",
+      "hour": 9,
+      "orders": 174
+    },
+    {
+      "dow": "Tue",
+      "hour": 10,
+      "orders": 796
+    },
+    {
+      "dow": "Tue",
+      "hour": 11,
+      "orders": 4868
+    },
+    {
+      "dow": "Tue",
+      "hour": 12,
+      "orders": 5991
+    },
+    {
+      "dow": "Tue",
+      "hour": 13,
+      "orders": 3877
+    },
+    {
+      "dow": "Tue",
+      "hour": 14,
+      "orders": 2906
+    },
+    {
+      "dow": "Tue",
+      "hour": 15,
+      "orders": 2210
+    },
+    {
+      "dow": "Tue",
+      "hour": 16,
+      "orders": 1983
+    },
+    {
+      "dow": "Tue",
+      "hour": 17,
+      "orders": 1881
+    },
+    {
+      "dow": "Tue",
+      "hour": 18,
+      "orders": 3336
+    },
+    {
+      "dow": "Tue",
+      "hour": 19,
+      "orders": 5612
+    },
+    {
+      "dow": "Tue",
+      "hour": 20,
+      "orders": 4978
+    },
+    {
+      "dow": "Tue",
+      "hour": 21,
+      "orders": 3002
+    },
+    {
+      "dow": "Tue",
+      "hour": 22,
+      "orders": 500
+    },
+    {
+      "dow": "Tue",
+      "hour": 23,
+      "orders": 94
+    },
+    {
+      "dow": "Wed",
+      "hour": 0,
+      "orders": 62
+    },
+    {
+      "dow": "Wed",
+      "hour": 1,
+      "orders": 26
+    },
+    {
+      "dow": "Wed",
+      "hour": 2,
+      "orders": 94
+    },
+    {
+      "dow": "Wed",
+      "hour": 3,
+      "orders": 36
+    },
+    {
+      "dow": "Wed",
+      "hour": 4,
+      "orders": 7
+    },
+    {
+      "dow": "Wed",
+      "hour": 5,
+      "orders": 7
+    },
+    {
+      "dow": "Wed",
+      "hour": 6,
+      "orders": 22
+    },
+    {
+      "dow": "Wed",
+      "hour": 7,
+      "orders": 36
+    },
+    {
+      "dow": "Wed",
+      "hour": 8,
+      "orders": 85
+    },
+    {
+      "dow": "Wed",
+      "hour": 9,
+      "orders": 160
+    },
+    {
+      "dow": "Wed",
+      "hour": 10,
+      "orders": 867
+    },
+    {
+      "dow": "Wed",
+      "hour": 11,
+      "orders": 4813
+    },
+    {
+      "dow": "Wed",
+      "hour": 12,
+      "orders": 6772
+    },
+    {
+      "dow": "Wed",
+      "hour": 13,
+      "orders": 4252
+    },
+    {
+      "dow": "Wed",
+      "hour": 14,
+      "orders": 3076
+    },
+    {
+      "dow": "Wed",
+      "hour": 15,
+      "orders": 2563
+    },
+    {
+      "dow": "Wed",
+      "hour": 16,
+      "orders": 2100
+    },
+    {
+      "dow": "Wed",
+      "hour": 17,
+      "orders": 2270
+    },
+    {
+      "dow": "Wed",
+      "hour": 18,
+      "orders": 3644
+    },
+    {
+      "dow": "Wed",
+      "hour": 19,
+      "orders": 5946
+    },
+    {
+      "dow": "Wed",
+      "hour": 20,
+      "orders": 5541
+    },
+    {
+      "dow": "Wed",
+      "hour": 21,
+      "orders": 3096
+    },
+    {
+      "dow": "Wed",
+      "hour": 22,
+      "orders": 507
+    },
+    {
+      "dow": "Wed",
+      "hour": 23,
+      "orders": 113
+    },
+    {
+      "dow": "Thu",
+      "hour": 0,
+      "orders": 46
+    },
+    {
+      "dow": "Thu",
+      "hour": 1,
+      "orders": 24
+    },
+    {
+      "dow": "Thu",
+      "hour": 2,
+      "orders": 68
+    },
+    {
+      "dow": "Thu",
+      "hour": 3,
+      "orders": 32
+    },
+    {
+      "dow": "Thu",
+      "hour": 4,
+      "orders": 15
+    },
+    {
+      "dow": "Thu",
+      "hour": 5,
+      "orders": 20
+    },
+    {
+      "dow": "Thu",
+      "hour": 6,
+      "orders": 42
+    },
+    {
+      "dow": "Thu",
+      "hour": 7,
+      "orders": 42
+    },
+    {
+      "dow": "Thu",
+      "hour": 8,
+      "orders": 94
+    },
+    {
+      "dow": "Thu",
+      "hour": 9,
+      "orders": 195
+    },
+    {
+      "dow": "Thu",
+      "hour": 10,
+      "orders": 926
+    },
+    {
+      "dow": "Thu",
+      "hour": 11,
+      "orders": 5424
+    },
+    {
+      "dow": "Thu",
+      "hour": 12,
+      "orders": 6979
+    },
+    {
+      "dow": "Thu",
+      "hour": 13,
+      "orders": 4242
+    },
+    {
+      "dow": "Thu",
+      "hour": 14,
+      "orders": 2750
+    },
+    {
+      "dow": "Thu",
+      "hour": 15,
+      "orders": 2338
+    },
+    {
+      "dow": "Thu",
+      "hour": 16,
+      "orders": 2140
+    },
+    {
+      "dow": "Thu",
+      "hour": 17,
+      "orders": 2060
+    },
+    {
+      "dow": "Thu",
+      "hour": 18,
+      "orders": 3638
+    },
+    {
+      "dow": "Thu",
+      "hour": 19,
+      "orders": 6252
+    },
+    {
+      "dow": "Thu",
+      "hour": 20,
+      "orders": 6012
+    },
+    {
+      "dow": "Thu",
+      "hour": 21,
+      "orders": 3586
+    },
+    {
+      "dow": "Thu",
+      "hour": 22,
+      "orders": 573
+    },
+    {
+      "dow": "Thu",
+      "hour": 23,
+      "orders": 164
+    },
+    {
+      "dow": "Fri",
+      "hour": 0,
+      "orders": 111
+    },
+    {
+      "dow": "Fri",
+      "hour": 1,
+      "orders": 46
+    },
+    {
+      "dow": "Fri",
+      "hour": 2,
+      "orders": 97
+    },
+    {
+      "dow": "Fri",
+      "hour": 3,
+      "orders": 59
+    },
+    {
+      "dow": "Fri",
+      "hour": 4,
+      "orders": 13
+    },
+    {
+      "dow": "Fri",
+      "hour": 5,
+      "orders": 9
+    },
+    {
+      "dow": "Fri",
+      "hour": 6,
+      "orders": 12
+    },
+    {
+      "dow": "Fri",
+      "hour": 7,
+      "orders": 31
+    },
+    {
+      "dow": "Fri",
+      "hour": 8,
+      "orders": 66
+    },
+    {
+      "dow": "Fri",
+      "hour": 9,
+      "orders": 161
+    },
+    {
+      "dow": "Fri",
+      "hour": 10,
+      "orders": 918
+    },
+    {
+      "dow": "Fri",
+      "hour": 11,
+      "orders": 5979
+    },
+    {
+      "dow": "Fri",
+      "hour": 12,
+      "orders": 8035
+    },
+    {
+      "dow": "Fri",
+      "hour": 13,
+      "orders": 4864
+    },
+    {
+      "dow": "Fri",
+      "hour": 14,
+      "orders": 3426
+    },
+    {
+      "dow": "Fri",
+      "hour": 15,
+      "orders": 2392
+    },
+    {
+      "dow": "Fri",
+      "hour": 16,
+      "orders": 2311
+    },
+    {
+      "dow": "Fri",
+      "hour": 17,
+      "orders": 2317
+    },
+    {
+      "dow": "Fri",
+      "hour": 18,
+      "orders": 5152
+    },
+    {
+      "dow": "Fri",
+      "hour": 19,
+      "orders": 9398
+    },
+    {
+      "dow": "Fri",
+      "hour": 20,
+      "orders": 8673
+    },
+    {
+      "dow": "Fri",
+      "hour": 21,
+      "orders": 4873
+    },
+    {
+      "dow": "Fri",
+      "hour": 22,
+      "orders": 759
+    },
+    {
+      "dow": "Fri",
+      "hour": 23,
+      "orders": 154
+    },
+    {
+      "dow": "Sat",
+      "hour": 0,
+      "orders": 126
+    },
+    {
+      "dow": "Sat",
+      "hour": 1,
+      "orders": 45
+    },
+    {
+      "dow": "Sat",
+      "hour": 2,
+      "orders": 57
+    },
+    {
+      "dow": "Sat",
+      "hour": 3,
+      "orders": 58
+    },
+    {
+      "dow": "Sat",
+      "hour": 4,
+      "orders": 9
+    },
+    {
+      "dow": "Sat",
+      "hour": 5,
+      "orders": 5
+    },
+    {
+      "dow": "Sat",
+      "hour": 6,
+      "orders": 10
+    },
+    {
+      "dow": "Sat",
+      "hour": 7,
+      "orders": 9
+    },
+    {
+      "dow": "Sat",
+      "hour": 8,
+      "orders": 48
+    },
+    {
+      "dow": "Sat",
+      "hour": 9,
+      "orders": 75
+    },
+    {
+      "dow": "Sat",
+      "hour": 10,
+      "orders": 694
+    },
+    {
+      "dow": "Sat",
+      "hour": 11,
+      "orders": 3561
+    },
+    {
+      "dow": "Sat",
+      "hour": 12,
+      "orders": 7052
+    },
+    {
+      "dow": "Sat",
+      "hour": 13,
+      "orders": 6354
+    },
+    {
+      "dow": "Sat",
+      "hour": 14,
+      "orders": 4746
+    },
+    {
+      "dow": "Sat",
+      "hour": 15,
+      "orders": 3524
+    },
+    {
+      "dow": "Sat",
+      "hour": 16,
+      "orders": 2793
+    },
+    {
+      "dow": "Sat",
+      "hour": 17,
+      "orders": 2730
+    },
+    {
+      "dow": "Sat",
+      "hour": 18,
+      "orders": 4472
+    },
+    {
+      "dow": "Sat",
+      "hour": 19,
+      "orders": 8067
+    },
+    {
+      "dow": "Sat",
+      "hour": 20,
+      "orders": 7676
+    },
+    {
+      "dow": "Sat",
+      "hour": 21,
+      "orders": 4922
+    },
+    {
+      "dow": "Sat",
+      "hour": 22,
+      "orders": 736
+    },
+    {
+      "dow": "Sat",
+      "hour": 23,
+      "orders": 164
+    },
+    {
+      "dow": "Sun",
+      "hour": 0,
+      "orders": 118
+    },
+    {
+      "dow": "Sun",
+      "hour": 1,
+      "orders": 52
+    },
+    {
+      "dow": "Sun",
+      "hour": 2,
+      "orders": 54
+    },
+    {
+      "dow": "Sun",
+      "hour": 3,
+      "orders": 37
+    },
+    {
+      "dow": "Sun",
+      "hour": 4,
+      "orders": 3
+    },
+    {
+      "dow": "Sun",
+      "hour": 5,
+      "orders": 3
+    },
+    {
+      "dow": "Sun",
+      "hour": 6,
+      "orders": 7
+    },
+    {
+      "dow": "Sun",
+      "hour": 7,
+      "orders": 8
+    },
+    {
+      "dow": "Sun",
+      "hour": 8,
+      "orders": 18
+    },
+    {
+      "dow": "Sun",
+      "hour": 9,
+      "orders": 62
+    },
+    {
+      "dow": "Sun",
+      "hour": 10,
+      "orders": 269
+    },
+    {
+      "dow": "Sun",
+      "hour": 11,
+      "orders": 3627
+    },
+    {
+      "dow": "Sun",
+      "hour": 12,
+      "orders": 7908
+    },
+    {
+      "dow": "Sun",
+      "hour": 13,
+      "orders": 7285
+    },
+    {
+      "dow": "Sun",
+      "hour": 14,
+      "orders": 5565
+    },
+    {
+      "dow": "Sun",
+      "hour": 15,
+      "orders": 4054
+    },
+    {
+      "dow": "Sun",
+      "hour": 16,
+      "orders": 2993
+    },
+    {
+      "dow": "Sun",
+      "hour": 17,
+      "orders": 2820
+    },
+    {
+      "dow": "Sun",
+      "hour": 18,
+      "orders": 4464
+    },
+    {
+      "dow": "Sun",
+      "hour": 19,
+      "orders": 6734
+    },
+    {
+      "dow": "Sun",
+      "hour": 20,
+      "orders": 6097
+    },
+    {
+      "dow": "Sun",
+      "hour": 21,
+      "orders": 2950
+    },
+    {
+      "dow": "Sun",
+      "hour": 22,
+      "orders": 430
+    },
+    {
+      "dow": "Sun",
+      "hour": 23,
+      "orders": 161
+    }
+  ],
+  "driver_modal": [
+    {
+      "modal": "BIKER",
+      "deliveries": 97514,
+      "share": 26.9,
+      "median_km": 1.03
+    },
+    {
+      "modal": "MOTOBOY",
+      "deliveries": 265443,
+      "share": 73.1,
+      "median_km": 2.62
+    }
+  ],
+  "driver_type": [
+    {
+      "type": "FREELANCE",
+      "deliveries": 259382,
+      "share": 71.5
+    },
+    {
+      "type": "LOGISTIC OPERATOR",
+      "deliveries": 103575,
+      "share": 28.5
+    }
+  ],
+  "cycle_hist": [
+    {
+      "bucket": "<20",
+      "orders": 9757
+    },
+    {
+      "bucket": "20-30",
+      "orders": 53408
+    },
+    {
+      "bucket": "30-40",
+      "orders": 92600
+    },
+    {
+      "bucket": "40-50",
+      "orders": 78823
+    },
+    {
+      "bucket": "50-60",
+      "orders": 45919
+    },
+    {
+      "bucket": "60-75",
+      "orders": 29174
+    },
+    {
+      "bucket": "75-90",
+      "orders": 10529
+    },
+    {
+      "bucket": "90-120",
+      "orders": 7148
+    },
+    {
+      "bucket": "120-180",
+      "orders": 4815
+    }
+  ],
+  "cycle_pct": {
+    "p50": 41.1,
+    "p90": 67.5,
+    "p95": 81.7
+  },
+  "delivery_econ": {
+    "mean_fee": 6.22,
+    "mean_cost": 7.58,
+    "free_ship_share": 35.6,
+    "fee_below_cost_share": 53.4,
+    "subsidy_per_order": 1.36
+  },
+  "pareto": [
+    {
+      "store_pct": 0.1,
+      "gmv_pct": 4.6
+    },
+    {
+      "store_pct": 4.2,
+      "gmv_pct": 57.9
+    },
+    {
+      "store_pct": 8.4,
+      "gmv_pct": 72.3
+    },
+    {
+      "store_pct": 12.6,
+      "gmv_pct": 80.7
+    },
+    {
+      "store_pct": 16.8,
+      "gmv_pct": 85.7
+    },
+    {
+      "store_pct": 20.8,
+      "gmv_pct": 88.9
+    },
+    {
+      "store_pct": 25.0,
+      "gmv_pct": 91.4
+    },
+    {
+      "store_pct": 29.2,
+      "gmv_pct": 93.2
+    },
+    {
+      "store_pct": 33.4,
+      "gmv_pct": 94.6
+    },
+    {
+      "store_pct": 37.5,
+      "gmv_pct": 95.6
+    },
+    {
+      "store_pct": 41.7,
+      "gmv_pct": 96.6
+    },
+    {
+      "store_pct": 45.9,
+      "gmv_pct": 97.3
+    },
+    {
+      "store_pct": 50.1,
+      "gmv_pct": 98.0
+    },
+    {
+      "store_pct": 54.1,
+      "gmv_pct": 98.5
+    },
+    {
+      "store_pct": 58.3,
+      "gmv_pct": 98.9
+    },
+    {
+      "store_pct": 62.5,
+      "gmv_pct": 99.2
+    },
+    {
+      "store_pct": 66.7,
+      "gmv_pct": 99.4
+    },
+    {
+      "store_pct": 70.8,
+      "gmv_pct": 99.6
+    },
+    {
+      "store_pct": 75.0,
+      "gmv_pct": 99.7
+    },
+    {
+      "store_pct": 79.2,
+      "gmv_pct": 99.8
+    },
+    {
+      "store_pct": 83.4,
+      "gmv_pct": 99.9
+    },
+    {
+      "store_pct": 87.4,
+      "gmv_pct": 99.9
+    },
+    {
+      "store_pct": 91.6,
+      "gmv_pct": 100.0
+    },
+    {
+      "store_pct": 95.8,
+      "gmv_pct": 100.0
+    },
+    {
+      "store_pct": 100.0,
+      "gmv_pct": 100.0
+    }
+  ],
+  "pareto_stat": {
+    "top20_share": 88.4,
+    "stores_for_80": 108,
+    "n_stores": 883
+  },
+  "segment_month": [
+    {
+      "month": 1,
+      "segment": "FOOD",
+      "orders": 68315
+    },
+    {
+      "month": 1,
+      "segment": "GOOD",
+      "orders": 3633
+    },
+    {
+      "month": 2,
+      "segment": "FOOD",
+      "orders": 64207
+    },
+    {
+      "month": 2,
+      "segment": "GOOD",
+      "orders": 5490
+    },
+    {
+      "month": 3,
+      "segment": "FOOD",
+      "orders": 89961
+    },
+    {
+      "month": 3,
+      "segment": "GOOD",
+      "orders": 17407
+    },
+    {
+      "month": 4,
+      "segment": "FOOD",
+      "orders": 88331
+    },
+    {
+      "month": 4,
+      "segment": "GOOD",
+      "orders": 14675
+    }
+  ],
+  "quality": {
+    "flag_extreme_amount": 368,
+    "flag_extreme_distance": 509,
+    "flag_long_cycle": 7574,
+    "flag_zero_amount": 764,
+    "orders_no_payment": 18665,
+    "orders_no_delivery": 10345,
+    "null_driver_deliveries": 15886,
+    "delivered_missing_pct": 94.7
+  }
+}

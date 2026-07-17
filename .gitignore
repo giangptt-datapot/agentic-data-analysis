@@ -1,0 +1,6 @@
+data/raw/
+data/processed/*.csv
+outputs/
+__pycache__/
+*.pyc
+.DS_Store

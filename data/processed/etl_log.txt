@@ -1,0 +1,36 @@
+======================================================================
+ETL RUN — Brazilian Delivery Center
+======================================================================
+  [encoding] hubs.csv read as latin-1 (utf-8 failed)
+  [encoding] stores.csv read as latin-1 (utf-8 failed)
+loaded orders: 368,999 rows x 29 cols
+loaded payments: 400,834 rows x 6 cols
+loaded deliveries: 378,843 rows x 5 cols
+loaded stores: 951 rows x 7 cols
+loaded hubs: 32 rows x 6 cols
+loaded channels: 40 rows x 3 cols
+loaded drivers: 4,824 rows x 3 cols
+
+[1] Parse order timestamps
+  order_moment_created range: 2021-01-01 00:01:36 -> 2021-04-30 23:59:48
+  derived: order_date, order_dow, order_dow_name, order_hour, order_week
+
+[2] Quality flags on orders (rows kept, only flagged)
+  flag_zero_amount: 764
+  flag_extreme_amount (> p99.9 = 1,500 BRL): 368
+  flag_long_cycle (>1440 min): 7,574
+
+[3] Payments rollup per order
+  payments 400,834 rows -> 350,334 order-level rows (orders with split payment: 48,818)
+
+[4] Deliveries rollup per order + delivery dim
+  deliveries 378,843 rows -> 358,654 order-level rows (orders with >1 delivery: 18,724)
+  flag_extreme_distance (>50km) on delivery rows: 509
+
+[5] Join dims: store -> hub, channel
+  fact_orders shape: (368999, 58)
+  orders w/o payment record: 18,665
+  orders w/o delivery record: 10,345
+
+[6] Write outputs
+  wrote fact_orders.csv (368,999 rows) and dim_deliveries.csv (378,843 rows)
