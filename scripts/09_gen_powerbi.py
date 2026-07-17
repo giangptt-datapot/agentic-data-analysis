@@ -32,7 +32,7 @@ RP_GUID = "b0c1d2e3-4f50-4a61-8b72-000000000002"
 
 # ---------------------------------------------------------------- .pbip
 w(os.path.join(ROOT, "BrazilianDeliveryCenter.pbip"), json.dumps({
-    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/pbip/definitionProperties/1.0.0/schema.json",
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/pbip/pbipProperties/1.0.0/schema.json",
     "version": "1.0",
     "artifacts": [{"report": {"path": "BrazilianDeliveryCenter.Report"}}],
     "settings": {"enableAutoRecovery": True}
@@ -51,7 +51,10 @@ w(os.path.join(SM, "definition.pbism"), json.dumps({
 
 # ---------------------------------------------------------------- database.tmdl / model.tmdl / expressions
 w(os.path.join(SM, "definition", "database.tmdl"),
-"database\n\tcompatibilityLevel: 1567\n")
+"database\n\tcompatibilityLevel: 1600\n")
+# culture file (referenced by model.tmdl)
+os.makedirs(os.path.join(SM, "definition", "cultures"), exist_ok=True)
+w(os.path.join(SM, "definition", "cultures", "en-US.tmdl"), "cultureInfo en-US\n")
 
 w(os.path.join(SM, "definition", "expressions.tmdl"),
 'expression SourceFolder = "C:\\\\BDC\\\\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]\n'
@@ -61,6 +64,14 @@ w(os.path.join(SM, "definition", "expressions.tmdl"),
 MODEL = """model Model
 \tculture: en-US
 \tdefaultPowerBIDataSourceVersion: powerBI_V3
+\tsourceQueryCulture: en-US
+\tdataAccessOptions
+\t\tlegacyRedirects
+\t\treturnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["fact_orders","fact_deliveries","fact_payments","dim_store","dim_hub","dim_channel","dim_driver"]
+
+annotation PBI_ProTooling = ["DevMode"]
 
 ref table fact_orders
 ref table fact_deliveries
@@ -70,6 +81,8 @@ ref table dim_hub
 ref table dim_channel
 ref table dim_driver
 ref table dim_date
+
+ref cultureInfo en-US
 """
 w(os.path.join(SM, "definition", "model.tmdl"), MODEL)
 
@@ -406,15 +419,26 @@ w(os.path.join(RP, ".platform"), json.dumps({
     "config": {"version": "2.0", "logicalId": RP_GUID}
 }, indent=2))
 w(os.path.join(RP, "definition.pbir"), json.dumps({
-    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/1.0.0/schema.json",
-    "version": "1.0",
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definitionProperties/2.0.0/schema.json",
+    "version": "4.0",
     "datasetReference": {"byPath": {"path": "../BrazilianDeliveryCenter.SemanticModel"}}
 }, indent=2))
 
-# report.json (report-level). Theme imported manually to avoid missing-resource errors.
+# version.json (REQUIRED for PBIR)
+w(os.path.join(RP, "definition", "version.json"), json.dumps({
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/versionMetadata/1.0.0/schema.json",
+    "version": "2.0.0"
+}, indent=2))
+
+# report.json (report-level). Base theme only; custom light theme imported manually via View > Themes.
 w(os.path.join(RP, "definition", "report.json"), json.dumps({
-    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/1.0.0/schema.json",
-    "settings": {"useStylableVisualContainerHeader": True, "defaultDrillFilterOtherVisuals": True}
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+    "themeCollection": {"baseTheme": {"name": "CY24SU06", "type": "SharedResources"}},
+    "settings": {
+        "useStylableVisualContainerHeader": True,
+        "defaultDrillFilterOtherVisuals": True,
+        "useEnhancedTooltips": True
+    }
 }, indent=2))
 
 # pages
@@ -425,14 +449,14 @@ PAGES = [
     ("p7", "7 · Khuyến nghị & Hành động"),
 ]
 w(os.path.join(RP, "definition", "pages", "pages.json"), json.dumps({
-    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+    "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
     "pageOrder": [p[0] for p in PAGES], "activePageName": "p1"
 }, indent=2))
 for pid, disp in PAGES:
     pdir = os.path.join(RP, "definition", "pages", pid)
     os.makedirs(pdir, exist_ok=True)
     w(os.path.join(pdir, "page.json"), json.dumps({
-        "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/1.0.0/schema.json",
+        "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
         "name": pid, "displayName": disp,
         "displayOption": "FitToPage", "height": 720, "width": 1280
     }, indent=2))

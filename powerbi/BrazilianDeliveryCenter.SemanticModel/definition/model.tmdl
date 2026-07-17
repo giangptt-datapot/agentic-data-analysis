@@ -1,6 +1,14 @@
 model Model
 	culture: en-US
 	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["fact_orders","fact_deliveries","fact_payments","dim_store","dim_hub","dim_channel","dim_driver"]
+
+annotation PBI_ProTooling = ["DevMode"]
 
 ref table fact_orders
 ref table fact_deliveries
@@ -10,3 +18,5 @@ ref table dim_hub
 ref table dim_channel
 ref table dim_driver
 ref table dim_date
+
+ref cultureInfo en-US

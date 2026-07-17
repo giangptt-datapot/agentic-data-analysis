@@ -31,7 +31,13 @@ Khởi động lại Desktop. (Nếu bản Desktop quá cũ không có PBIR → 
 4. **Refresh**. (Import mode; `stores.csv`/`hubs.csv` đọc encoding 1252 cho dấu tiếng Bồ.)
 5. Import theme: *View → Themes → Browse for themes → `DeliveryCenter_Light.theme.json`*.
 
-> **Đã sửa lỗi mở:** `.platform` trước đó dùng `logicalId` không phải GUID (Power BI báo *"Error converting value ... to type System.Guid"*). Đã thay bằng GUID hợp lệ; thêm `$schema`/version cho `.pbip/.pbir/.pbism`; gỡ tham chiếu theme mồ côi và dòng `cultureInfo` treo.
+> **Đã sửa lỗi mở (căn theo 1 PBIP mẫu chạy thành công):**
+> 1. `.platform` `logicalId` → **GUID hợp lệ** (lỗi *"...to type System.Guid"*).
+> 2. `.pbip` `$schema` → `fabric/pbip/pbipProperties/1.0.0` (lỗi *"$schema ... to follow patterns"*).
+> 3. `definition.pbir` → `$schema` `item/report/definitionProperties/2.0.0` + **`version: "4.0"`** (bắt buộc để dùng folder `definition/` PBIR).
+> 4. **Thêm `definition/version.json`** — file PBIR **bắt buộc** (trước đó thiếu).
+> 5. `report.json` `report/3.3.0` + baseTheme; `pages.json` `pagesMetadata/1.1.0`; `page.json` `page/2.1.0`.
+> 6. `database.tmdl` compatibilityLevel `1600`; `model.tmdl` thêm `sourceQueryCulture`/`dataAccessOptions` + `cultures/en-US.tmdl`.
 
 ## Fallback (nếu report PBIR vẫn báo lỗi trên bản Desktop cũ)
 Giá trị cốt lõi nằm ở **semantic model** (đã validate 17/17). Nếu trang report không mở:
