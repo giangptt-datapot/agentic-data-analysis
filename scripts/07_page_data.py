@@ -151,6 +151,23 @@ P["chan_seg_flow"]=[{"from":r.channel_type,"to":r.store_segment,"orders":int(r.o
 P["quality"]={"flag_extreme_amount":int(f.flag_extreme_amount.sum()),"flag_extreme_distance":int((d.delivery_distance_meters>50000).sum()),
  "flag_long_cycle":int(f.flag_long_cycle.sum()),"flag_zero_amount":int(f.flag_zero_amount.sum()),
  "orders_no_payment":int((~f.has_payment).sum()),"orders_no_delivery":int((~f.has_delivery).sum()),"null_driver":int(d.driver_id.isna().sum())}
+# ---------- Page 7: Recommendations (computed figures) ----------
+good_all=f[f.store_segment=="GOOD"]; good_cancel=good_all[good_all.order_status=="CANCELED"]
+good_aov=float(fin[fin.store_segment=="GOOD"].order_amount.mean())
+food_cr=float((f[f.store_segment=="FOOD"].order_status=="CANCELED").mean())
+recoverable=(len(good_cancel)-len(good_all)*food_cr)*good_aov
+subsidy_total=float((fin[fin.order_delivery_cost.notna()].order_delivery_cost.mean()-fin.order_delivery_fee.mean())*len(fin))
+top_share=float(fin.groupby("channel_name").order_amount.sum().sort_values(ascending=False).iloc[0]/fin.order_amount.sum()*100)
+elixir=max(P["hub"],key=lambda h:h["cancel_rate"])
+P["reco"]={
+ "good_cancel_gmv":round(len(good_cancel)*good_aov),"good_cancel_orders":int(len(good_cancel)),
+ "good_recoverable_gmv":round(recoverable),"good_cr":round(len(good_cancel)/len(good_all)*100,1),"food_cr":round(food_cr*100,1),
+ "subsidy_total":round(subsidy_total),"free_ship_pct":round(float((fin.order_delivery_fee==0).mean()*100),1),
+ "top_channel_share":round(top_share,1),"own_aov":round(float(fin[fin.channel_type=="OWN CHANNEL"].order_amount.mean()),0),
+ "mkt_aov":round(float(fin[fin.channel_type=="MARKETPLACE"].order_amount.mean()),0),
+ "elixir_hub":elixir["hub"],"elixir_cr":elixir["cancel_rate"],"sys_cr":P["exec_kpi"]["cancel_rate"],
+ "corr":PD_corr if False else P["corr"]["dist_cycle"],"prod_min":P["funnel_stage"][0]["median_min"],"cycle_med":P["cycle_pct"]["p50"],
+}
 P["meta"]={"date_min":str(f.order_moment_created.min().date()),"date_max":str(f.order_moment_created.max().date()),"tz":"UTC-3 (assumed)","min_vol_hub":MINV,"min_vol_store":100}
 
 json.dump(P,open(os.path.join(DASH,"page_data.json"),"w"),ensure_ascii=False,indent=1,default=str)

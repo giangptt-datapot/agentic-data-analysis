@@ -7965,6 +7965,24 @@
   "orders_no_delivery": 10345,
   "null_driver": 15886
  },
+ "reco": {
+  "good_cancel_gmv": 1322861,
+  "good_cancel_orders": 6018,
+  "good_recoverable_gmv": 969252,
+  "good_cr": 12.7,
+  "food_cr": 3.4,
+  "subsidy_total": 480389,
+  "free_ship_pct": 35.6,
+  "top_channel_share": 68.2,
+  "own_aov": 218.0,
+  "mkt_aov": 88.0,
+  "elixir_hub": "ELIXIR",
+  "elixir_cr": 30.82,
+  "sys_cr": 4.6,
+  "corr": 0.253,
+  "prod_min": 15.0,
+  "cycle_med": 41.1
+ },
  "meta": {
   "date_min": "2021-01-01",
   "date_max": "2021-04-30",

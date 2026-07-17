@@ -10,6 +10,9 @@
 | **P4 Hub & Geographic** | Hub Manager | ELIXIR hub hủy 30.8% | Hub bubble map · Hub cancel ranked bar (min-vol) · GMV-by-city bar · GMV waterfall · Daily-load calendar |
 | **P5 Store & Partner** | Store/Partner Mgr | Top 12% store = 80% GMV | Pareto · Partner priority matrix 2×2 · Top-store table · AOV×Cancel bubble · Channel→Segment Sankey |
 | **P6 Insight Lab** | Deep-dive/all | Bù lỗ giao R$1.36/đơn | Decomposition tree · Key influencers · Free-ship what-if slider · Anomaly register table+drill · Validated bullets |
+| **P7 Khuyến nghị & Hành động** | Điều hành/tất cả · social-post | 5 recommend ưu tiên | Impact strip (R$969k cứu được · R$480k bù lỗ · 68% phụ thuộc kênh) · 5 reco card (evidence + action + impact + pill Proven/Giả thuyết) · callout giới hạn |
+
+> **Ghi chú:** brief gợi ý 4–6 trang; bổ sung **P7** theo yêu cầu người dùng (trang tóm tắt khuyến nghị, tối ưu để đăng bài) → tổng 7 trang.
 
 **Điều hướng & UX (đã dựng trong mockup):** menu cố định trái · Home/Back/Reset/Filters · dynamic title+subtitle theo trang · filter drawer (bookmark open/close) · selected-filter summary chips · tooltip hover trên mọi mark · drill-through modal · what-if slider.
 

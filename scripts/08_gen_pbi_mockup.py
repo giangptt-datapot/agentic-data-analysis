@@ -116,6 +116,27 @@ body{margin:0;background:var(--radial);color:var(--ink);font:14px/1.45 "Segoe UI
 .dtbl td{padding:4px 6px;border-bottom:1px solid var(--line);color:var(--ink2)}
 .dtbl td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink)}
 input[type=range]{width:100%;accent-color:var(--blue)}
+.reco-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.reco-hero{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px 16px;position:relative;overflow:hidden}
+.reco-hero:before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--grad)}
+.reco-hero .n{font-size:26px;font-weight:800;letter-spacing:-.5px}
+.reco-hero .l{font-size:11px;color:var(--ink3);text-transform:uppercase;letter-spacing:.5px}
+.reco-hero .s{font-size:11.5px;color:var(--ink2);margin-top:3px}
+.reco-list{display:grid;gap:10px}
+.reco-card{display:grid;grid-template-columns:40px 1fr 168px;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;position:relative;overflow:hidden}
+.reco-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+.reco-card.p1c:before{background:var(--red)}.reco-card.p2c:before{background:var(--amber)}.reco-card.p3c:before{background:var(--blue)}.reco-card.p4c:before{background:var(--violet)}.reco-card.p5c:before{background:var(--teal)}
+.reco-num{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px;color:#fff;background:var(--grad)}
+.reco-main h4{margin:0 0 3px;font-size:14px}
+.reco-main .ev{color:var(--ink2);font-size:12px;margin:2px 0}
+.reco-main .ev b{color:var(--ink)}
+.reco-main .ac{color:var(--qink);font-size:12px;margin-top:3px}
+.reco-main .ac:before{content:"→ "}
+.reco-side{text-align:right}
+.reco-side .big{font-size:18px;font-weight:800;letter-spacing:-.3px}
+.reco-side .cap{font-size:10px;color:var(--ink3)}
+.pill{display:inline-block;font-size:9.5px;font-weight:700;padding:2px 7px;border-radius:999px;margin-top:6px}
+.pill.pv{background:var(--okbg);color:var(--okink)}.pill.hy{background:var(--midbg);color:var(--midink)}
 footer{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);color:var(--ink3);font-size:11px}
 @media (max-width:1280px){.kpis{grid-template-columns:repeat(3,1fr)}.g3,.g4{grid-template-columns:repeat(2,1fr)}.g2,.g2e{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -238,6 +259,7 @@ SHELL = """<!doctype html>
       <button class="nav" data-page="p4">4 · Hub &amp; Geographic</button>
       <button class="nav" data-page="p5">5 · Store &amp; Partner</button>
       <button class="nav" data-page="p6">6 · Insight Lab</button>
+      <button class="nav" data-page="p7">7 · Khuyến nghị &amp; Hành động</button>
     </div>
     <div class="meta">Canvas 16:9 · __THEME_LABEL__ theme<br>Type: Segoe UI / Inter<br>Blue–violet focus + semantic status<br>TZ: UTC−3 (assumed) · min-vol ranking</div>
   </aside>
@@ -253,6 +275,12 @@ SHELL = """<!doctype html>
     </div>
     <div class="filters-summary" id="selectedFilters"></div>
     """ + PAGES + """
+    <section class="page" id="p7">
+      <div class="reco-strip" id="recoStrip"></div>
+      <div class="reco-list" id="recoList"></div>
+      <div class="callout" style="margin-top:12px"><span class="status mid">Giới hạn</span> Chưa khẳng định được (thiếu dữ liệu): nguyên nhân hủy (không có cancel reason) · thiệt hại phụ thuộc kênh (không có hoa hồng) · giữ chân/LTV (không có customer_id) · YoY (chỉ 4 tháng) · múi giờ là giả định UTC−3.</div>
+    </section>
+
     <footer id="foot"></footer>
   </main>
 </div>
@@ -621,9 +649,29 @@ byId("auditBullets").innerHTML=[
  `Giới hạn: không có customer_id (❌ retention/LTV) · chỉ 4 tháng (❌ YoY) · giờ UTC−3 là giả định.`
 ].map(x=>`<li>${x}</li>`).join("");
 
+/* ---------- P7 Recommendations ---------- */
+(function(){const r=PD.reco;
+ byId("recoStrip").innerHTML=[
+  ["GMV có thể cứu",brl(r.good_recoverable_gmv),"nếu kéo hủy GOOD về mức FOOD (4 tháng)"],
+  ["Đang bù lỗ giao",brl(r.subsidy_total),`${r.free_ship_pct}% đơn free-ship · R$1.36/đơn`],
+  ["Phụ thuộc 1 kênh",r.top_channel_share+"%","GMV từ FOOD PLACE"]
+ ].map(x=>`<div class="reco-hero"><div class="l">${x[0]}</div><div class="n">${x[1]}</div><div class="s">${x[2]}</div></div>`).join("");
+ const recos=[
+  {p:1,t:"Giảm hủy đơn GOOD trước khi mở rộng",ev:`GOOD hủy <b>${r.good_cr}%</b> vs FOOD ${r.food_cr}% → <b>${brl(r.good_cancel_gmv)}</b> GMV bị hủy (${nk(r.good_cancel_orders)} đơn)`,ac:"Điều tra nguyên nhân hủy GOOD (tồn kho / thời gian giao) rồi mới scale",big:brl(r.good_recoverable_gmv),cap:"GMV cứu được",tag:"hy",tagt:"Nguyên nhân: giả thuyết"},
+  {p:2,t:"Đặt ngưỡng free-ship theo AOV & khoảng cách",ev:`Bù lỗ <b>${brl(r.subsidy_total)}</b>/4 tháng · ${r.free_ship_pct}% đơn free-ship · 53% đơn phí < chi phí`,ac:"Dùng what-if (P6) mô phỏng ngưỡng thay vì free-ship đại trà",big:brl(r.subsidy_total),cap:"chi phí/4 tháng",tag:"pv",tagt:"Chứng minh"},
+  {p:3,t:"Giảm phụ thuộc kênh & kéo giỏ giá trị cao về kênh riêng",ev:`1 kênh = <b>${r.top_channel_share}%</b> GMV · kênh riêng AOV <b>R$${r.own_aov}</b> vs marketplace R$${r.mkt_aov}`,ac:"Giữ volume marketplace, migrate đơn giá trị cao sang kênh riêng",big:"R$"+r.own_aov,cap:"AOV kênh riêng",tag:"hy",tagt:"Thiệt hại: cần data hoa hồng"},
+  {p:4,t:`Audit vận hành 3 hub lệch chuẩn (dẫn đầu ${r.elixir_hub})`,ev:`${r.elixir_hub} hủy <b>${r.elixir_cr}%</b> = gấp ~${(r.elixir_cr/r.sys_cr).toFixed(1)}× TB hệ thống (${r.sys_cr}%), dù ≥500 đơn`,ac:"Audit khu trú theo hub (shipper/đối tác), không dùng chính sách toàn hệ thống",big:r.elixir_cr+"%",cap:r.elixir_hub+" cancel",tag:"pv",tagt:"Chứng minh"},
+  {p:5,t:"Rút ngắn giao hàng nhắm khâu CHUẨN BỊ, không phải quãng đường",ev:`Cự ly↔thời gian chỉ <b>r=${r.corr}</b> · production ${r.prod_min}′ nhưng cycle tổng ${r.cycle_med}′ (phần lớn là hàng chờ)`,ac:"Cải thiện dự báo & gán shipper sớm; đừng đầu tư tối ưu tuyến đường",big:"r="+r.corr,cap:"cự ly↔cycle",tag:"pv",tagt:"Chứng minh (phản trực giác)"}
+ ];
+ byId("recoList").innerHTML=recos.map(x=>`<div class="reco-card p${x.p}c">
+   <div class="reco-num">${x.p}</div>
+   <div class="reco-main"><h4>${x.t}</h4><div class="ev">${x.ev}</div><div class="ac">${x.ac}</div></div>
+   <div class="reco-side"><div class="big">${x.big}</div><div class="cap">${x.cap}</div><span class="pill ${x.tag}">${x.tagt}</span></div>
+ </div>`).join("");})();
+
 /* ---------- shell interactions ---------- */
-const pageNames={p1:"Page 1 — Executive Overview",p2:"Page 2 — Order & Revenue Analysis",p3:"Page 3 — Delivery Performance",p4:"Page 4 — Hub & Geographic Performance",p5:"Page 5 — Store & Partner Performance",p6:"Page 6 — Insight Lab (deep-dive)"};
-const subNames={p1:"Ban điều hành · sức khỏe GMV & rủi ro tập trung",p2:"Xu hướng đơn – doanh thu – kênh – thanh toán – cao điểm",p3:"SLA giao hàng · cự ly · đội xe · nút thắt thời gian",p4:"Hub Manager · bản đồ & benchmark hiệu suất vùng",p5:"Store/Partner Manager · đóng góp & rủi ro đối tác",p6:"Deep-dive · decomposition · what-if · anomaly"};
+const pageNames={p1:"Page 1 — Executive Overview",p2:"Page 2 — Order & Revenue Analysis",p3:"Page 3 — Delivery Performance",p4:"Page 4 — Hub & Geographic Performance",p5:"Page 5 — Store & Partner Performance",p6:"Page 6 — Insight Lab (deep-dive)",p7:"Page 7 — Khuyến nghị & Hành động"};
+const subNames={p1:"Ban điều hành · sức khỏe GMV & rủi ro tập trung",p2:"Xu hướng đơn – doanh thu – kênh – thanh toán – cao điểm",p3:"SLA giao hàng · cự ly · đội xe · nút thắt thời gian",p4:"Hub Manager · bản đồ & benchmark hiệu suất vùng",p5:"Store/Partner Manager · đóng góp & rủi ro đối tác",p6:"Deep-dive · decomposition · what-if · anomaly",p7:"5 khuyến nghị ưu tiên · số liệu chứng minh · phân biệt proven vs giả thuyết"};
 const stack=["p1"];
 function setPage(id,push=true){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));
  document.querySelectorAll(".nav").forEach(b=>b.classList.toggle("active",b.dataset.page===id));
