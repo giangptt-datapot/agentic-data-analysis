@@ -50,14 +50,22 @@ def write_visual(pid, name, obj):
 
 YOFF = 54  # push content down to make room for the top page-navigator menu
 LABEL_TYPES = {"barChart", "columnChart", "clusteredBarChart", "clusteredColumnChart", "lineChart"}
+# single-series bar/column: color each category from the palette instead of all-one-color
+MULTICOLOR_TYPES = {"barChart", "columnChart", "clusteredBarChart", "clusteredColumnChart"}
 
 def viz(pid, name, vtype, x, y, w, h, z, tab, roles, title=None, labels=None):
     qs = {r: {"projections": p} for r, p in roles.items()}
     v = {"visualType": vtype, "query": {"queryState": qs}, "drillFilterOtherVisuals": True}
     if title: v["visualContainerObjects"] = title_obj(title)
+    objects = {}
     show = labels if labels is not None else (vtype in LABEL_TYPES)
     if show:
-        v["objects"] = {"labels": [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}}}]}
+        objects["labels"] = [{"properties": {"show": {"expr": {"Literal": {"Value": "true"}}}}}]
+    # multi-color per category (only when no Series/Legend and a single Y measure)
+    if vtype in MULTICOLOR_TYPES and "Series" not in roles and len(roles.get("Y", [])) == 1:
+        objects["dataPoint"] = [{"properties": {"showAllDataPoints": {"expr": {"Literal": {"Value": "true"}}}}}]
+    if objects:
+        v["objects"] = objects
     write_visual(pid, name, {"$schema": VC_SCHEMA, "name": name,
         "position": {"x": x, "y": y + YOFF, "z": z, "height": h, "width": w, "tabOrder": tab},
         "visual": v})
