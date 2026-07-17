@@ -31,6 +31,24 @@
             }
           ]
         },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_driver"
+                    }
+                  },
+                  "Property": "driver_modal"
+                }
+              },
+              "queryRef": "dim_driver.driver_modal",
+              "nativeQueryRef": "driver_modal"
+            }
+          ]
+        },
         "Y": {
           "projections": [
             {
@@ -79,19 +97,6 @@
         {
           "properties": {
             "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "showAllDataPoints": {
               "expr": {
                 "Literal": {
                   "Value": "true"

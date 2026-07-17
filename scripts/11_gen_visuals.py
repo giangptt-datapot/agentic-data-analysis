@@ -111,9 +111,9 @@ viz("p1","lineGMV","lineChart",24,166,620,250,3000,2000,
 viz("p1","donutChan","donutChart",660,166,300,250,3010,2010,
     {"Category":[COL("dim_channel","channel_type")],"Values":[M("GMV")]}, "GMV theo loại kênh")
 viz("p1","barCity","barChart",976,166,280,250,3020,2020,
-    {"Category":[COL("dim_hub","hub_city")],"Y":[M("GMV")]}, "GMV theo thành phố")
+    {"Category":[COL("dim_hub","hub_city")],"Series":[COL("dim_hub","hub_city")],"Y":[M("GMV")]}, "GMV theo thành phố")
 viz("p1","colCancMonth","columnChart",24,430,620,268,3030,2030,
-    {"Category":[COL("dim_date","Month",True)],"Y":[M("Cancellation Rate")]}, "Tỷ lệ hủy theo tháng")
+    {"Category":[COL("dim_date","Month",True)],"Series":[COL("dim_date","Month")],"Y":[M("Cancellation Rate")]}, "Tỷ lệ hủy theo tháng")
 viz("p1","colHour","columnChart",660,430,596,268,3040,2040,
     {"Category":[COL("fact_orders","order_hour",True)],"Y":[M("Finished Orders")]}, "Đơn theo giờ (giờ địa phương)")
 
@@ -122,11 +122,11 @@ head("p2","Order & Revenue Analysis","Xu hướng đơn – doanh thu – kênh 
 viz("p2","lineOrders","lineChart",24,66,620,250,3000,2000,
     {"Category":[COL("dim_date","Date",True)],"Y":[M("Finished Orders")]}, "Đơn hoàn tất theo thời gian")
 viz("p2","barChannels","barChart",660,66,596,250,3010,2010,
-    {"Category":[COL("dim_channel","channel_name")],"Y":[M("GMV")]}, "GMV theo kênh (Top)")
+    {"Category":[COL("dim_channel","channel_name")],"Series":[COL("dim_channel","channel_type")],"Y":[M("GMV")]}, "GMV theo kênh (Top)")
 viz("p2","colHour2","columnChart",24,332,404,364,3020,2020,
     {"Category":[COL("fact_orders","order_hour",True)],"Y":[M("Finished Orders")]}, "Đơn theo giờ")
 viz("p2","colDow","columnChart",448,332,404,364,3030,2030,
-    {"Category":[COL("dim_date","DayOfWeek",True)],"Y":[M("Finished Orders")]}, "Đơn theo ngày trong tuần")
+    {"Category":[COL("dim_date","DayOfWeek",True)],"Series":[COL("dim_date","DayOfWeek")],"Y":[M("Finished Orders")]}, "Đơn theo ngày trong tuần")
 viz("p2","donutPay","donutChart",872,332,384,364,3040,2040,
     {"Category":[COL("fact_payments","payment_method")],"Values":[M("Payments")]}, "Cơ cấu thanh toán")
 
@@ -137,9 +137,9 @@ cards3 = [("dCyc","Median Cycle (min)","Median cycle"),("dP90","P90 Cycle (min)"
 for i,(n,m,l) in enumerate(cards3):
     card("p3", n, 24 + i*310, 66, 300, m, l)
 viz("p3","colModal","columnChart",24,166,410,250,3000,2000,
-    {"Category":[COL("dim_driver","driver_modal")],"Y":[M("Median Cycle (min)")]}, "Cycle time theo đội xe")
+    {"Category":[COL("dim_driver","driver_modal")],"Series":[COL("dim_driver","driver_modal")],"Y":[M("Median Cycle (min)")]}, "Cycle time theo đội xe")
 viz("p3","colStatus","columnChart",448,166,404,250,3010,2010,
-    {"Category":[COL("fact_deliveries","delivery_status")],"Y":[M("Deliveries")]}, "Lượt giao theo trạng thái")
+    {"Category":[COL("fact_deliveries","delivery_status")],"Series":[COL("fact_deliveries","delivery_status")],"Y":[M("Deliveries")]}, "Lượt giao theo trạng thái")
 viz("p3","scatHub","scatterChart",872,166,384,250,3020,2020,
     {"Category":[COL("dim_hub","hub_name",True)],"X":[M("Median Distance (km)")],"Y":[M("Median Cycle (min)")],"Size":[M("Deliveries")]},
     "Cự ly vs Cycle time (theo hub)")
@@ -154,7 +154,7 @@ viz("p4","scatHubQuad","scatterChart",660,66,596,320,3010,2010,
     {"Category":[COL("dim_hub","hub_name",True)],"X":[M("Finished Orders")],"Y":[M("Cancellation Rate")],"Size":[M("GMV")]},
     "Hub: Volume vs Cancel Rate")
 viz("p4","colCityGMV","columnChart",24,400,404,298,3020,2020,
-    {"Category":[COL("dim_hub","hub_city")],"Y":[M("GMV")]}, "GMV theo thành phố")
+    {"Category":[COL("dim_hub","hub_city")],"Series":[COL("dim_hub","hub_city")],"Y":[M("GMV")]}, "GMV theo thành phố")
 viz("p4","tblHub","tableEx",448,400,808,298,3030,2030,
     {"Values":[COL("dim_hub","hub_name"),M("Finished Orders"),M("GMV"),M("Cancellation Rate"),M("Median Cycle (min)")]},
     "Bảng hiệu suất hub")
@@ -167,7 +167,7 @@ viz("p5","scatPartner","scatterChart",660,66,596,320,3010,2010,
     {"Category":[COL("dim_store","store_name",True)],"X":[M("GMV")],"Y":[M("Cancellation Rate")],"Size":[M("Finished Orders")]},
     "Ma trận ưu tiên đối tác (GMV × Hủy)")
 viz("p5","colSegCancel","columnChart",24,400,300,298,3020,2020,
-    {"Category":[COL("dim_store","store_segment")],"Y":[M("Cancellation Rate")]}, "Tỷ lệ hủy theo segment")
+    {"Category":[COL("dim_store","store_segment")],"Series":[COL("dim_store","store_segment")],"Y":[M("Cancellation Rate")]}, "Tỷ lệ hủy theo segment")
 viz("p5","donutSeg","donutChart",332,400,300,298,3030,2030,
     {"Category":[COL("dim_store","store_segment")],"Values":[M("GMV")]}, "GMV theo segment")
 viz("p5","tblStore","tableEx",656,400,600,298,3040,2040,
@@ -180,13 +180,13 @@ cards6 = [("iSub","Delivery Subsidy / Order","Bù lỗ giao/đơn"),("iFree","Fr
 for i,(n,m,l) in enumerate(cards6):
     card("p6", n, 24 + i*410, 66, 400, m, l)
 viz("p6","barCancSeg","clusteredBarChart",24,166,616,250,3000,2000,
-    {"Category":[COL("dim_store","store_segment")],"Y":[M("Cancellation Rate")]}, "Hủy theo segment")
+    {"Category":[COL("dim_store","store_segment")],"Series":[COL("dim_store","store_segment")],"Y":[M("Cancellation Rate")]}, "Hủy theo segment")
 viz("p6","barCancChan","clusteredBarChart",660,166,596,250,3010,2010,
-    {"Category":[COL("dim_channel","channel_type")],"Y":[M("Cancellation Rate")]}, "Hủy theo loại kênh")
+    {"Category":[COL("dim_channel","channel_type")],"Series":[COL("dim_channel","channel_type")],"Y":[M("Cancellation Rate")]}, "Hủy theo loại kênh")
 viz("p6","colFeeCost","columnChart",24,430,616,268,3020,2020,
     {"Category":[COL("dim_store","store_segment")],"Y":[M("Mean Delivery Fee"),M("Mean Delivery Cost")]}, "Phí thu vs Chi phí giao")
 viz("p6","colChanGMV","columnChart",660,430,596,268,3030,2030,
-    {"Category":[COL("dim_channel","channel_type")],"Y":[M("AOV")]}, "AOV theo loại kênh")
+    {"Category":[COL("dim_channel","channel_type")],"Series":[COL("dim_channel","channel_type")],"Y":[M("AOV")]}, "AOV theo loại kênh")
 
 # ============================ P7 Recommendations ============================
 head("p7","Khuyến nghị & Hành động", "5 khuyến nghị ưu tiên · số liệu chứng minh")

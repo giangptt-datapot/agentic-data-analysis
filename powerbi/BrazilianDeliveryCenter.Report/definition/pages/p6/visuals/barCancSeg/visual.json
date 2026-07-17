@@ -31,6 +31,24 @@
             }
           ]
         },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_store"
+                    }
+                  },
+                  "Property": "store_segment"
+                }
+              },
+              "queryRef": "dim_store.store_segment",
+              "nativeQueryRef": "store_segment"
+            }
+          ]
+        },
         "Y": {
           "projections": [
             {
@@ -79,19 +97,6 @@
         {
           "properties": {
             "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "showAllDataPoints": {
               "expr": {
                 "Literal": {
                   "Value": "true"

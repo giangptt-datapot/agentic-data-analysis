@@ -32,6 +32,24 @@
             }
           ]
         },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "DayOfWeek"
+                }
+              },
+              "queryRef": "dim_date.DayOfWeek",
+              "nativeQueryRef": "DayOfWeek"
+            }
+          ]
+        },
         "Y": {
           "projections": [
             {
@@ -80,19 +98,6 @@
         {
           "properties": {
             "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "showAllDataPoints": {
               "expr": {
                 "Literal": {
                   "Value": "true"

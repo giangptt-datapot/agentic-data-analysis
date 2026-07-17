@@ -425,7 +425,7 @@ DIM_DATE = r'''table dim_date
 
 	partition dim_date = calculated
 		mode: import
-		source = CALENDAR(DATE(2021,1,1), DATE(2021,5,7))
+		source = CALENDAR(DATE(2020,12,31), DATE(2021,5,7))
 
 	annotation PBI_Id = dimdate
 '''

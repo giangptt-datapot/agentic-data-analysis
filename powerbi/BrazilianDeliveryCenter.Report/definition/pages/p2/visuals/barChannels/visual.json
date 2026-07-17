@@ -31,6 +31,24 @@
             }
           ]
         },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_channel"
+                    }
+                  },
+                  "Property": "channel_type"
+                }
+              },
+              "queryRef": "dim_channel.channel_type",
+              "nativeQueryRef": "channel_type"
+            }
+          ]
+        },
         "Y": {
           "projections": [
             {
@@ -79,19 +97,6 @@
         {
           "properties": {
             "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "showAllDataPoints": {
               "expr": {
                 "Literal": {
                   "Value": "true"

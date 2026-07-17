@@ -32,6 +32,24 @@
             }
           ]
         },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_date"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "dim_date.Month",
+              "nativeQueryRef": "Month"
+            }
+          ]
+        },
         "Y": {
           "projections": [
             {
@@ -80,19 +98,6 @@
         {
           "properties": {
             "show": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "dataPoint": [
-        {
-          "properties": {
-            "showAllDataPoints": {
               "expr": {
                 "Literal": {
                   "Value": "true"
