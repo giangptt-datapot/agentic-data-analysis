@@ -1,0 +1,116 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "tblAnomaly",
+  "position": {
+    "x": 24,
+    "y": 266,
+    "z": 4360,
+    "height": 250,
+    "width": 620,
+    "tabOrder": 4360
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_store"
+                    }
+                  },
+                  "Property": "store_label"
+                }
+              },
+              "queryRef": "dim_store.store_label",
+              "nativeQueryRef": "store_label"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_hub"
+                    }
+                  },
+                  "Property": "hub_name"
+                }
+              },
+              "queryRef": "dim_hub.hub_name",
+              "nativeQueryRef": "hub_name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "Canceled GMV (raw, incl. outliers)"
+                }
+              },
+              "queryRef": "fact_orders.Canceled GMV (raw, incl. outliers)",
+              "nativeQueryRef": "Canceled GMV (raw, incl. outliers)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "Canceled GMV (at risk)"
+                }
+              },
+              "queryRef": "fact_orders.Canceled GMV (at risk)",
+              "nativeQueryRef": "Canceled GMV (at risk)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "Canceled Orders"
+                }
+              },
+              "queryRef": "fact_orders.Canceled Orders",
+              "nativeQueryRef": "Canceled Orders"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Anomaly register — chênh lệch raw vs at-risk = outlier cần business xác nhận'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

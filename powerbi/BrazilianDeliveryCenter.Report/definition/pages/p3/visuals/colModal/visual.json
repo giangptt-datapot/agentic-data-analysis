@@ -2,36 +2,18 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "colModal",
   "position": {
-    "x": 24,
-    "y": 220,
-    "z": 3000,
-    "height": 250,
-    "width": 410,
-    "tabOrder": 2000
+    "x": 452,
+    "y": 524,
+    "z": 3540,
+    "height": 254,
+    "width": 400,
+    "tabOrder": 3540
   },
   "visual": {
     "visualType": "columnChart",
     "query": {
       "queryState": {
         "Category": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_driver"
-                    }
-                  },
-                  "Property": "driver_modal"
-                }
-              },
-              "queryRef": "dim_driver.driver_modal",
-              "nativeQueryRef": "driver_modal"
-            }
-          ]
-        },
-        "Series": {
           "projections": [
             {
               "field": {
@@ -56,14 +38,32 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fact_orders"
+                      "Entity": "fact_deliveries"
                     }
                   },
-                  "Property": "Median Cycle (min)"
+                  "Property": "Delivered"
                 }
               },
-              "queryRef": "fact_orders.Median Cycle (min)",
-              "nativeQueryRef": "Median Cycle (min)"
+              "queryRef": "fact_deliveries.Delivered",
+              "nativeQueryRef": "Delivered"
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_driver"
+                    }
+                  },
+                  "Property": "driver_type"
+                }
+              },
+              "queryRef": "dim_driver.driver_type",
+              "nativeQueryRef": "driver_type"
             }
           ]
         }
@@ -84,7 +84,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cycle time theo đội xe'"
+                  "Value": "'Lượt giao theo modal × loại shipper'"
                 }
               }
             }

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "pBrand",
+  "position": {
+    "x": 24,
+    "y": 168,
+    "z": 3780,
+    "height": 86,
+    "width": 198,
+    "tabOrder": 3780
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "Active Brands"
+                }
+              },
+              "queryRef": "fact_orders.Active Brands",
+              "nativeQueryRef": "Active Brands"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Thương hiệu active'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

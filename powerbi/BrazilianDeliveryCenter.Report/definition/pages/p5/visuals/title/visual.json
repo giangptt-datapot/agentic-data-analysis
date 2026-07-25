@@ -3,11 +3,11 @@
   "name": "title",
   "position": {
     "x": 24,
-    "y": 66,
-    "z": 900,
-    "height": 48,
-    "width": 1000,
-    "tabOrder": 0
+    "y": 42,
+    "z": 3730,
+    "height": 60,
+    "width": 1232,
+    "tabOrder": 3730
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,19 @@
               {
                 "textRuns": [
                   {
-                    "value": "Store & Partner Performance",
+                    "value": "5 · Partner & Brand  —  ",
                     "textStyle": {
-                      "fontSize": "20pt",
+                      "fontSize": "16pt",
                       "fontWeight": "bold",
                       "color": "#0f1a30"
+                    }
+                  },
+                  {
+                    "value": "US-5: là account manager, tôi cần xếp đối tác theo đóng góp × rủi ro để biết chăm ai và siết ai.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
                     }
                   }
                 ]
@@ -31,11 +39,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Đóng góp doanh thu vs rủi ro hủy của đối tác",
+                    "value": "294 store ≥100 đơn · ngưỡng median GMV R$34.211 · median hủy 3,44% · store_name KHÔNG phải khóa",
                     "textStyle": {
-                      "fontSize": "10.5pt",
+                      "fontSize": "10pt",
                       "fontWeight": "normal",
-                      "color": "#4c587a"
+                      "color": "#8b95ad"
                     }
                   }
                 ]

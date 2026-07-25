@@ -3,11 +3,11 @@
   "name": "colCancMonth",
   "position": {
     "x": 24,
-    "y": 484,
-    "z": 3030,
-    "height": 268,
-    "width": 620,
-    "tabOrder": 2030
+    "y": 524,
+    "z": 3160,
+    "height": 254,
+    "width": 400,
+    "tabOrder": 3160
   },
   "visual": {
     "visualType": "columnChart",
@@ -29,24 +29,6 @@
               "queryRef": "dim_date.Month",
               "nativeQueryRef": "Month",
               "active": true
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_date"
-                    }
-                  },
-                  "Property": "Month"
-                }
-              },
-              "queryRef": "dim_date.Month",
-              "nativeQueryRef": "Month"
             }
           ]
         },
@@ -85,7 +67,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tỷ lệ hủy theo tháng'"
+                  "Value": "'Tỷ lệ hủy theo tháng (4,35% → 5,03%)'"
                 }
               }
             }
@@ -98,6 +80,19 @@
         {
           "properties": {
             "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "showAllDataPoints": {
               "expr": {
                 "Literal": {
                   "Value": "true"

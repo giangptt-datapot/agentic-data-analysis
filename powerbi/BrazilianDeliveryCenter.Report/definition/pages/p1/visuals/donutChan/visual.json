@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "donutChan",
   "position": {
-    "x": 660,
-    "y": 220,
-    "z": 3010,
+    "x": 960,
+    "y": 266,
+    "z": 3150,
     "height": 250,
-    "width": 300,
-    "tabOrder": 2010
+    "width": 296,
+    "tabOrder": 3150
   },
   "visual": {
     "visualType": "donutChart",
@@ -67,6 +67,21 @@
               "expr": {
                 "Literal": {
                   "Value": "'GMV theo loại kênh'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "objects": {
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             }

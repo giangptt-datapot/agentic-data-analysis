@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "tblStore",
   "position": {
-    "x": 656,
-    "y": 454,
-    "z": 3040,
-    "height": 298,
-    "width": 600,
-    "tabOrder": 2040
+    "x": 532,
+    "y": 524,
+    "z": 3870,
+    "height": 254,
+    "width": 460,
+    "tabOrder": 3870
   },
   "visual": {
     "visualType": "tableEx",
@@ -23,11 +23,25 @@
                       "Entity": "dim_store"
                     }
                   },
-                  "Property": "store_name"
+                  "Property": "store_label"
                 }
               },
-              "queryRef": "dim_store.store_name",
-              "nativeQueryRef": "store_name"
+              "queryRef": "dim_store.store_label",
+              "nativeQueryRef": "store_label"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_store"
+                    }
+                  },
+                  "Property": "store_segment"
+                }
+              },
+              "queryRef": "dim_store.store_segment",
+              "nativeQueryRef": "store_segment"
             },
             {
               "field": {
@@ -65,11 +79,11 @@
                       "Entity": "fact_orders"
                     }
                   },
-                  "Property": "Cancellation Rate"
+                  "Property": "Cancellation Rate (min 100 orders)"
                 }
               },
-              "queryRef": "fact_orders.Cancellation Rate",
-              "nativeQueryRef": "Cancellation Rate"
+              "queryRef": "fact_orders.Cancellation Rate (min 100 orders)",
+              "nativeQueryRef": "Cancellation Rate (min 100 orders)"
             }
           ]
         }
@@ -90,7 +104,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Bảng cửa hàng'"
+                  "Value": "'Store (kèm store_id vì tên bị trùng)'"
                 }
               }
             }

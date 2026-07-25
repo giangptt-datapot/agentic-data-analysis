@@ -3,11 +3,11 @@
   "name": "title",
   "position": {
     "x": 24,
-    "y": 66,
-    "z": 900,
-    "height": 48,
-    "width": 1000,
-    "tabOrder": 0
+    "y": 42,
+    "z": 3570,
+    "height": 60,
+    "width": 1232,
+    "tabOrder": 3570
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,19 @@
               {
                 "textRuns": [
                   {
-                    "value": "Hub & Geographic Performance",
+                    "value": "4 · Hub Operations  —  ",
                     "textStyle": {
-                      "fontSize": "20pt",
+                      "fontSize": "16pt",
                       "fontWeight": "bold",
                       "color": "#0f1a30"
+                    }
+                  },
+                  {
+                    "value": "US-4: là hub manager, tôi cần benchmark hub theo hủy & cycle (đã chặn mẫu nhỏ) để audit đúng hub.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
                     }
                   }
                 ]
@@ -31,11 +39,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Hub nào khối lượng cao nhưng hiệu suất thấp?",
+                    "value": "Ranking áp min-volume ≥500 đơn: 26/32 hub đủ điều kiện, 6 hub bị loại khỏi xếp hạng",
                     "textStyle": {
-                      "fontSize": "10.5pt",
+                      "fontSize": "10pt",
                       "fontWeight": "normal",
-                      "color": "#4c587a"
+                      "color": "#8b95ad"
                     }
                   }
                 ]

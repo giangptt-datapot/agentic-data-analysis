@@ -86,6 +86,69 @@ table fact_orders
 		sourceColumn: flag_long_cycle
 		lineageTag: lt-flag_long_cycle
 
+	column order_value_band_no = SWITCH(TRUE(), fact_orders[order_amount] <= 30, 1, fact_orders[order_amount] <= 60, 2, fact_orders[order_amount] <= 100, 3, fact_orders[order_amount] <= 200, 4, fact_orders[order_amount] <= 500, 5, 6)
+		dataType: int64
+		summarizeBy: none
+		lineageTag: lt-fo-vbandno
+
+	column order_value_band = SWITCH(TRUE(), fact_orders[order_amount] <= 30, "≤R$30", fact_orders[order_amount] <= 60, "R$30–60", fact_orders[order_amount] <= 100, "R$60–100", fact_orders[order_amount] <= 200, "R$100–200", fact_orders[order_amount] <= 500, "R$200–500", ">R$500")
+		dataType: string
+		summarizeBy: none
+		sortByColumn: order_value_band_no
+		lineageTag: lt-fo-vband
+
+	column daypart_no = SWITCH(TRUE(), fact_orders[order_hour] <= 9, 1, fact_orders[order_hour] <= 14, 2, fact_orders[order_hour] <= 17, 3, 4)
+		dataType: int64
+		summarizeBy: none
+		lineageTag: lt-fo-dpno
+
+	column daypart = SWITCH(TRUE(), fact_orders[order_hour] <= 9, "1 Đêm/sáng (0–9h)", fact_orders[order_hour] <= 14, "2 Trưa (10–14h)", fact_orders[order_hour] <= 17, "3 Chiều (15–17h)", "4 Tối (18–23h)")
+		dataType: string
+		summarizeBy: none
+		sortByColumn: daypart_no
+		lineageTag: lt-fo-dp
+
+	column cycle_bucket_no = IF(fact_orders[order_metric_cycle_time] > 0 && fact_orders[order_metric_cycle_time] <= 1440, SWITCH(TRUE(), fact_orders[order_metric_cycle_time] <= 30, 1, fact_orders[order_metric_cycle_time] <= 45, 2, fact_orders[order_metric_cycle_time] <= 60, 3, fact_orders[order_metric_cycle_time] <= 90, 4, fact_orders[order_metric_cycle_time] <= 180, 5, 6), BLANK())
+		dataType: int64
+		summarizeBy: none
+		lineageTag: lt-fo-cbno
+
+	column cycle_bucket = SWITCH(fact_orders[cycle_bucket_no], 1, "<=30m", 2, "30-45m", 3, "45-60m", 4, "60-90m", 5, "90-180m", 6, ">180m")
+		dataType: string
+		summarizeBy: none
+		sortByColumn: cycle_bucket_no
+		lineageTag: lt-fo-cb
+
+	column dist_mean_m
+		dataType: double
+		summarizeBy: none
+		sourceColumn: dist_mean_m
+		formatString: #,0
+		lineageTag: lt-fo-distm
+
+	column n_deliveries
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: n_deliveries
+		lineageTag: lt-fo-ndlv
+
+	column order_dist_km = DIVIDE(fact_orders[dist_mean_m], 1000)
+		dataType: double
+		summarizeBy: none
+		formatString: #,0.00
+		lineageTag: lt-fo-distkm
+
+	column order_distance_band_no = IF(ISBLANK(fact_orders[dist_mean_m]), BLANK(), SWITCH(TRUE(), fact_orders[dist_mean_m] <= 1000, 1, fact_orders[dist_mean_m] <= 2000, 2, fact_orders[dist_mean_m] <= 3000, 3, fact_orders[dist_mean_m] <= 5000, 4, fact_orders[dist_mean_m] <= 10000, 5, 6))
+		dataType: int64
+		summarizeBy: none
+		lineageTag: lt-fo-odbno
+
+	column order_distance_band = SWITCH(fact_orders[order_distance_band_no], 1, "<1 km", 2, "1-2 km", 3, "2-3 km", 4, "3-5 km", 5, "5-10 km", 6, ">10 km")
+		dataType: string
+		summarizeBy: none
+		sortByColumn: order_distance_band_no
+		lineageTag: lt-fo-odb
+
 	measure 'Total Orders' = COUNTROWS(fact_orders)
 		formatString: #,0
 	measure 'Finished Orders' = CALCULATE([Total Orders], fact_orders[order_status] = "FINISHED")
@@ -119,6 +182,72 @@ table fact_orders
 	measure 'GMV Concentration Top1 Channel %' = DIVIDE(MAXX(VALUES(dim_channel[channel_name]), [GMV]), CALCULATE([GMV], ALL(dim_channel)))
 		formatString: 0.0%
 
+	/// Giá trị đơn bị hủy, ĐÃ loại flag_extreme_amount (>R$1.500) — 1 đơn R$1,79M chiếm 51% nếu không loại
+	measure 'Canceled GMV (at risk)' = CALCULATE(SUM(fact_orders[order_amount]), fact_orders[order_status] = "CANCELED", fact_orders[flag_extreme_amount] = FALSE)
+		formatString: "R$"#,0
+	measure 'Canceled GMV % of GMV' = DIVIDE([Canceled GMV (at risk)], [GMV])
+		formatString: 0.00%
+	/// Chỉ để đối chiếu/kiểm toán — KHÔNG dùng báo cáo
+	measure 'Canceled GMV (raw, incl. outliers)' = CALCULATE(SUM(fact_orders[order_amount]), fact_orders[order_status] = "CANCELED")
+		formatString: "R$"#,0
+	measure 'P95 Cycle (min)' = PERCENTILEX.INC(FILTER(fact_orders, fact_orders[order_status] = "FINISHED" && fact_orders[order_metric_cycle_time] > 0 && fact_orders[order_metric_cycle_time] <= 1440), fact_orders[order_metric_cycle_time], 0.95)
+		formatString: #,0.0
+	measure 'Median Prep (min)' = MEDIANX(FILTER(fact_orders, fact_orders[order_status] = "FINISHED" && fact_orders[order_metric_cycle_time] > 0 && fact_orders[order_metric_cycle_time] <= 1440 && NOT(ISBLANK(fact_orders[order_metric_production_time]))), fact_orders[order_metric_production_time])
+		formatString: #,0.0
+	measure 'Median Transit (min)' = MEDIANX(FILTER(fact_orders, fact_orders[order_status] = "FINISHED" && fact_orders[order_metric_cycle_time] > 0 && fact_orders[order_metric_cycle_time] <= 1440 && NOT(ISBLANK(fact_orders[order_metric_transit_time]))), fact_orders[order_metric_transit_time])
+		formatString: #,0.0
+	measure 'Orders with valid cycle' = CALCULATE([Total Orders], FILTER(fact_orders, fact_orders[order_status] = "FINISHED" && fact_orders[order_metric_cycle_time] > 0 && fact_orders[order_metric_cycle_time] <= 1440))
+		formatString: #,0
+	/// Tỷ lệ đơn hoàn tất có cycle > 60 phút (mẫu số = đơn có cycle hợp lệ)
+	measure 'SLA Breach % (over 60min)' = DIVIDE(CALCULATE([Total Orders], FILTER(fact_orders, fact_orders[order_status] = "FINISHED" && fact_orders[order_metric_cycle_time] > 0 && fact_orders[order_metric_cycle_time] <= 1440 && fact_orders[order_metric_cycle_time] > 60)), [Orders with valid cycle])
+		formatString: 0.0%
+	/// SLA chỉ có nghĩa khi tách segment: GOOD là bán lẻ giao theo hẹn (P90 ~947 phút)
+	measure 'Median Cycle FOOD (min)' = CALCULATE([Median Cycle (min)], dim_store[store_segment] = "FOOD")
+		formatString: #,0.0
+	measure 'Median Cycle GOOD (min)' = CALCULATE([Median Cycle (min)], dim_store[store_segment] = "GOOD")
+		formatString: #,0.0
+	measure 'P90 Cycle FOOD (min)' = CALCULATE([P90 Cycle (min)], dim_store[store_segment] = "FOOD")
+		formatString: #,0.0
+	measure 'P90 Cycle GOOD (min)' = CALCULATE([P90 Cycle (min)], dim_store[store_segment] = "GOOD")
+		formatString: #,0.0
+	measure 'Delivery Fee (total)' = CALCULATE(SUM(fact_orders[order_delivery_fee]), fact_orders[order_status] = "FINISHED", NOT(ISBLANK(fact_orders[order_delivery_cost])))
+		formatString: "R$"#,0
+	measure 'Delivery Cost (total)' = CALCULATE(SUM(fact_orders[order_delivery_cost]), fact_orders[order_status] = "FINISHED", NOT(ISBLANK(fact_orders[order_delivery_cost])))
+		formatString: "R$"#,0
+	/// Âm = nền tảng bù lỗ giao hàng
+	measure 'Delivery Margin' = [Delivery Fee (total)] - [Delivery Cost (total)]
+		formatString: "R$"#,0
+	measure 'Delivery Margin / Order' = DIVIDE([Delivery Margin], CALCULATE([Total Orders], fact_orders[order_status] = "FINISHED", NOT(ISBLANK(fact_orders[order_delivery_cost]))))
+		formatString: "R$"#,0.00
+	/// Toàn bộ khoản lỗ giao hàng nằm ở đây (−R$920k)
+	measure 'Free-ship Margin' = CALCULATE([Delivery Margin], fact_orders[order_delivery_fee] = 0)
+		formatString: "R$"#,0
+	/// Đơn có thu phí giao thì CÓ LÃI (+R$466k)
+	measure 'Paid-ship Margin' = CALCULATE([Delivery Margin], fact_orders[order_delivery_fee] > 0)
+		formatString: "R$"#,0
+	measure 'Free-ship Orders' = CALCULATE([Finished Orders], fact_orders[order_delivery_fee] = 0)
+		formatString: #,0
+	/// Chặn mẫu nhỏ khi xếp hạng hub (vd HUBLESS 60% hủy do 2 đơn)
+	measure 'Cancellation Rate (min 500 orders)' = IF([Total Orders] >= 500, [Cancellation Rate])
+		formatString: 0.00%
+	measure 'Cancellation Rate (min 100 orders)' = IF([Total Orders] >= 100, [Cancellation Rate])
+		formatString: 0.00%
+	measure 'Median Prep (min 200 orders)' = IF([Finished Orders] >= 200, [Median Prep (min)])
+		formatString: #,0.0
+	/// Top-N bằng measure guard (category rỗng tự ẩn) — không phụ thuộc visual-level filter
+	measure 'GMV (Top 12 Brands)' = IF(RANKX(ALLSELECTED(dim_store[brand]), [GMV], , DESC) <= 12, [GMV])
+		formatString: "R$"#,0
+	measure 'GMV (Top 10 Channels)' = IF(RANKX(ALLSELECTED(dim_channel[channel_name]), [GMV], , DESC) <= 10, [GMV])
+		formatString: "R$"#,0
+	measure 'GMV (Top 15 Stores)' = IF(RANKX(ALLSELECTED(dim_store[store_label]), [GMV], , DESC) <= 15, [GMV])
+		formatString: "R$"#,0
+	/// IUMPICA = 34,5% GMV qua 14 chi nhánh — rủi ro tập trung lớn nhất
+	measure 'GMV Concentration Top1 Brand %' = DIVIDE(MAXX(VALUES(dim_store[brand]), [GMV]), CALCULATE([GMV], ALL(dim_store)))
+		formatString: 0.0%
+	measure 'GMV Share %' = DIVIDE([GMV], CALCULATE([GMV], ALLSELECTED()))
+		formatString: 0.0%
+	measure 'Active Brands' = CALCULATE(DISTINCTCOUNT(dim_store[brand]), fact_orders[order_status] = "FINISHED")
+		formatString: #,0
 	partition fact_orders = m
 		mode: import
 		source =
@@ -141,6 +270,13 @@ table fact_orders
 			    // quality flags (kept, never dropped)
 			    AddF1 = Table.AddColumn(AddDow, "flag_zero_amount", each [order_amount] <= 0, type logical),
 			    AddF2 = Table.AddColumn(AddF1, "flag_extreme_amount", each [order_amount] > 1500, type logical),
-			    AddF3 = Table.AddColumn(AddF2, "flag_long_cycle", each [order_metric_cycle_time] <> null and [order_metric_cycle_time] > 1440, type logical)
+			    AddF3 = Table.AddColumn(AddF2, "flag_long_cycle", each [order_metric_cycle_time] <> null and [order_metric_cycle_time] > 1440, type logical),
+			    // roll deliveries up to order grain: distance must live on the order to slice money measures
+			    DlvSrc = Csv.Document(File.Contents(SourceFolder & "deliveries.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+			    DlvHead = Table.PromoteHeaders(DlvSrc, [PromoteAllScalars=true]),
+			    DlvTyp = Table.TransformColumnTypes(DlvHead, {{"delivery_order_id", Int64.Type}, {"delivery_distance_meters", type number}}),
+			    DlvGrp = Table.Group(DlvTyp, {"delivery_order_id"}, {{"dist_mean_m", each List.Average([delivery_distance_meters]), type number}, {"n_deliveries", each Table.RowCount(_), Int64.Type}}),
+			    Joined = Table.NestedJoin(AddF3, {"order_id"}, DlvGrp, {"delivery_order_id"}, "dlv", JoinKind.LeftOuter),
+			    Expanded = Table.ExpandTableColumn(Joined, "dlv", {"dist_mean_m", "n_deliveries"})
 			in
-			    AddF3
+			    Expanded

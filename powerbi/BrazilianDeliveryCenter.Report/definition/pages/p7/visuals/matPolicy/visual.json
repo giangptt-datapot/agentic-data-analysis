@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "matPolicy",
+  "position": {
+    "x": 412,
+    "y": 524,
+    "z": 4220,
+    "height": 254,
+    "width": 460,
+    "tabOrder": 4220
+  },
+  "visual": {
+    "visualType": "pivotTable",
+    "query": {
+      "queryState": {
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "order_value_band"
+                }
+              },
+              "queryRef": "fact_orders.order_value_band",
+              "nativeQueryRef": "order_value_band"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "order_distance_band"
+                }
+              },
+              "queryRef": "fact_orders.order_distance_band",
+              "nativeQueryRef": "order_distance_band"
+            }
+          ]
+        },
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "Delivery Margin"
+                }
+              },
+              "queryRef": "fact_orders.Delivery Margin",
+              "nativeQueryRef": "Delivery Margin"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Ma trận chính sách: margin theo giá trị × cự ly'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

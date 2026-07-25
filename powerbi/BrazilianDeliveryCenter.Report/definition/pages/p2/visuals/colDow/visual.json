@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "colDow",
   "position": {
-    "x": 448,
-    "y": 386,
-    "z": 3030,
-    "height": 364,
-    "width": 404,
-    "tabOrder": 2030
+    "x": 956,
+    "y": 266,
+    "z": 3330,
+    "height": 250,
+    "width": 300,
+    "tabOrder": 3330
   },
   "visual": {
     "visualType": "columnChart",
@@ -29,24 +29,6 @@
               "queryRef": "dim_date.DayOfWeek",
               "nativeQueryRef": "DayOfWeek",
               "active": true
-            }
-          ]
-        },
-        "Series": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_date"
-                    }
-                  },
-                  "Property": "DayOfWeek"
-                }
-              },
-              "queryRef": "dim_date.DayOfWeek",
-              "nativeQueryRef": "DayOfWeek"
             }
           ]
         },
@@ -85,7 +67,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Đơn theo ngày trong tuần'"
+                  "Value": "'Đơn theo thứ'"
                 }
               }
             }
@@ -98,6 +80,19 @@
         {
           "properties": {
             "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dataPoint": [
+        {
+          "properties": {
+            "showAllDataPoints": {
               "expr": {
                 "Literal": {
                   "Value": "true"

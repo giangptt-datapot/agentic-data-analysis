@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "tDlv",
+  "position": {
+    "x": 1054,
+    "y": 168,
+    "z": 4350,
+    "height": 86,
+    "width": 198,
+    "tabOrder": 4350
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Deliveries"
+                }
+              },
+              "queryRef": "fact_deliveries.Deliveries",
+              "nativeQueryRef": "Deliveries"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Lượt giao'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

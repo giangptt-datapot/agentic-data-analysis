@@ -3,11 +3,11 @@
   "name": "title",
   "position": {
     "x": 24,
-    "y": 66,
-    "z": 900,
-    "height": 48,
-    "width": 1000,
-    "tabOrder": 0
+    "y": 42,
+    "z": 3200,
+    "height": 60,
+    "width": 1232,
+    "tabOrder": 3200
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,19 @@
               {
                 "textRuns": [
                   {
-                    "value": "Order & Revenue Analysis",
+                    "value": "2 · Demand & Order Mix  —  ",
                     "textStyle": {
-                      "fontSize": "20pt",
+                      "fontSize": "16pt",
                       "fontWeight": "bold",
                       "color": "#0f1a30"
+                    }
+                  },
+                  {
+                    "value": "US-2: là ops planner, tôi cần biết cầu theo giờ/thứ và chất lượng đơn từng khung để xếp ca shipper.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
                     }
                   }
                 ]
@@ -31,11 +39,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Xu hướng đơn – doanh thu – kênh – thanh toán – cao điểm",
+                    "value": "73,5% đơn nằm trong 7/24 giờ · đỉnh 12h (50.471 đơn) & 19h (49.000) · đáy 6h (151)",
                     "textStyle": {
-                      "fontSize": "10.5pt",
+                      "fontSize": "10pt",
                       "fontWeight": "normal",
-                      "color": "#4c587a"
+                      "color": "#8b95ad"
                     }
                   }
                 ]

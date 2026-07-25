@@ -1,0 +1,101 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "insight",
+  "position": {
+    "x": 880,
+    "y": 524,
+    "z": 4230,
+    "height": 262,
+    "width": 376,
+    "tabOrder": 4230
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Ngưỡng free-ship đề xuất: đơn ≥ R$60 VÀ cự ly ≤ 2km",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "fontWeight": "bold",
+                      "color": "#0b7a44"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Phí TB R$6,27 < chi phí R$7,58 ⇒ bù R$1,31/đơn (−R$454.555/4 tháng). Bóc tách: free-ship (35,05% đơn) lỗ R$920.272; đơn có phí lãi +R$465.717.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Theo cự ly: <1km +R$10,6k · 1–2km +R$2,6k · 2–3km −R$110k · 3–5km −R$164k · 5–10km −R$99k · 10–50km −R$77k (chỉ 8.631 đơn, −R$9/đơn).",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Theo giá trị: ≤R$30 −R$172k (56% free-ship) · R$30–60 −R$275k · R$100–200 +R$98k · >R$500 −R$14k (63% free-ship!). GOOD free-ship 61,8%.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Giới hạn: không có elasticity → phải A/B, không suy ra tác động volume từ dữ liệu; thiếu 1,7% bản ghi cost.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "fontWeight": "normal",
+                      "color": "#8b95ad"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

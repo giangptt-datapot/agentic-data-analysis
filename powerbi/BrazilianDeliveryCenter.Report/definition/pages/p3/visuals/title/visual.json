@@ -3,11 +3,11 @@
   "name": "title",
   "position": {
     "x": 24,
-    "y": 66,
-    "z": 900,
-    "height": 48,
-    "width": 1000,
-    "tabOrder": 0
+    "y": 42,
+    "z": 3390,
+    "height": 60,
+    "width": 1232,
+    "tabOrder": 3390
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,19 @@
               {
                 "textRuns": [
                   {
-                    "value": "Delivery Performance",
+                    "value": "3 · Fulfilment SLA  —  ",
                     "textStyle": {
-                      "fontSize": "20pt",
+                      "fontSize": "16pt",
                       "fontWeight": "bold",
                       "color": "#0f1a30"
+                    }
+                  },
+                  {
+                    "value": "US-3: là delivery performance manager, tôi cần biết SLA thật và pha nào ăn thời gian để đầu tư đúng khâu.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
                     }
                   }
                 ]
@@ -31,11 +39,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "SLA giao hàng · cự ly · đội xe · nút thắt thời gian",
+                    "value": "KPI cycle gộp FOOD+GOOD là VÔ NGHĨA: P90 FOOD 64,6′ vs GOOD 947′ (GOOD = bán lẻ giao theo hẹn)",
                     "textStyle": {
-                      "fontSize": "10.5pt",
+                      "fontSize": "10pt",
                       "fontWeight": "normal",
-                      "color": "#4c587a"
+                      "color": "#8b95ad"
                     }
                   }
                 ]

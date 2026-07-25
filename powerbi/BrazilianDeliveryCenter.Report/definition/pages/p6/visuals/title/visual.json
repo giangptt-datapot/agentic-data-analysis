@@ -3,11 +3,11 @@
   "name": "title",
   "position": {
     "x": 24,
-    "y": 66,
-    "z": 900,
-    "height": 48,
-    "width": 1000,
-    "tabOrder": 0
+    "y": 42,
+    "z": 3900,
+    "height": 60,
+    "width": 1232,
+    "tabOrder": 3900
   },
   "visual": {
     "visualType": "textbox",
@@ -19,11 +19,19 @@
               {
                 "textRuns": [
                   {
-                    "value": "Insight Lab (deep-dive)",
+                    "value": "6 · Cancellation Root-cause  —  ",
                     "textStyle": {
-                      "fontSize": "20pt",
+                      "fontSize": "16pt",
                       "fontWeight": "bold",
                       "color": "#0f1a30"
+                    }
+                  },
+                  {
+                    "value": "US-6: là ops/commercial lead, tôi cần biết hủy tập trung ở tổ hợp nào để sửa đúng nguyên nhân.",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
                     }
                   }
                 ]
@@ -31,11 +39,11 @@
               {
                 "textRuns": [
                   {
-                    "value": "Bóc tách hủy · kinh tế giao hàng · rủi ro",
+                    "value": "Hủy KHÔNG phải vấn đề “GOOD”: GOOD×MARKETPLACE 22,54% vs GOOD×OWN 4,76% (cùng loại hàng hoá)",
                     "textStyle": {
-                      "fontSize": "10.5pt",
+                      "fontSize": "10pt",
                       "fontWeight": "normal",
-                      "color": "#4c587a"
+                      "color": "#8b95ad"
                     }
                   }
                 ]

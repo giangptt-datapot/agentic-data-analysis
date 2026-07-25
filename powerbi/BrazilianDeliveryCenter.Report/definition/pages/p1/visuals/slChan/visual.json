@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "slChan",
+  "position": {
+    "x": 878,
+    "y": 106,
+    "z": 3060,
+    "height": 52,
+    "width": 378,
+    "tabOrder": 3060
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_channel"
+                    }
+                  },
+                  "Property": "channel_type"
+                }
+              },
+              "queryRef": "dim_channel.channel_type",
+              "nativeQueryRef": "channel_type"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

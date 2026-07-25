@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "tRaw",
+  "position": {
+    "x": 230,
+    "y": 168,
+    "z": 4310,
+    "height": 86,
+    "width": 198,
+    "tabOrder": 4310
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "Canceled GMV (raw, incl. outliers)"
+                }
+              },
+              "queryRef": "fact_orders.Canceled GMV (raw, incl. outliers)",
+              "nativeQueryRef": "Canceled GMV (raw, incl. outliers)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'GMV hủy thô'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

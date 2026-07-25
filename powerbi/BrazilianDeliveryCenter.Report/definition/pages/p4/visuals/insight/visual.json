@@ -1,0 +1,101 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "insight",
+  "position": {
+    "x": 860,
+    "y": 524,
+    "z": 3710,
+    "height": 262,
+    "width": 396,
+    "tabOrder": 3710
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "ELIXIR SHOPPING: hủy 30,8% và median cycle 26 giờ",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "fontWeight": "bold",
+                      "color": "#c11340"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "10.249 đơn (≥500) · hủy 30,82% (6,7× TB 4,6%) · median cycle 1.565′ · median prep 944′. Kế tiếp: STAR 9,25% · REACT 8,12% · RUBY 7,76%.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Giải thích mới: ELIXIR là hub GOOD-heavy → 26 giờ là bán lẻ giao hẹn, còn 30,8% hủy khớp bài toán GOOD×MARKETPLACE (trang 6). Không phải “hub vận hành tệ toàn diện”.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Hành động: audit ELIXIR theo góc tồn kho/độ sẵn có GOOD, không phải điều phối shipper.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "bold",
+                      "color": "#0f1a30"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Giới hạn: 6 hub <500 đơn bị loại khỏi ranking (vd HUBLESS 60% hủy do 2 đơn).",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "fontWeight": "normal",
+                      "color": "#8b95ad"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

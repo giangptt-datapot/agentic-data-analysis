@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "scatHub",
   "position": {
-    "x": 872,
-    "y": 220,
-    "z": 3020,
+    "x": 860,
+    "y": 266,
+    "z": 3520,
     "height": 250,
-    "width": 384,
-    "tabOrder": 2020
+    "width": 396,
+    "tabOrder": 3520
   },
   "visual": {
     "visualType": "scatterChart",
@@ -75,14 +75,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fact_deliveries"
+                      "Entity": "fact_orders"
                     }
                   },
-                  "Property": "Deliveries"
+                  "Property": "Finished Orders"
                 }
               },
-              "queryRef": "fact_deliveries.Deliveries",
-              "nativeQueryRef": "Deliveries"
+              "queryRef": "fact_orders.Finished Orders",
+              "nativeQueryRef": "Finished Orders"
             }
           ]
         }
@@ -103,7 +103,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Cự ly vs Cycle time (theo hub)'"
+                  "Value": "'Hub: cự ly × cycle (size = đơn)'"
                 }
               }
             }

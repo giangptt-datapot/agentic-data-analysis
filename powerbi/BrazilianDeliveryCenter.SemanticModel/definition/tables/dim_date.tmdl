@@ -1,6 +1,6 @@
 table dim_date
 	lineageTag: tbl-dim-date
-	isPrivate
+	dataCategory: Time
 
 	column Date
 		dataType: dateTime

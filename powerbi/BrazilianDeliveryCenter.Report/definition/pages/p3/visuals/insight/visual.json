@@ -1,0 +1,101 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "insight",
+  "position": {
+    "x": 860,
+    "y": 524,
+    "z": 3550,
+    "height": 262,
+    "width": 396,
+    "tabOrder": 3550
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Cự ly không quyết định thời gian — pha transit thì có",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "fontWeight": "bold",
+                      "color": "#0f1a30"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Cùng frame (cycle ≤150′, dist ≤15km, n=316.560): r(distance)=0,23 (R² 5%) · r(prep)=0,48 (23%) · r(transit)=0,66 (R² 44%).",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "→ Nút thắt là chờ gán/đón shipper & tốc độ thực tế, KHÔNG phải chiều dài tuyến. Prep là khâu lớn thứ hai.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Cung shipper mỏng: top 10% shipper làm 55,6% lượt; 23,6% shipper <5 lượt; 69,8% freelance.",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#c11340"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Giới hạn: thiếu mốc collected/walking (phần dư median 6,8′). P90 dùng cap 1440′ = 75,1′ (mockup cũ cap 180′ = 67,5′). Tương quan ≠ nhân quả.",
+                    "textStyle": {
+                      "fontSize": "9pt",
+                      "fontWeight": "normal",
+                      "color": "#8b95ad"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

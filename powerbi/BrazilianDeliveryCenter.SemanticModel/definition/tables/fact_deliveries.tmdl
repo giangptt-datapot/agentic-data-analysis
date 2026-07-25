@@ -32,6 +32,17 @@ table fact_deliveries
 		sourceColumn: flag_extreme_distance
 		lineageTag: lt-flag_extreme_distance
 
+	column distance_band_no = IF(ISBLANK(fact_deliveries[delivery_distance_meters]), BLANK(), SWITCH(TRUE(), fact_deliveries[delivery_distance_meters] <= 1000, 1, fact_deliveries[delivery_distance_meters] <= 2000, 2, fact_deliveries[delivery_distance_meters] <= 3000, 3, fact_deliveries[delivery_distance_meters] <= 5000, 4, fact_deliveries[delivery_distance_meters] <= 10000, 5, 6))
+		dataType: int64
+		summarizeBy: none
+		lineageTag: lt-fd-dbno
+
+	column distance_band = SWITCH(fact_deliveries[distance_band_no], 1, "<1 km", 2, "1–2 km", 3, "2–3 km", 4, "3–5 km", 5, "5–10 km", 6, ">10 km")
+		dataType: string
+		summarizeBy: none
+		sortByColumn: distance_band_no
+		lineageTag: lt-fd-db
+
 	measure 'Deliveries' = COUNTROWS(fact_deliveries)
 		formatString: #,0
 	measure 'Delivered' = CALCULATE([Deliveries], fact_deliveries[delivery_status] = "DELIVERED")
@@ -43,6 +54,13 @@ table fact_deliveries
 	measure 'Active Drivers' = CALCULATE(DISTINCTCOUNT(fact_deliveries[driver_id]), fact_deliveries[delivery_status] = "DELIVERED")
 		formatString: #,0
 
+	measure 'P90 Distance (km)' = DIVIDE(PERCENTILEX.INC(FILTER(fact_deliveries, fact_deliveries[delivery_status] = "DELIVERED" && fact_deliveries[delivery_distance_meters] <= 50000), fact_deliveries[delivery_distance_meters], 0.9), 1000)
+		formatString: #,0.00
+	/// Median 20 lượt/shipper — nhưng top 10% shipper làm 55,6% lượt giao
+	measure 'Deliveries per Driver (median)' = MEDIANX(VALUES(fact_deliveries[driver_id]), CALCULATE([Delivered]))
+		formatString: #,0.0
+	measure 'Failed Deliveries' = CALCULATE([Deliveries], fact_deliveries[delivery_status] <> "DELIVERED")
+		formatString: #,0
 	partition fact_deliveries = m
 		mode: import
 		source =

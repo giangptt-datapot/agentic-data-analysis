@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "actions",
+  "position": {
+    "x": 24,
+    "y": 524,
+    "z": 4380,
+    "height": 262,
+    "width": 1232,
+    "tabOrder": 4380
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "6 khuyến nghị ưu tiên (kèm bằng chứng · mức chắc chắn)",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "fontWeight": "bold",
+                      "color": "#0f1a30"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "1 · Sửa luồng GOOD trên marketplace trước khi scale GOOD — GOOD×MKT hủy 22,54% vs GOOD×OWN 4,76%; quy mô ~R$969k GMV. [Chứng minh: vị trí tập trung · Giả thuyết: nguyên nhân]",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2 · Đặt ngưỡng free-ship: đơn ≥R$60 VÀ ≤2km; thu phí thực chi cho 10–50km và đơn >R$500 — free-ship lỗ R$920k, đơn có phí lãi R$466k. [Chứng minh · tác động volume cần A/B]",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3 · Account plan cho top-3 brand (46,3% GMV) + KPI Top-1 brand % — IUMPICA 34,5% GMV/14 chi nhánh. [Chứng minh, với giả định cùng tên = cùng chuỗi]",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4 · Audit ELIXIR SHOPPING theo góc tồn kho GOOD (hủy 30,8%, cycle 26h) thay vì điều phối shipper. [Chứng minh + giải thích mới]",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5 · Rút ngắn giao hàng nhắm pha transit & chờ gán shipper (r=0,66; R² 44%) — KHÔNG tối ưu quãng đường (r=0,23). Giữ chân ~458 shipper nòng cốt (10% shipper = 55,6% lượt). [Chứng minh, phản trực giác]",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "6 · Ép giờ mở cửa vào listing / auto-reject 0–9h — 4.391 đơn, hủy 18,9% (4,9% tổng số hủy). [Chứng minh tương quan; giả thuyết store đóng cửa]",
+                    "textStyle": {
+                      "fontSize": "10pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "KHÔNG trả lời được với dữ liệu này: lý do hủy (không có cancel_reason) · giữ chân/LTV (không có customer_id) · YoY (chỉ 4 tháng) · thiệt hại phụ thuộc kênh (không có hoa hồng) · elasticity free-ship · giờ mở cửa store.",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "normal",
+                      "color": "#8b95ad"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "hDrv",
+  "position": {
+    "x": 1054,
+    "y": 168,
+    "z": 3670,
+    "height": 86,
+    "width": 198,
+    "tabOrder": 3670
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_deliveries"
+                    }
+                  },
+                  "Property": "Active Drivers"
+                }
+              },
+              "queryRef": "fact_deliveries.Active Drivers",
+              "nativeQueryRef": "Active Drivers"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Shipper active'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

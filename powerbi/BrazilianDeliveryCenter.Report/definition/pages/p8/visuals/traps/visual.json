@@ -1,0 +1,137 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "traps",
+  "position": {
+    "x": 652,
+    "y": 266,
+    "z": 4370,
+    "height": 250,
+    "width": 604,
+    "tabOrder": 4370
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "12 bẫy đo lường đã xử lý",
+                    "textStyle": {
+                      "fontSize": "12pt",
+                      "fontWeight": "bold",
+                      "color": "#0f1a30"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "1 · 1 đơn hủy R$1.788.306 (GRIME CRU @ SAMPA) = 51% “tiền rủi ro” → measure at-risk loại flag_extreme_amount (>R$1.500) ⇒ R$1,62M = 4,58% GMV.",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "2 · store_name không phải khóa: 137 tên → tối đa 15 store_id ⇒ thêm grain brand + store_label.",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "3 · Cycle FOOD vs GOOD là 2 quy trình (P90 64,6′ vs 947′; 87,3% đơn >180′ là GOOD) ⇒ card SLA tách segment.",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "4 · P90 bất nhất: 67,5′ (cap 180′, mockup cũ) vs 75,1′ (cap 1440′, measure) ⇒ chuẩn hoá cap 1440′.",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "5 · Tuần 26–30/04 chỉ 5 ngày ⇒ đánh dấu kỳ chưa đủ. 6 · 10.345 đơn không có bản ghi giao (2,8%) ⇒ success 98,03% (lượt) ≠ 95,4% (đơn).",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "7 · 18.665 đơn không có bản ghi thanh toán → any_chargeback NULL ≠ FALSE (chargeback thật 426 đơn = 0,12%). 8 · 48.818 đơn tách thanh toán ⇒ không bao giờ SUM(payment_amount) làm doanh thu.",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "9 · Thiếu order_delivery_cost 6.000 (1,7%). 10 · Cycle >1440′: 7.469 đơn loại khỏi SLA. 11 · 30 đơn FINISHED amount=0. 12 · Min-volume: hub ≥500 · store ≥100 bằng measure guard.",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

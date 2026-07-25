@@ -38,6 +38,21 @@ table dim_store
 		sourceColumn: store_longitude
 		lineageTag: lt-store_longitude
 
+	column brand = TRIM(dim_store[store_name])
+		dataType: string
+		summarizeBy: none
+		lineageTag: lt-ds-brand
+
+	column store_label = TRIM(dim_store[store_name]) & " #" & FORMAT(dim_store[store_id], "0")
+		dataType: string
+		summarizeBy: none
+		lineageTag: lt-ds-slabel
+
+	column plan_tier = IF(ISBLANK(dim_store[store_plan_price]), "n/a", "R$" & FORMAT(dim_store[store_plan_price], "0.00"))
+		dataType: string
+		summarizeBy: none
+		lineageTag: lt-ds-plan
+
 	partition dim_store = m
 		mode: import
 		source =

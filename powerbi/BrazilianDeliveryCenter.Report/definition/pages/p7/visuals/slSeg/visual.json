@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "slSeg",
+  "position": {
+    "x": 620,
+    "y": 106,
+    "z": 4110,
+    "height": 52,
+    "width": 250,
+    "tabOrder": 4110
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_store"
+                    }
+                  },
+                  "Property": "store_segment"
+                }
+              },
+              "queryRef": "dim_store.store_segment",
+              "nativeQueryRef": "store_segment"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

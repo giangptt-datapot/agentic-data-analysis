@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "scatPartner",
   "position": {
-    "x": 660,
-    "y": 120,
-    "z": 3010,
-    "height": 320,
-    "width": 596,
-    "tabOrder": 2010
+    "x": 532,
+    "y": 266,
+    "z": 3850,
+    "height": 250,
+    "width": 724,
+    "tabOrder": 3850
   },
   "visual": {
     "visualType": "scatterChart",
@@ -23,11 +23,11 @@
                       "Entity": "dim_store"
                     }
                   },
-                  "Property": "store_name"
+                  "Property": "store_label"
                 }
               },
-              "queryRef": "dim_store.store_name",
-              "nativeQueryRef": "store_name",
+              "queryRef": "dim_store.store_label",
+              "nativeQueryRef": "store_label",
               "active": true
             }
           ]
@@ -60,11 +60,11 @@
                       "Entity": "fact_orders"
                     }
                   },
-                  "Property": "Cancellation Rate"
+                  "Property": "Cancellation Rate (min 100 orders)"
                 }
               },
-              "queryRef": "fact_orders.Cancellation Rate",
-              "nativeQueryRef": "Cancellation Rate"
+              "queryRef": "fact_orders.Cancellation Rate (min 100 orders)",
+              "nativeQueryRef": "Cancellation Rate (min 100 orders)"
             }
           ]
         },
@@ -103,7 +103,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Ma trận ưu tiên đối tác (GMV × Hủy)'"
+                  "Value": "'Ma trận đối tác: GMV × hủy (store ≥100 đơn) — ô phải-trên = Fix-first'"
                 }
               }
             }

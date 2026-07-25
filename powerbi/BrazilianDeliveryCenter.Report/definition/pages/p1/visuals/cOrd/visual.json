@@ -3,11 +3,11 @@
   "name": "cOrd",
   "position": {
     "x": 230,
-    "y": 120,
-    "z": 2000,
-    "height": 88,
+    "y": 168,
+    "z": 3080,
+    "height": 86,
     "width": 198,
-    "tabOrder": 1000
+    "tabOrder": 3080
   },
   "visual": {
     "visualType": "card",

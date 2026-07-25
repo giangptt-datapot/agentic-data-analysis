@@ -1,0 +1,60 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "hCyc",
+  "position": {
+    "x": 642,
+    "y": 168,
+    "z": 3650,
+    "height": 86,
+    "width": 198,
+    "tabOrder": 3650
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "Median Cycle FOOD (min)"
+                }
+              },
+              "queryRef": "fact_orders.Median Cycle FOOD (min)",
+              "nativeQueryRef": "Median Cycle FOOD (min)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Median cycle · FOOD'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

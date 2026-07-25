@@ -3,11 +3,11 @@
   "name": "barHubCancel",
   "position": {
     "x": 24,
-    "y": 120,
-    "z": 3000,
-    "height": 320,
+    "y": 266,
+    "z": 3680,
+    "height": 250,
     "width": 620,
-    "tabOrder": 2000
+    "tabOrder": 3680
   },
   "visual": {
     "visualType": "barChart",
@@ -41,11 +41,11 @@
                       "Entity": "fact_orders"
                     }
                   },
-                  "Property": "Cancellation Rate"
+                  "Property": "Cancellation Rate (min 500 orders)"
                 }
               },
-              "queryRef": "fact_orders.Cancellation Rate",
-              "nativeQueryRef": "Cancellation Rate"
+              "queryRef": "fact_orders.Cancellation Rate (min 500 orders)",
+              "nativeQueryRef": "Cancellation Rate (min 500 orders)"
             }
           ]
         }
@@ -66,7 +66,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tỷ lệ hủy theo hub (benchmark)'"
+                  "Value": "'Tỷ lệ hủy theo hub (chỉ hub ≥500 đơn)'"
                 }
               }
             }

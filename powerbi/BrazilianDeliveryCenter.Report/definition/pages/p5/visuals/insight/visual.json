@@ -1,0 +1,89 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "insight",
+  "position": {
+    "x": 1000,
+    "y": 524,
+    "z": 3880,
+    "height": 262,
+    "width": 256,
+    "tabOrder": 3880
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Fix-first: 53 store = 17,8% GMV, hủy 9,8%",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "fontWeight": "bold",
+                      "color": "#c11340"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "⭐ Star 94 store = 74,5% GMV, hủy 1,63% · 🔧 Fix-first 53 = 17,8%, hủy 9,77% · 🌱 Nurture 53 = 3,0% · 👀 Review 94 = 4,7%, hủy 11,4%.",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Gói thuê ngược với giá trị: 56 store gói R$0 = 34,1% GMV, hủy 2,33%; gói R$29,9 (99% đơn GOOD) hủy 12,87%.",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "normal",
+                      "color": "#4c587a"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "Hành động: pricing theo GMV/đơn thay vì phí phẳng.",
+                    "textStyle": {
+                      "fontSize": "9.5pt",
+                      "fontWeight": "bold",
+                      "color": "#0f1a30"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

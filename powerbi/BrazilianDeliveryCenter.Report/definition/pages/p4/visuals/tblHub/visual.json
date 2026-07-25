@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "tblHub",
   "position": {
-    "x": 448,
-    "y": 454,
-    "z": 3030,
-    "height": 298,
-    "width": 808,
-    "tabOrder": 2030
+    "x": 24,
+    "y": 524,
+    "z": 3700,
+    "height": 254,
+    "width": 828,
+    "tabOrder": 3700
   },
   "visual": {
     "visualType": "tableEx",
@@ -31,17 +31,31 @@
             },
             {
               "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_hub"
+                    }
+                  },
+                  "Property": "hub_city"
+                }
+              },
+              "queryRef": "dim_hub.hub_city",
+              "nativeQueryRef": "hub_city"
+            },
+            {
+              "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
                       "Entity": "fact_orders"
                     }
                   },
-                  "Property": "Finished Orders"
+                  "Property": "Total Orders"
                 }
               },
-              "queryRef": "fact_orders.Finished Orders",
-              "nativeQueryRef": "Finished Orders"
+              "queryRef": "fact_orders.Total Orders",
+              "nativeQueryRef": "Total Orders"
             },
             {
               "field": {
@@ -65,11 +79,11 @@
                       "Entity": "fact_orders"
                     }
                   },
-                  "Property": "Cancellation Rate"
+                  "Property": "Cancellation Rate (min 500 orders)"
                 }
               },
-              "queryRef": "fact_orders.Cancellation Rate",
-              "nativeQueryRef": "Cancellation Rate"
+              "queryRef": "fact_orders.Cancellation Rate (min 500 orders)",
+              "nativeQueryRef": "Cancellation Rate (min 500 orders)"
             },
             {
               "field": {
@@ -84,6 +98,20 @@
               },
               "queryRef": "fact_orders.Median Cycle (min)",
               "nativeQueryRef": "Median Cycle (min)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_orders"
+                    }
+                  },
+                  "Property": "Median Prep (min)"
+                }
+              },
+              "queryRef": "fact_orders.Median Prep (min)",
+              "nativeQueryRef": "Median Prep (min)"
             }
           ]
         }

@@ -2,12 +2,12 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "scatHubQuad",
   "position": {
-    "x": 660,
-    "y": 120,
-    "z": 3010,
-    "height": 320,
-    "width": 596,
-    "tabOrder": 2010
+    "x": 652,
+    "y": 266,
+    "z": 3690,
+    "height": 250,
+    "width": 604,
+    "tabOrder": 3690
   },
   "visual": {
     "visualType": "scatterChart",
@@ -60,11 +60,11 @@
                       "Entity": "fact_orders"
                     }
                   },
-                  "Property": "Cancellation Rate"
+                  "Property": "Cancellation Rate (min 500 orders)"
                 }
               },
-              "queryRef": "fact_orders.Cancellation Rate",
-              "nativeQueryRef": "Cancellation Rate"
+              "queryRef": "fact_orders.Cancellation Rate (min 500 orders)",
+              "nativeQueryRef": "Cancellation Rate (min 500 orders)"
             }
           ]
         },
@@ -103,7 +103,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Hub: Volume vs Cancel Rate'"
+                  "Value": "'Quadrant: khối lượng × hủy (size = GMV) — góc phải-trên = xử lý trước'"
                 }
               }
             }

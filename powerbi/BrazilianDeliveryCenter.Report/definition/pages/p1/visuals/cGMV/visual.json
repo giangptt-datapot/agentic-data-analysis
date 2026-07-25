@@ -3,11 +3,11 @@
   "name": "cGMV",
   "position": {
     "x": 24,
-    "y": 120,
-    "z": 2000,
-    "height": 88,
+    "y": 168,
+    "z": 3070,
+    "height": 86,
     "width": 198,
-    "tabOrder": 1000
+    "tabOrder": 3070
   },
   "visual": {
     "visualType": "card",
